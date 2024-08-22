@@ -9,6 +9,8 @@ Một số thư viện cài đặt bên trong dự án:
 - Redux-toolkit (done)
 - Formik và Yup để quản lý form và validation (done)
 - Antd để xây dựng UI (done)
+- Lottie-react để quản lý animation.json (done)
+- React-toastify để thông báo lỗi
 
 Ghi chú về các thư mục trong dự án:
 
@@ -20,4 +22,4 @@ Ghi chú về các thư mục trong dự án:
 - redux: chứa các slice và store của redux-toolkit
 - services: chứa các setup về xử lý API
 - templates: chứa các components đóng vai trò là mẫu layout được sử dụng ở nhiều trang
-- utils:
+- utils: chứa các hàm xử lý sử dụng ở nhiều thành phần trong dự án

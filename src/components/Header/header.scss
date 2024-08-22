@@ -1,0 +1,13 @@
+header {
+  .header_navigation {
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+    .ant-dropdown-open {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
