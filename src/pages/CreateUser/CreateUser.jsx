@@ -21,7 +21,7 @@ const CreateUser = () => {
     skill: [],
     certification: [],
   });
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [isActive, setIsActive] = useState(true);
   const [uploadImage, setUploadImage] = useState(null);
   const [errorImage, setErrorImage] = useState("");
@@ -60,9 +60,11 @@ const CreateUser = () => {
         .uploadAvatar(user.token, formData)
         .then((res) => {
           console.log(res);
+          handleNotification("Upload avatar thành công", "success");
         })
         .catch((err) => {
           console.log(err);
+          handleNotification(err.message, "error");
         });
     }
   };
