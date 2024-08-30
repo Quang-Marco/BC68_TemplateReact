@@ -1,0 +1,24 @@
+.service {
+  .slick-arrow {
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+    background: white;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .slick-next {
+    inset-inline-end: -24px;
+    &::after {
+      top: 17px;
+      inset-inline-start: 15px;
+    }
+  }
+  .slick-prev {
+    inset-inline-start: -24px;
+    &::after {
+      top: 17px;
+      inset-inline-start: 19px;
+    }
+  }
+}

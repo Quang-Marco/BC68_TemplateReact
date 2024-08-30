@@ -6,7 +6,7 @@ import { congViecService } from "../../services/congViec.service";
 import { Dropdown } from "antd";
 import useDebounce from "../../hooks/useDebounce";
 
-const FormSearch = () => {
+const FormSearch = ({ placeholder, classInput, classWrapper }) => {
   const navigate = useNavigate();
   const [valueSearch, setValueSearch] = useState("");
   const [checkDropdown, setCheckDropdown] = useState(false);
@@ -57,14 +57,16 @@ const FormSearch = () => {
   }, [debounceValue]);
 
   return (
-    <div>
+    <div className={classWrapper}>
       <form onSubmit={handleSubmit}>
         <Dropdown menu={{ items: listJobSuggest }} open={checkDropdown}>
-          <div className="flex items-center justify-between pl-4 rounded-md border border-gray-400 min-w-[400px]">
+          <div
+            className={`flex items-center justify-between bg-white pl-4 border border-gray-400 ${classInput}`}
+          >
             <input
               type="text"
               className="flex-1 focus:border-none focus:outline-none"
-              placeholder="Vui lòng nhập công việc cần kiếm"
+              placeholder={placeholder}
               value={valueSearch}
               onChange={handleChange}
             />
