@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "Macan", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.title_highlight {
+  font-family: "DomaineDisplay", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
