@@ -5,17 +5,18 @@ import FormSearch from "../FormSearch/FormSearch";
 const Banner = () => {
   return (
     <section className="banner">
-      <div className="container">
-        <div className="banner_content rounded-2xl mt-10 mb-5 h-[500px] flex flex-col justify-around items-center">
-          <h1 className="text-white text-6xl text-center w-2/3 pt-28">
+      <div className="container lg:px-4">
+        <div className="banner_content rounded-2xl md:mt-10 mb-5 h-80 md:h-96 xl:h-[500px] flex flex-col justify-around items-center">
+          <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center w-[334px] md:w-[534px] lg:w-2/3 pt-5 lg:pt-28">
             Scale your professional workforce with{" "}
             <i className="title_highlight font-semibold">freelancers</i>
           </h1>
           <FormSearch
+            classWrapper=""
             placeholder={"Search for any service..."}
-            classInput="py-2 rounded-xl min-w-[650px]"
+            classInput="py-2 rounded-xl min-w-[350px] sm:min-w-[500px] lg:min-w-[650px]"
           />
-          <div className="banner_social flex space-x-10 pt-5">
+          <div className="banner_social space-x-10 pt-5 hidden lg:flex">
             <span className="font-semibold text-white opacity-50">
               Trusted by:
             </span>

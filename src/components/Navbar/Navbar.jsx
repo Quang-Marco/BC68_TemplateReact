@@ -71,8 +71,8 @@ const Navbar = () => {
   return (
     <>
       <section className="navbar">
-        <div className="container">
-          <div className="grid grid-cols-9 gap-4">
+        <div className="container px-4">
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-9 gap-4">
             {renderJob(
               "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/programming-tech-thin.56382a2.svg",
               "Programming & Tech"
@@ -114,7 +114,7 @@ const Navbar = () => {
       </section>
       <div
         className={`bg-white w-screen border-b fixed top-[84px] pt-3 z-10 ${
-          isScroll ? "block" : "hidden"
+          isScroll ? "hidden lg:block" : "hidden"
         }`}
       >
         <div className="container">

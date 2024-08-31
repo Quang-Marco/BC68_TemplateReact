@@ -97,19 +97,21 @@ const Header = () => {
   }, []);
   return (
     <header className="bg-white py-5 font-medium border-b sticky top-0 z-10">
-      <div className="container">
+      <div className="container px-4">
         <div className="header_content flex items-center justify-between">
           <div className="header_logo flex space-x-5">
             <Link to={pathDefault.homePage}>
               <IconLogoHeader />
             </Link>
             <FormSearch
-              classWrapper={`${isScroll ? "block" : "hidden"}`}
+              classWrapper={`w-[150px] lg:w-full ${
+                isScroll ? "invisible lg:visible" : "invisible"
+              }`}
               placeholder={"What service are you looking for today?"}
               classInput="rounded-md min-w-[400px]"
             />
           </div>
-          <nav className="header_navigation space-x-4">
+          <nav className="header_navigation space-x-4 hidden lg:block">
             <Dropdown
               menu={{
                 items: itemsFiverrPro,
@@ -160,14 +162,14 @@ const Header = () => {
                 "font-semibold text-gray-500 hover:text-green-500 duration-300"
               }
             />
-            <LinkCustom
-              content="Join"
-              to={pathDefault.register}
-              className={
-                "py-2 px-4 font-semibold border border-green-500 text-green-500 hover:bg-green-500 hover:text-white duration-300"
-              }
-            />
           </nav>
+          <LinkCustom
+            content="Join"
+            to={pathDefault.register}
+            className={
+              "py-2 px-4 font-semibold border border-green-500 text-green-500 hover:bg-green-500 hover:text-white duration-300"
+            }
+          />
         </div>
       </div>
     </header>
