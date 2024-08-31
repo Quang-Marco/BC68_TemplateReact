@@ -10,6 +10,7 @@ import AdminLogin from "../pages/AdminLogin/AdminLogin";
 // import ManagerUser from "../pages/ManagerUser/ManagerUser";
 import CreateUser from "../pages/CreateUser/CreateUser";
 import { Skeleton } from "antd";
+import Body from "../components/Body/Body";
 const ManagerUser = lazy(() => import("../pages/ManagerUser/ManagerUser"));
 
 const useRoutesCustom = () => {
@@ -18,6 +19,10 @@ const useRoutesCustom = () => {
       path: pathDefault.homePage,
       element: <UserTemplate />,
       children: [
+        {
+          index: true,
+          element: <Body />,
+        },
         {
           path: pathDefault.listJob,
           element: <ListJobPage />,

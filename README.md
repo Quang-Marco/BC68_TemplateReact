@@ -10,7 +10,8 @@ Một số thư viện cài đặt bên trong dự án:
 - Formik và Yup để quản lý form và validation (done)
 - Antd để xây dựng UI (done)
 - Lottie-react để quản lý animation.json (done)
-- React-toastify để thông báo lỗi
+- React-toastify để thông báo lỗi (done)
+- Swiper (done)
 
 Ghi chú về các thư mục trong dự án:
 

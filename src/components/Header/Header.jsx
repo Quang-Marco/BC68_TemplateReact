@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import IconLogoHeader from "../Icon/IconLogoHeader";
 import { pathDefault } from "../../common/path";
@@ -9,98 +9,167 @@ import "./header.scss";
 import FormSearch from "../FormSearch/FormSearch";
 
 const Header = () => {
-  const items = [
+  const renderItem = (title, content) => (
+    <div>
+      <h5 className="font-semibold text-base text-gray-700">{title}</h5>
+      <p className="font-medium text-gray-500">{content}</p>
+    </div>
+  );
+  const itemsFiverrPro = [
     {
       key: "1",
       label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-        >
-          1st menu item
-        </a>
+        <div className="flex gap-3 border rounded-lg p-5">
+          <img
+            src="https://fiverr-res.cloudinary.com/npm-assets/layout-service/hire-freelancer.e3fcf5a.svg"
+            alt=""
+          />
+          {renderItem(
+            "I'm looking to hire",
+            "My team needs vetted freelance talent and a premium business solution."
+          )}
+        </div>
       ),
     },
     {
       key: "2",
       label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.aliyun.com"
-        >
-          2nd menu item (disabled)
-        </a>
+        <div className="flex gap-3 border rounded-lg p-5">
+          <img
+            src="https://fiverr-res.cloudinary.com/npm-assets/layout-service/iam-freelancer.6e3c275.svg"
+            alt=""
+          />
+          {renderItem(
+            "I want to offer Pro services",
+            "I’d like to work on business projects as a Pro freelancer or agency."
+          )}
+        </div>
       ),
-      icon: <SmileOutlined />,
-      disabled: true,
+    },
+  ];
+  const itemsExplore = [
+    {
+      key: "1",
+      label: renderItem("Discover", "Inspiring projects made on Fiverr"),
+    },
+    {
+      key: "2",
+      label: renderItem(
+        "Community",
+        "Connect with Fiverr’s team and community"
+      ),
     },
     {
       key: "3",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
-        >
-          3rd menu item (disabled)
-        </a>
-      ),
-      disabled: true,
+      label: renderItem("Guides", "In-depth guides covering business topics"),
     },
     {
       key: "4",
-      danger: true,
-      label: "a danger item",
+      label: renderItem("Podcast", "Inside tips from top business minds"),
+    },
+    {
+      key: "5",
+      label: renderItem("Learn", "Professional online courses, led by experts"),
+    },
+    {
+      key: "6",
+      label: renderItem("Blog", "News, information and community stories"),
+    },
+    {
+      key: "7",
+      label: renderItem("Logo Maker", "Create your logo instantly"),
     },
   ];
+  const [isScroll, setIsScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setIsScroll(true);
+      } else {
+        setIsScroll(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <header className="py-5 font-medium">
-      <div className="container">
+    <header className="bg-white py-5 font-medium border-b sticky top-0 z-10">
+      <div className="container px-4">
         <div className="header_content flex items-center justify-between">
           <div className="header_logo flex space-x-5">
             <Link to={pathDefault.homePage}>
               <IconLogoHeader />
             </Link>
-            <FormSearch />
+            <FormSearch
+              classWrapper={`w-[150px] lg:w-full ${
+                isScroll ? "invisible lg:visible" : "invisible"
+              }`}
+              placeholder={"What service are you looking for today?"}
+              classInput="rounded-md min-w-[400px]"
+            />
           </div>
-          <nav className="header_navigation space-x-5">
+          <nav className="header_navigation space-x-4 hidden lg:block">
             <Dropdown
               menu={{
-                items,
+                items: itemsFiverrPro,
               }}
               trigger={["click"]}
               className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
             >
-              <a onClick={(e) => e.preventDefault()}>
+              <a
+                className="font-semibold text-gray-700"
+                onClick={(e) => e.preventDefault()}
+              >
+                <Space>
+                  Fiverr Pro
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
+            <Dropdown
+              menu={{
+                items: itemsExplore,
+              }}
+              trigger={["click"]}
+              className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
+            >
+              <a
+                className="font-semibold text-gray-500"
+                onClick={(e) => e.preventDefault()}
+              >
                 <Space>
                   Explore
                   <DownOutlined />
                 </Space>
               </a>
             </Dropdown>
-            <button className="hover:text-green-600 duration-300">
-              English
+            <button className="font-semibold text-gray-500 hover:text-green-500 duration-300">
+              <i class="fa-light fa-globe"></i> English
             </button>
-            <a href="#" className="hover:text-green-600 duration-300">
+            <a
+              href="#"
+              className="font-semibold text-gray-500 hover:text-green-500 duration-300"
+            >
               Become a Seller
             </a>
             <LinkCustom
-              content={"Đăng nhập"}
+              content={"Sign in"}
               to={pathDefault.login}
               className={
-                "border border-green-600 text-green-600 hover:bg-green-600 hover:text-white duration-300"
-              }
-            />
-            <LinkCustom
-              content="Đăng ký"
-              to={pathDefault.register}
-              className={
-                "border border-green-600 bg-green-600 text-white hover:bg-white hover:text-green-600 duration-300"
+                "font-semibold text-gray-500 hover:text-green-500 duration-300"
               }
             />
           </nav>
+          <LinkCustom
+            content="Join"
+            to={pathDefault.register}
+            className={
+              "py-2 px-4 font-semibold border border-green-500 text-green-500 hover:bg-green-500 hover:text-white duration-300"
+            }
+          />
         </div>
       </div>
     </header>
