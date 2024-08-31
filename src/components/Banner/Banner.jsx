@@ -5,7 +5,7 @@ import FormSearch from "../FormSearch/FormSearch";
 const Banner = () => {
   return (
     <section className="banner">
-      <div className="container lg:px-4">
+      <div className="container lg:px-2">
         <div className="banner_content rounded-2xl md:mt-10 mb-5 h-80 md:h-96 xl:h-[500px] flex flex-col justify-around items-center">
           <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center w-[334px] md:w-[534px] lg:w-2/3 pt-5 lg:pt-28">
             Scale your professional workforce with{" "}

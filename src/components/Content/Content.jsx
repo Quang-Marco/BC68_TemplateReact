@@ -6,20 +6,20 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// import "swiper/css/scrollbar";
 
 const Content = () => {
   const renderService = (bgColor, content, imgURL) => (
     <div
-      className={`border rounded-2xl p-3 shadow-lg cursor-pointer hover:opacity-90 duration-300 ${bgColor}`}
+      className={`border rounded-2xl p-1 sm:p-2 lg:p-3 shadow-lg cursor-pointer hover:opacity-90 duration-300 ${bgColor}`}
     >
-      <p className="text-white text-lg font-bold m-3 h-14">{content}</p>
-      <img className="rounded-xl" src={imgURL} />
+      <p className="text-white text-sm lg:text-lg font-bold m-2 lg:m-3 h-10 lg:h-14">
+        {content}
+      </p>
+      <img className="rounded-md lg:rounded-xl" src={imgURL} />
     </div>
   );
   const renderSuccess = (imgURL, content) => (
-    <div className="border rounded-2xl px-8 py-5 shadow-md cursor-pointer text-center flex flex-col justify-center items-center hover:shadow-xl duration-300">
+    <div className="border rounded-2xl px-6 py-5 shadow-sm cursor-pointer text-center flex flex-col justify-center items-center hover:shadow-xl duration-300">
       <img src={imgURL} />
       <p className="text-base font-semibold mt-3 h-12">{content}</p>
     </div>
@@ -27,7 +27,7 @@ const Content = () => {
   return (
     <div>
       <section className="service pt-20">
-        <div className="container px-4">
+        <div className="container px-2">
           <div className="service_content">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700 pb-10">
               Popular services
@@ -35,19 +35,22 @@ const Content = () => {
             <Swiper
               modules={[Navigation, A11y]}
               navigation
-              spaceBetween={20}
               breakpoints={{
                 368: {
                   slidesPerView: 2.5,
+                  spaceBetween: 10,
                 },
                 524: {
                   slidesPerView: 3.5,
+                  spaceBetween: 15,
                 },
                 768: {
                   slidesPerView: 5,
+                  spaceBetween: 15,
                 },
                 1024: {
                   slidesPerView: 6,
+                  spaceBetween: 20,
                 },
               }}
             >
@@ -196,7 +199,7 @@ const Content = () => {
         </div>
       </section>
       <section className="success pt-10">
-        <div className="container px-4">
+        <div className="container px-2">
           <div className="success_content">
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-medium text-gray-700">
               What success on Fiverr looks like
@@ -243,8 +246,8 @@ const Content = () => {
               </SwiperSlide>
               <SwiperSlide>
                 {renderSuccess(
-                  "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666557/3D-Industrial-Design_2x.png",
-                  "E-commerce 3D Website Development"
+                  "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666565/E-commerce-Website-Development_2x.png",
+                  "E-commerce Website Development"
                 )}
               </SwiperSlide>
               <SwiperSlide>

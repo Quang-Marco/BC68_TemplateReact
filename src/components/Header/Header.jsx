@@ -97,14 +97,14 @@ const Header = () => {
   }, []);
   return (
     <header className="bg-white py-5 font-medium border-b sticky top-0 z-10">
-      <div className="container px-4">
+      <div className="container px-2">
         <div className="header_content flex items-center justify-between">
           <div className="header_logo flex space-x-5">
             <Link to={pathDefault.homePage}>
               <IconLogoHeader />
             </Link>
             <FormSearch
-              classWrapper={`w-[150px] lg:w-full ${
+              classWrapper={`w-[150px] lg:w-[470px] ${
                 isScroll ? "invisible lg:visible" : "invisible"
               }`}
               placeholder={"What service are you looking for today?"}

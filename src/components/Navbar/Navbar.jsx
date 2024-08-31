@@ -47,7 +47,7 @@ const Navbar = () => {
     },
   ];
   const renderJob = (imgURL, content) => (
-    <div className="border rounded-2xl p-5 shadow-lg cursor-pointer hover:bg-cyan-100 duration-300">
+    <div className="border rounded-2xl p-3 lg:p-5 shadow-lg cursor-pointer hover:bg-cyan-100 duration-300">
       <img src={imgURL} />
       <p className="text-sm font-semibold mt-3">{content}</p>
     </div>
@@ -71,7 +71,7 @@ const Navbar = () => {
   return (
     <>
       <section className="navbar">
-        <div className="container px-4">
+        <div className="container px-2">
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-9 gap-4">
             {renderJob(
               "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/programming-tech-thin.56382a2.svg",
