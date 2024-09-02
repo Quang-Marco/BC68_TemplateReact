@@ -219,7 +219,7 @@ const Header = () => {
     <header className="bg-white py-5 font-medium border-b sticky top-0 z-10">
       <div className="container px-2">
         <div className="header_content flex items-center justify-between">
-          <Button onClick={showDrawer}>
+          <Button className="inline-block lg:hidden" onClick={showDrawer}>
             <MenuUnfoldOutlined />
           </Button>
           <Drawer
