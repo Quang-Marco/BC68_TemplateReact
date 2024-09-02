@@ -6,7 +6,7 @@ import { congViecService } from "../../services/congViec.service";
 import { Dropdown } from "antd";
 import useDebounce from "../../hooks/useDebounce";
 
-const FormSearch = ({ placeholder, classInput, classWrapper }) => {
+const FormSearch = ({ placeholder, classInput, classWrapper, classIcon }) => {
   const navigate = useNavigate();
   const [valueSearch, setValueSearch] = useState("");
   const [checkDropdown, setCheckDropdown] = useState(false);
@@ -16,6 +16,7 @@ const FormSearch = ({ placeholder, classInput, classWrapper }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`${pathDefault.listJob}?tenCongViec=${valueSearch}`);
+    setCheckDropdown(false);
   };
   const handleChange = (e) => {
     setValueSearch(e.target.value);
@@ -70,8 +71,11 @@ const FormSearch = ({ placeholder, classInput, classWrapper }) => {
               value={valueSearch}
               onChange={handleChange}
             />
-            <button type="submit" className="p-2">
-              <IconSearch color="rgb(156 163 175)" />
+            <button
+              type="submit"
+              className={`hover:opacity-80 transition-opacity ${classIcon}`}
+            >
+              <IconSearch />
             </button>
           </div>
         </Dropdown>

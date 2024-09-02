@@ -1,6 +1,6 @@
 import React from "react";
 
-const IconSearch = ({ size = 25, color = "black" }) => {
+const IconSearch = ({ size = 18, color = "white" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

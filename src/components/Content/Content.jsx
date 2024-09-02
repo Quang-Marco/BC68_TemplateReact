@@ -26,7 +26,7 @@ const Content = () => {
   );
   return (
     <div>
-      <section className="service pt-20">
+      <section className="service pt-10 lg:pt-20">
         <div className="container px-2">
           <div className="service_content">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700 pb-10">
