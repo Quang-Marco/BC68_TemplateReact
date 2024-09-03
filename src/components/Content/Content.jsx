@@ -8,8 +8,46 @@ import "swiper/css";
 import "swiper/css/navigation";
 // import "swiper/css/pagination";
 // import "swiper/css/scrollbar";
+import { Carousel } from "antd";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const Content = () => {
+  const contentStyle = {
+    margin: 0,
+    height: "290px",
+    color: "#000",
+
+    background: "#fff",
+  };
+  const renderAbout = (imageAbout, name, coop, content) => (
+    <div>
+      <div className="carouselItem flex ">
+        <div className="item_left w-2/5 relative">
+          <img className=" w-full h-full rounded " src={imageAbout} />
+        </div>
+        <div className="item_right w-3/5 ">
+          <div className="lg:max-w-3xl lg:pl-16 lg:w-4/5 ">
+            <h5 className="text-[#74767e] font-normal flex text-xl pb-4 relative">
+              {name} |
+              <span>
+                <img
+                  className=" h-9 inline-block  align-middle ml-3 absolute -top-1 "
+                  src={coop}
+                  alt="Compony logo"
+                  loading="lazy"
+                />
+              </span>
+            </h5>
+            <p className="text-[#003912] font-medium text-3xl leading-10">
+              "{content}"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
   const renderService = (bgColor, content, imgURL) => (
     <div
       className={`border rounded-2xl p-3 shadow-lg cursor-pointer hover:opacity-90 duration-300 ${bgColor}`}
@@ -24,10 +62,123 @@ const Content = () => {
       <p className="text-base font-semibold mt-3 h-12">{content}</p>
     </div>
   );
+  const renderMadeImg = (madeImg, topic, by) => (
+    <div className="card rounded-lg  min-h-28 w-1/4 shadow">
+      <a href="#">
+        <img
+          className="w-full h-full object-cover rounded-lg"
+          src={madeImg}
+          alt=""
+        />
+      </a>
+      <div className="info">
+        <div className="text-[14px] text-white  ">
+          Featured in:
+          <span className="font-semibold">{topic}</span>
+          <br />
+          by:
+          <a className="font-semibold" target="_blank" href="#">
+            {by}
+          </a>
+        </div>
+        <div className="three_dot">
+          <span className="cursor-pointer ">
+            <button className="bg-transparent w-10 h-10 flex justify-center items-center hover:bg-white rounded-full">
+              <span className="h-4 w-4 fill-white hover:fill-[#7C7E86] inline-block">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentFill"
+                >
+                  <circle cx="2" cy="2" r="2"></circle>
+                  <circle cx="8" cy="2" r="2"></circle>
+                  <circle cx="14" cy="2" r="2"></circle>
+                </svg>
+              </span>
+            </button>
+          </span>
+        </div>
+        <div className="heart ">
+          <button className="h-10 w-10 ">
+            <div className="w-4 h-4 fill-[#74767e] ">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M14.325 2.00937C12.5188 0.490623 9.72813 0.718748 8 2.47812C6.27188 0.718748 3.48125 0.487498 1.675 2.00937C-0.674996 3.9875 -0.331246 7.2125 1.34375 8.92187L6.825 14.5062C7.1375 14.825 7.55625 15.0031 8 15.0031C8.44688 15.0031 8.8625 14.8281 9.175 14.5094L14.6563 8.925C16.3281 7.21562 16.6781 3.99062 14.325 2.00937ZM13.5875 7.86875L8.10625 13.4531C8.03125 13.5281 7.96875 13.5281 7.89375 13.4531L2.4125 7.86875C1.27188 6.70625 1.04063 4.50625 2.64063 3.15937C3.85625 2.1375 5.73125 2.29062 6.90625 3.4875L8 4.60312L9.09375 3.4875C10.275 2.28437 12.15 2.1375 13.3594 3.15625C14.9563 4.50312 14.7188 6.71562 13.5875 7.86875Z"></path>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+  const SampleNextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block" }}
+        onClick={onClick}
+      />
+    );
+  };
+
+  const SamplePrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block" }}
+        onClick={onClick}
+      />
+    );
+  };
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+  const renderGuideItem = (guideImg, title) => (
+    <div>
+      <div className="top_img">
+        <img src={guideImg} alt="" />
+      </div>
+      <div className="bot_title">
+        <h3 className="text-[#404145]">{title}</h3>
+      </div>
+    </div>
+  );
   return (
     <div>
       <section className="service pt-20">
-        <div className="container px-4">
+        <div className="container px-4 bg-[#003912]">
           <div className="service_content">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700 pb-10">
               Popular services
@@ -266,6 +417,279 @@ const Content = () => {
                 )}
               </SwiperSlide>
             </Swiper>
+          </div>
+        </div>
+      </section>
+      <section className="fiverrPro ">
+        <div className="container">
+          <div className="fiverPro_content flex bg-[#003912] rounded-xl text-white py-20 px-16">
+            <div className="pro_left">
+              <svg
+                width="139"
+                height="34"
+                viewBox="0 0 139 34"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g fill="#fff">
+                  <path d="M81.6463 13.1117H78.4949C76.4661 13.1117 75.3797 14.6592 75.3797 17.2363V26.5544H69.4034V13.1117H66.8677C64.839 13.1117 63.7526 14.6592 63.7526 17.2363V26.5544H57.7763V8.13963H63.7526V10.9393C64.7301 8.76575 66.0705 8.13963 68.063 8.13963H75.3797V10.9393C76.3572 8.76575 77.6976 8.13963 79.6901 8.13963H81.6463V13.1117ZM56.4721 18.7838H44.0103C44.3358 20.8466 45.6036 22.0251 47.7413 22.0251C49.3345 22.0251 50.4584 21.3621 50.8201 20.1836L56.1092 21.6942C54.8051 24.8986 51.5811 26.8508 47.7413 26.8508C41.2569 26.8508 38.2869 21.7311 38.2869 17.3482C38.2869 13.0391 40.8952 7.88251 47.3784 7.88251C54.2607 7.88251 56.5424 13.1129 56.5424 16.9804C56.5436 17.8267 56.5073 18.379 56.4721 18.7838ZM50.6761 15.2115C50.531 13.6283 49.4083 12.1547 47.3795 12.1547C45.4959 12.1547 44.3732 13.0022 44.0103 15.2115H50.6761ZM27.855 26.5556H33.1078L39.6636 8.13963H33.651L30.4633 18.8576L27.203 8.13963H21.2267L27.855 26.5556ZM3.3692 26.5556H9.3092V13.1117H14.96V26.5556H20.8649V8.13963H9.31037V6.99808C9.31037 5.74583 10.1802 4.9721 11.5557 4.9721H14.9612V0H10.577C6.26662 0 3.3692 2.689 3.3692 6.63026V8.14082H0V13.1129H3.3692V26.5556Z"></path>
+                  <path d="M86.9869 34V8.15269H90.4697V10.8905C91.5467 9.06569 93.7371 7.85986 96.2505 7.85986C101.708 7.85986 104.832 11.8749 104.832 17.3517C104.832 22.8273 101.564 26.8436 96.0714 26.8436C93.6657 26.8436 91.5116 25.7116 90.4709 23.9594V33.9988H86.9869V34ZM101.313 17.3529C101.313 13.52 99.0871 10.9643 95.7471 10.9643C92.3721 10.9643 90.1817 13.52 90.1817 17.3529C90.1817 21.1859 92.3721 23.7415 95.7471 23.7415C99.0871 23.7415 101.313 21.1859 101.313 17.3529Z"></path>
+                  <path d="M116.757 11.2189H114.136C110.834 11.2189 109.755 14.2127 109.755 18.2277V26.5519H106.274V8.15259H109.757V11.6939C110.582 9.24771 112.018 8.15259 114.568 8.15259H116.758V11.2189H116.757Z"></path>
+                  <path d="M115.91 17.3529C115.91 11.8404 119.823 7.86108 125.245 7.86108C130.666 7.86108 134.543 11.8404 134.543 17.3529C134.543 22.8655 130.666 26.8448 125.245 26.8448C119.823 26.8436 115.91 22.8643 115.91 17.3529ZM130.988 17.3529C130.988 13.5926 128.655 10.9643 125.243 10.9643C121.797 10.9643 119.463 13.5926 119.463 17.3529C119.463 21.1133 121.796 23.7416 125.243 23.7416C128.655 23.7416 130.988 21.1121 130.988 17.3529Z"></path>
+                  <path d="M139 24.5201V24.5629C139 25.814 138.003 26.8294 136.771 26.8294C135.541 26.8294 134.542 25.8152 134.542 24.5629V24.5201C134.542 23.269 135.539 22.2537 136.771 22.2537C138.001 22.2537 139 23.269 139 24.5201Z"></path>
+                </g>
+              </svg>
+              <h3>
+                New e-Commerce project management service
+                <span className="font-bold"> made for your business</span>
+              </h3>
+              <p>
+                An experienced e-Commerce project manager will plan, coordinate,
+                and execute your project. Overseeing a team of e-Commerce
+                experts, they'll handle everything from site building, design
+                and content to optimization, marketing strategies, and UGC
+                videos.
+              </p>
+              <p className="font-bold">To get started, you should have:</p>
+              <ul>
+                <li>
+                  An e-Commerce project requiring expertise in various fields
+                </li>
+                <li>A budget exceeding $1000</li>
+                <li>A desire to get things done, without the hassle</li>
+              </ul>
+              <button className="rounded-lg bg-[#E37627] px-6 py-3">
+                Get started
+              </button>
+            </div>
+            <div className="pro_right">
+              <img
+                alt="Fiverr Pro freelancers"
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/d85c8f7113e7f18d6fca144840de5afa-1718619183018/X1.png"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="about ">
+        <div className="container">
+          <div className="about_top flex flex-col lg:py-10 lg:gap-10">
+            <h2>What they're saying about Fiverr</h2>
+            <div className="carousel_feetback">
+              <Carousel arrows infinite={false}>
+                <div>
+                  <div style={contentStyle}>
+                    {renderAbout(
+                      "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173396/testimonial-video-still-lavender.jpg",
+                      "Brighid Gannon (DNP, PMHNP-BC), Co-Founder",
+                      "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lavender-logo-x2.3fff9e7.png",
+                      "We used Fiverr for SEO, our logo, website, copy, animated videos — literally everything. It was like working with a human right next to you versus being across the world."
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <div style={contentStyle}>
+                    <div>
+                      {renderAbout(
+                        "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173399/testimonial-video-still-rooted.jpg",
+                        "Kay Kim, Co-Founder",
+                        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/rooted-logo-x2.7da3bc9.png",
+                        "It's extremely exciting that Fiverr has freelancers from all over the world — it broadens the talent pool. One of the best things about Fiverr is that while we're sleeping, someone's working."
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div style={contentStyle}>
+                    {renderAbout(
+                      "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173414/testimonial-video-still-naadam.jpg",
+                      "Caitlin Tormey, Chief Commercial Officer",
+                      "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/naadam-logo-x2.a79031d.png",
+                      "We've used Fiverr for Shopify web development, graphic design, and backend web development. Working with Fiverr makes my job a little easier every day."
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <div style={contentStyle}>
+                    {renderAbout(
+                      "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173395/testimonial-video-still-haerfest.jpg",
+                      "Tim and Dan Joo, Co-Founders",
+                      "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/haerfest-logo-x2.934ab63.png",
+                      "When you want to create a business bigger than yourself, you need a lot of help. That's what Fiverr does."
+                    )}
+                  </div>
+                </div>
+              </Carousel>
+            </div>
+          </div>
+          <div className="about_logo py-10 flex bg-[#FFF6F2] rounded-lg">
+            <div className="logo_left w-1/2">
+              <div className="logo_left_content grid lg:gap-10">
+                <i>
+                  <svg
+                    width="249"
+                    height="34"
+                    viewBox="0 0 249 34"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g fill="#222325">
+                      <path d="M81.6,13.1h-3.1c-2,0-3.1,1.5-3.1,4.1v9.3h-6V13.1h-2.5c-2,0-3.1,1.5-3.1,4.1v9.3h-6V8.1h6v2.8 c1-2.2,2.3-2.8,4.3-2.8h7.3v2.8c1-2.2,2.3-2.8,4.3-2.8h2L81.6,13.1z M56.4,18.7H44c0.3,2.1,1.6,3.2,3.7,3.2 c1.6,0,2.7-0.7,3.1-1.8l5.3,1.5c-1.3,3.2-4.5,5.1-8.4,5.1c-6.5,0-9.5-5.1-9.5-9.5c0-4.3,2.6-9.4,9.1-9.4c6.9,0,9.2,5.2,9.2,9.1 C56.5,17.8,56.5,18.3,56.4,18.7z M50.7,15.2c-0.1-1.6-1.3-3-3.3-3c-1.9,0-3,0.8-3.4,3H50.7z M27.8,26.5H33l6.6-18.3h-6l-3.2,10.7 L27.2,8.1h-6L27.8,26.5z M3.4,26.5h5.9V13.1H15v13.4h5.9V8.1H9.3V7c0-1.2,0.9-2,2.2-2H15V0h-4.4C6.3,0,3.4,2.7,3.4,6.6v1.5H0v5 h3.4L3.4,26.5z"></path>
+                      <path d="M88.4,0h3.5v26.6h-3.5V0z"></path>
+                      <path d="M93.6,17.5c0-5.5,3.9-9.4,9.4-9.4c5.5,0,9.4,3.9,9.4,9.4s-3.9,9.4-9.4,9.4C97.5,26.9,93.6,23,93.6,17.5z M108.8,17.5c0-3.7-2.4-6.3-5.8-6.3c-3.5,0-5.8,2.6-5.8,6.3s2.4,6.3,5.8,6.3C106.4,23.8,108.8,21.2,108.8,17.5z"></path>
+                      <path d="M130.1,28.3c0,3.3-2.1,5.7-5.6,5.7h-5.6c-3.8,0-5.8-2.2-5.8-5.4c0-1.5,0.8-2.9,1.9-3.7 c-0.9-0.7-1.4-1.6-1.4-2.8c0-1.5,0.9-2.5,2.2-3.8c-0.8-1-1.2-2.4-1.2-3.8c0-3.8,3-6.3,7-6.3c1,0,2,0.2,2.9,0.5l2.5-2.9l2.2,2 l-2.2,2.5c1,1.1,1.6,2.6,1.6,4.1c0,3.8-3,6.3-7,6.3c-1.3,0-2.5-0.3-3.5-0.7c-0.7,0.8-1,1.2-1,1.8c0,1,0.9,1.5,2,1.5h5.1 C127.6,23.3,130.1,24.9,130.1,28.3z M126.7,28.5c0-1.7-1.1-2.5-2.9-2.5h-4.2c-0.6,0-1.2,0-1.8-0.1c-0.9,0.7-1.2,1.6-1.2,2.6 c0,1.5,1,2.6,2.5,2.6h5.4C126.1,31.1,126.7,30,126.7,28.5z M117.9,14.4c0,2.2,1.7,3.5,3.7,3.5c2,0,3.7-1.3,3.7-3.5 c0-2.2-1.7-3.5-3.7-3.5C119.6,10.9,117.9,12.2,117.9,14.4z"></path>
+                      <path d="M130.2,17.5c0-5.5,3.9-9.4,9.4-9.4c5.5,0,9.4,3.9,9.4,9.4s-3.9,9.4-9.4,9.4C134.2,26.9,130.2,23,130.2,17.5z M145.4,17.5c0-3.7-2.4-6.3-5.8-6.3c-3.5,0-5.8,2.6-5.8,6.3s2.4,6.3,5.8,6.3C143.1,23.8,145.4,21.2,145.4,17.5z"></path>
+                      <path d="M155,8.4h3.5v3.3c0.8-2.1,2.7-3.5,5.4-3.5c3,0,5.2,1.3,5.9,3.7c0.7-2.1,3.1-3.7,5.9-3.7 c3.9,0,6.4,2.7,6.4,6.9v11.6h-3.5V16c0-2.9-1.5-4.8-3.9-4.8c-2.8,0-4.5,2-4.5,4.8v10.6h-3.5V16c0-2.9-1.5-4.8-3.8-4.8 c-2.8,0-4.5,2-4.5,4.8v10.6H155V8.4z"></path>
+                      <path d="M199.3,14.7v11.9h-3.4v-3c-0.9,2-3.2,3.3-5.9,3.3c-3.7,0-6.2-2.3-6.2-5.5c0-3.7,2.4-5.9,7.1-5.9h3.9 c0.7,0,1.1-0.4,1.1-1v-0.1c0-2.2-2-3.6-4.5-3.6s-4.3,1.6-4.5,3.5h-3.2c0.3-3.6,3.5-6.3,7.6-6.3C195.9,8.1,199.3,10.7,199.3,14.7z M195.9,18.6v-0.5h-4.7c-2.8,0-3.9,1.2-3.9,3.3c0,1.6,1.5,2.8,3.4,2.8C193.9,24.1,195.9,22,195.9,18.6z"></path>
+                      <path d="M207,17.9l-2.3,2.1v6.6h-3.5V0h3.5v15.6l8-7.2h4.5l-7.7,7.1l8.4,11.1h-4.3L207,17.9z"></path>
+                      <path d="M243.2,11.4c-3.3,0-4.4,3-4.4,6.9v8.3h-3.5V8.4h3.5v3.5c0.8-2.4,2.3-3.5,4.8-3.5h2.2v3H243.2z"></path>
+                      <path d="M230.4,20.7c-0.5,2.1-2.2,3.2-4.9,3.2c-3.2,0-5.4-2.4-5.7-5.8h13.9c0-0.3,0.1-0.9,0.1-1.4 c0-4.6-3-8.6-8.6-8.6c-5.6,0-8.8,4.2-8.8,9.3c0,5.1,3.5,9.5,9.2,9.5c4.1,0,7.2-2.1,8.2-5.3L230.4,20.7L230.4,20.7z M225.2,10.9 c3,0,4.9,1.8,5.1,4.6h-10.4C220.5,12.5,222.3,10.9,225.2,10.9z"></path>
+                      <path d="M248.8,24.6L248.8,24.6c0,0.6-0.2,1.2-0.7,1.7c-0.4,0.4-1,0.7-1.6,0.7c-0.3,0-0.6-0.1-0.9-0.2 c-0.3-0.1-0.5-0.3-0.7-0.5c-0.2-0.2-0.4-0.5-0.5-0.7c-0.1-0.3-0.2-0.6-0.2-0.9v0c0-0.3,0.1-0.6,0.2-0.9c0.1-0.3,0.3-0.5,0.5-0.7 c0.2-0.2,0.5-0.4,0.7-0.5c0.3-0.1,0.6-0.2,0.9-0.2c0.6,0,1.2,0.2,1.6,0.7C248.6,23.4,248.8,24,248.8,24.6z"></path>
+                    </g>
+                  </svg>
+                </i>
+                <h2>
+                  Make an incredible <br />
+                  logo <span> in seconds</span>
+                </h2>
+                <h3>Pre-designed by top talent. Just add your touch.</h3>
+                <a className="bg-black text-white px-4 py-2 w-52 rounded-md ">
+                  Try Fiverr Logo Maker
+                </a>
+              </div>
+            </div>
+            <div className="logo_right w-1/2">
+              <img
+                alt="fiverr logo maker"
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_460,dpr_1.0/v1/attachments/generic_asset/asset/55292bd34319d97ef4e9fd48d9f8758d-1704795769965/logo-maker-lohp.png"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="made py-10">
+        <div className="container">
+          <div className="">
+            <h2 className="text-5xl">Made on Fiverr</h2>
+            <div className="madeImg ">
+              <div className=" h-[1207px] ">
+                <div className="flex px-2 py-3">
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/2e957fdf499e4cf782c113b90604ad99-1725204152/3D-Mockup.jpg",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/12afb3156320a1e9560acd03c4465620-1722796241/R1-oak.jpg",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/4fb70c587400b9527b067d09777c1631-1723211625/1-min.png",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/c5fc570fd13e440fa01377fcfc6f3e6c-1724087375/View%205.jpg",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/1f414726af2358c66e3c5221b52f059a-1722426465/11.png",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/5b6c850df6175afcb07b912a8a01400c-1723423527/Medusa%20Cover%20Art%20%283000x3000%20JPG%29.jpg ",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/7cb22296adf815a118ae757bd1b7bdca-1721063501/GG_COFFEE%20TABLE_HR%202_FINAL.jpg",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/08eb565fdb7f4ea409464bca6be2c8fc-1721855239/thumbnail.png",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/4a81f86c63667a53faebf124f4647c14-1721428494/image_2024-07-08_10-33-49.png",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/11f2137d40e6c56ebafbbf650922d0f5-1720628869/5.jpg",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/a4d318e30b63073d385684f903ab1970-1720552623/Pomp%20and%20Parlour_design.jpg",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/c4a9150257b329d88fc63a7a01a9fd3a-1720529339/Rockband.JPEG.jpg",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                  {renderMadeImg(
+                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/f969052079c4e70237a88acc9d5544c0-1722009968/view%203.png",
+                    "Architecture & Interior Design",
+                    " handeoner"
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="guide pb-16 sm:pb-20">
+        <div className="container">
+          <div className="guide_content lg:pt-10 pb-20">
+            <Slider {...settings}>
+              {renderGuideItem(
+                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/0c7c1b07050e6ea2a0901861b48b6264-1658846941284/side%20hustle.jpeg",
+                "Start a side business"
+              )}
+
+              {renderGuideItem(
+                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/687d698a96f4eef875648319685ffeed-1687027332007/1685561103924-12profitableecommercebusinessideasyoucanstarttoday.jpg",
+                "Ecommerce business Ideas"
+              )}
+
+              {renderGuideItem(
+                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/5907f56b0e099c84efe5f480840f43a2-1593446948907/home%20based%20online%20business-fiverr.jpg",
+                "Start an online business and work from home"
+              )}
+
+              {renderGuideItem(
+                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/8b1dcc55f5c8582b04aee0b995ae5327-1683590934905/1682363178357-Howtobuildawebsitefromscratch.jpg",
+                "Build a website from scratch"
+              )}
+
+              {renderGuideItem(
+                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/309ac0d5d01de83b832e421b316352a8-1690708285578/05%20-%20Article%20Cover.jpg",
+                "Grow your business with AI"
+              )}
+
+              {renderGuideItem(
+                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/10f680cb84a2f3ef4473ecfdede3a1ba-1593438129320/business%20logo%20design-fiverr%20guide.jpg",
+                "Create a logo for your business"
+              )}
+            </Slider>
+          </div>
+          <div className="guide_panner bg-[#4D1727] rounded-xl  lg:pb-10  pt-12 pb-8 text-center my-10">
+            <h2 className="text-white text-7xl">
+              Freelance services at your{" "}
+              <span className="text-[#FF7640]">fingertips!</span>
+            </h2>
+            <button className="bg-white px-4 py-2 mt-10 rounded-lg  text-xl font-medium">
+              Join Fiverr
+            </button>
           </div>
         </div>
       </section>
