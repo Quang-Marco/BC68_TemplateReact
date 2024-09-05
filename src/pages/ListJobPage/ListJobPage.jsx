@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { congViecService } from "../../services/congViec.service";
+import Navbar from "../../components/Navbar/Navbar";
 
 const ListJobPage = () => {
   const [searchParam, setSearchParam] = useSearchParams();
@@ -63,7 +64,12 @@ const ListJobPage = () => {
       });
   }, [tenCongViec]);
 
-  return <div>{renderListJob()}</div>;
+  return (
+    <div>
+      <Navbar />
+      {renderListJob()}
+    </div>
+  );
 };
 
 export default ListJobPage;

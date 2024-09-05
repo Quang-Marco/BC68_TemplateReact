@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer>
       <hr />
-      <div className="container">
+      <div className="container px-8 py-16">
         <div className="foot_top mt-6">
-          <div className="foot_top_content flex justify-between">
+          <div className="foot_top_content grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8  ">
             <div className="foot_collap pb-10 px-4 ">
               <ul>
                 <p className="text_display_foot_content font-bold">

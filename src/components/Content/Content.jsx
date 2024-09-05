@@ -22,55 +22,56 @@ const Content = () => {
     background: "#fff",
   };
   const renderAbout = (imageAbout, name, coop, content) => (
-    <div>
-      <div className="carouselItem flex ">
-        <div className="item_left w-2/5 relative">
-          <img className=" w-full h-full rounded " src={imageAbout} />
-        </div>
-        <div className="item_right w-3/5 ">
-          <div className="lg:max-w-3xl lg:pl-16 lg:w-4/5 ">
-            <h5 className="text-[#74767e] font-normal flex text-xl pb-4 relative">
-              {name} |
-              <span>
-                <img
-                  className=" h-9 inline-block  align-middle ml-3 absolute -top-1 "
-                  src={coop}
-                  alt="Compony logo"
-                  loading="lazy"
-                />
-              </span>
-            </h5>
-            <p className="text-[#003912] font-medium text-3xl leading-10">
-              "{content}"
-            </p>
-          </div>
-        </div>
+    <div className="carouselItem grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="item_left  relative">
+        <img className=" w-full h-full  rounded " src={imageAbout} />
+      </div>
+      <div className="item_right ">
+        <h5 className="text-[#74767e] font-normal flex text-xl pb-4  relative">
+          <p> {name} |</p>
+
+          <span className="">
+            <img
+              className=" inline-block  align-middle ml-3 absolute -top-1 h-9  "
+              src={coop}
+              alt="Compony logo"
+              loading="lazy"
+            />
+          </span>
+        </h5>
+        <p
+          className="text-[#003912] font-medium text-3xl pb-7
+           leading-10"
+        >
+          "{content}"
+        </p>
       </div>
     </div>
   );
   const renderService = (bgColor, content, imgURL) => (
     <div
-      className={`border rounded-2xl p-3 shadow-lg cursor-pointer hover:opacity-90 duration-300 ${bgColor}`}
+      className={`border rounded-2xl p-1 sm:p-2 lg:p-3 shadow-lg cursor-pointer hover:opacity-90 duration-300 ${bgColor}`}
     >
-      <p className="text-white text-lg font-bold m-3 h-14">{content}</p>
-      <img className="rounded-xl" src={imgURL} />
+      <p className="text-white text-sm lg:text-lg font-bold m-2 lg:m-3 h-10 lg:h-14">
+        {content}
+      </p>
+      <img className="rounded-md lg:rounded-xl" src={imgURL} />
     </div>
   );
   const renderSuccess = (imgURL, content) => (
-    <div className="border rounded-2xl px-8 py-5 shadow-md cursor-pointer text-center flex flex-col justify-center items-center hover:shadow-xl duration-300">
+    <div className="border rounded-2xl px-6 py-5 shadow-sm cursor-pointer text-center flex flex-col justify-center items-center hover:shadow-xl duration-300">
       <img src={imgURL} />
       <p className="text-base font-semibold mt-3 h-12">{content}</p>
     </div>
   );
   const renderMadeImg = (madeImg, topic, by) => (
-    <div className="card rounded-lg  min-h-28 w-1/4 shadow">
-      <a href="#">
-        <img
-          className="w-full h-full object-cover rounded-lg"
-          src={madeImg}
-          alt=""
-        />
-      </a>
+    <div className="card rounded-lg  shadow">
+      <img
+        className="w-full h-full object-cover rounded-lg"
+        src={madeImg}
+        alt=""
+      />
+
       <div className="info">
         <div className="text-[14px] text-white  ">
           Featured in:
@@ -102,7 +103,7 @@ const Content = () => {
         </div>
         <div className="heart ">
           <button className="h-10 w-10 ">
-            <div className="w-4 h-4 fill-[#74767e] ">
+            <div className="w-4 h-4 fill-white hover:fill-[#7C7E86] ">
               <svg
                 width="16"
                 height="16"
@@ -157,7 +158,7 @@ const Content = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 728,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -167,7 +168,7 @@ const Content = () => {
   };
   const renderGuideItem = (guideImg, title) => (
     <div>
-      <div className="top_img">
+      <div className="top_img w-full h-full">
         <img src={guideImg} alt="" />
       </div>
       <div className="bot_title">
@@ -186,19 +187,22 @@ const Content = () => {
             <Swiper
               modules={[Navigation, A11y]}
               navigation
-              spaceBetween={20}
               breakpoints={{
                 368: {
                   slidesPerView: 2.5,
+                  spaceBetween: 10,
                 },
                 524: {
                   slidesPerView: 3.5,
+                  spaceBetween: 15,
                 },
                 768: {
                   slidesPerView: 5,
+                  spaceBetween: 15,
                 },
                 1024: {
                   slidesPerView: 6,
+                  spaceBetween: 20,
                 },
               }}
             >
@@ -347,7 +351,7 @@ const Content = () => {
         </div>
       </section>
       <section className="success pt-10">
-        <div className="container px-4">
+        <div className="container px-2">
           <div className="success_content">
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-medium text-gray-700">
               What success on Fiverr looks like
@@ -394,8 +398,8 @@ const Content = () => {
               </SwiperSlide>
               <SwiperSlide>
                 {renderSuccess(
-                  "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666557/3D-Industrial-Design_2x.png",
-                  "E-commerce 3D Website Development"
+                  "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666565/E-commerce-Website-Development_2x.png",
+                  "E-commerce Website Development"
                 )}
               </SwiperSlide>
               <SwiperSlide>
@@ -422,7 +426,7 @@ const Content = () => {
       </section>
       <section className="fiverrPro ">
         <div className="container">
-          <div className="fiverPro_content flex bg-[#003912] rounded-xl text-white py-20 px-16">
+          <div className="fiverPro_content grid grid-cols-1 lg:grid-cols-2 gap-5 bg-[#003912] md: rounded-xl text-white py-20 px-16">
             <div className="pro_left">
               <svg
                 width="139"
@@ -439,7 +443,7 @@ const Content = () => {
                   <path d="M139 24.5201V24.5629C139 25.814 138.003 26.8294 136.771 26.8294C135.541 26.8294 134.542 25.8152 134.542 24.5629V24.5201C134.542 23.269 135.539 22.2537 136.771 22.2537C138.001 22.2537 139 23.269 139 24.5201Z"></path>
                 </g>
               </svg>
-              <h3>
+              <h3 className="sm:text-4xl sm:leading-tight">
                 New e-Commerce project management service
                 <span className="font-bold"> made for your business</span>
               </h3>
@@ -474,58 +478,53 @@ const Content = () => {
       </section>
       <section className="about ">
         <div className="container">
-          <div className="about_top flex flex-col lg:py-10 lg:gap-10">
+          <div className="about_top  flex flex-col lg:py-10 lg:gap-10 ">
             <h2>What they're saying about Fiverr</h2>
-            <div className="carousel_feetback">
-              <Carousel arrows infinite={false}>
-                <div>
-                  <div style={contentStyle}>
+            <div className="carousel_feetback  ">
+              <Carousel arrows dots={false} infinite={false}>
+                <div style={contentStyle}>
+                  {renderAbout(
+                    "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173396/testimonial-video-still-lavender.jpg",
+                    "Brighid Gannon (DNP, PMHNP-BC), Co-Founder",
+                    "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lavender-logo-x2.3fff9e7.png",
+                    "We used Fiverr for SEO, our logo, website, copy, animated videos — literally everything. It was like working with a human right next to you versus being across the world."
+                  )}
+                </div>
+
+                <div style={contentStyle}>
+                  <div>
                     {renderAbout(
-                      "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173396/testimonial-video-still-lavender.jpg",
-                      "Brighid Gannon (DNP, PMHNP-BC), Co-Founder",
-                      "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lavender-logo-x2.3fff9e7.png",
-                      "We used Fiverr for SEO, our logo, website, copy, animated videos — literally everything. It was like working with a human right next to you versus being across the world."
+                      "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173399/testimonial-video-still-rooted.jpg",
+                      "Kay Kim, Co-Founder",
+                      "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/rooted-logo-x2.7da3bc9.png",
+                      "It's extremely exciting that Fiverr has freelancers from all over the world — it broadens the talent pool. One of the best things about Fiverr is that while we're sleeping, someone's working."
                     )}
                   </div>
                 </div>
-                <div>
-                  <div style={contentStyle}>
-                    <div>
-                      {renderAbout(
-                        "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173399/testimonial-video-still-rooted.jpg",
-                        "Kay Kim, Co-Founder",
-                        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/rooted-logo-x2.7da3bc9.png",
-                        "It's extremely exciting that Fiverr has freelancers from all over the world — it broadens the talent pool. One of the best things about Fiverr is that while we're sleeping, someone's working."
-                      )}
-                    </div>
-                  </div>
+
+                <div style={contentStyle}>
+                  {renderAbout(
+                    "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173414/testimonial-video-still-naadam.jpg",
+                    "Caitlin Tormey, Chief Commercial Officer",
+                    "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/naadam-logo-x2.a79031d.png",
+                    "We've used Fiverr for Shopify web development, graphic design, and backend web development. Working with Fiverr makes my job a little easier every day."
+                  )}
                 </div>
-                <div>
-                  <div style={contentStyle}>
-                    {renderAbout(
-                      "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173414/testimonial-video-still-naadam.jpg",
-                      "Caitlin Tormey, Chief Commercial Officer",
-                      "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/naadam-logo-x2.a79031d.png",
-                      "We've used Fiverr for Shopify web development, graphic design, and backend web development. Working with Fiverr makes my job a little easier every day."
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <div style={contentStyle}>
-                    {renderAbout(
-                      "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173395/testimonial-video-still-haerfest.jpg",
-                      "Tim and Dan Joo, Co-Founders",
-                      "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/haerfest-logo-x2.934ab63.png",
-                      "When you want to create a business bigger than yourself, you need a lot of help. That's what Fiverr does."
-                    )}
-                  </div>
+
+                <div style={contentStyle}>
+                  {renderAbout(
+                    "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173395/testimonial-video-still-haerfest.jpg",
+                    "Tim and Dan Joo, Co-Founders",
+                    "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/haerfest-logo-x2.934ab63.png",
+                    "When you want to create a business bigger than yourself, you need a lot of help. That's what Fiverr does."
+                  )}
                 </div>
               </Carousel>
             </div>
           </div>
-          <div className="about_logo py-10 flex bg-[#FFF6F2] rounded-lg">
-            <div className="logo_left w-1/2">
-              <div className="logo_left_content grid lg:gap-10">
+          <div className="about_logo py-10 grid grid-cols-1 lg:grid-cols-2 bg-[#FFF6F2] rounded-lg">
+            <div className="logo_left ">
+              <div className="logo_left_content flex flex-col gap-4 md:gap-8 ">
                 <i>
                   <svg
                     width="249"
@@ -559,7 +558,7 @@ const Content = () => {
                 </a>
               </div>
             </div>
-            <div className="logo_right w-1/2">
+            <div className="logo_right ">
               <img
                 alt="fiverr logo maker"
                 src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_460,dpr_1.0/v1/attachments/generic_asset/asset/55292bd34319d97ef4e9fd48d9f8758d-1704795769965/logo-maker-lohp.png"
@@ -569,86 +568,94 @@ const Content = () => {
           </div>
         </div>
       </section>
-      <section className="made py-10">
+      <section className="made  py-10">
         <div className="container">
-          <div className="">
-            <h2 className="text-5xl">Made on Fiverr</h2>
+          <div className="flex flex-col gap-10">
+            <h2 className="text-3xl  lg:text-5xl md:text-4xl ">
+              Made on Fiverr
+            </h2>
             <div className="madeImg ">
-              <div className=" h-[1207px] ">
-                <div className="flex px-2 py-3">
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/2e957fdf499e4cf782c113b90604ad99-1725204152/3D-Mockup.jpg",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/12afb3156320a1e9560acd03c4465620-1722796241/R1-oak.jpg",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/4fb70c587400b9527b067d09777c1631-1723211625/1-min.png",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/c5fc570fd13e440fa01377fcfc6f3e6c-1724087375/View%205.jpg",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/1f414726af2358c66e3c5221b52f059a-1722426465/11.png",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/5b6c850df6175afcb07b912a8a01400c-1723423527/Medusa%20Cover%20Art%20%283000x3000%20JPG%29.jpg ",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/7cb22296adf815a118ae757bd1b7bdca-1721063501/GG_COFFEE%20TABLE_HR%202_FINAL.jpg",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/08eb565fdb7f4ea409464bca6be2c8fc-1721855239/thumbnail.png",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/4a81f86c63667a53faebf124f4647c14-1721428494/image_2024-07-08_10-33-49.png",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/11f2137d40e6c56ebafbbf650922d0f5-1720628869/5.jpg",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/a4d318e30b63073d385684f903ab1970-1720552623/Pomp%20and%20Parlour_design.jpg",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/c4a9150257b329d88fc63a7a01a9fd3a-1720529339/Rockband.JPEG.jpg",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                  {renderMadeImg(
-                    "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/f969052079c4e70237a88acc9d5544c0-1722009968/view%203.png",
-                    "Architecture & Interior Design",
-                    " handeoner"
-                  )}
-                </div>
+              <div className="columns-4 gap-5 sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/2e957fdf499e4cf782c113b90604ad99-1725204152/3D-Mockup.jpg",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/12afb3156320a1e9560acd03c4465620-1722796241/R1-oak.jpg",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/4fb70c587400b9527b067d09777c1631-1723211625/1-min.png",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/c5fc570fd13e440fa01377fcfc6f3e6c-1724087375/View%205.jpg",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/1f414726af2358c66e3c5221b52f059a-1722426465/11.png",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/5b6c850df6175afcb07b912a8a01400c-1723423527/Medusa%20Cover%20Art%20%283000x3000%20JPG%29.jpg ",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/7cb22296adf815a118ae757bd1b7bdca-1721063501/GG_COFFEE%20TABLE_HR%202_FINAL.jpg",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/08eb565fdb7f4ea409464bca6be2c8fc-1721855239/thumbnail.png",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/4a81f86c63667a53faebf124f4647c14-1721428494/image_2024-07-08_10-33-49.png",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/11f2137d40e6c56ebafbbf650922d0f5-1720628869/5.jpg",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/a4d318e30b63073d385684f903ab1970-1720552623/Pomp%20and%20Parlour_design.jpg",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/c4a9150257b329d88fc63a7a01a9fd3a-1720529339/Rockband.JPEG.jpg",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
+                {renderMadeImg(
+                  "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/f969052079c4e70237a88acc9d5544c0-1722009968/view%203.png",
+                  "Architecture & Interior Design",
+                  " handeoner"
+                )}
               </div>
             </div>
           </div>
         </div>
       </section>
       <section className="guide pb-16 sm:pb-20">
-        <div className="container">
+        <div className="container relative ">
+          <div className="guide_title px-3 ">
+            <h3 className=" my-5">
+              <p className="text-3xl lg:text-5xl">Guides to help you grow</p>
+              <a className="hover:underline absolute right-4 top-4 " href="#">
+                See more
+              </a>
+            </h3>
+          </div>
           <div className="guide_content lg:pt-10 pb-20">
             <Slider {...settings}>
               {renderGuideItem(
@@ -682,14 +689,16 @@ const Content = () => {
               )}
             </Slider>
           </div>
-          <div className="guide_panner bg-[#4D1727] rounded-xl  lg:pb-10  pt-12 pb-8 text-center my-10">
-            <h2 className="text-white text-7xl">
+          <div className="guide_panner flex flex-col gap-10 bg-[#4D1727] rounded-xl  lg:pb-10  pt-12 pb-8 text-center my-10">
+            <h2 className="text-white ">
               Freelance services at your{" "}
               <span className="text-[#FF7640]">fingertips!</span>
             </h2>
-            <button className="bg-white px-4 py-2 mt-10 rounded-lg  text-xl font-medium">
-              Join Fiverr
-            </button>
+            <div>
+              <button className="bg-white px-4 py-2 rounded-lg  text-xl font-medium">
+                Join Fiverr
+              </button>
+            </div>
           </div>
         </div>
       </section>

@@ -11,3 +11,25 @@ header {
     }
   }
 }
+
+.ant-modal-root {
+  .ant-modal-title {
+    font-size: 20px !important;
+  }
+  .ant-tabs-tab {
+    .ant-tabs-tab-btn {
+      font-size: 16px;
+    }
+  }
+}
+
+.ant-drawer {
+  .ant-collapse-header {
+    &:hover {
+      background: #f3f4f6;
+    }
+    .ant-collapse-header-text {
+      color: #4b5563 !important;
+    }
+  }
+}
