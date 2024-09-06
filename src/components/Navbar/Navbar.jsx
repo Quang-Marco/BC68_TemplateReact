@@ -3,6 +3,53 @@ import "./navbar.scss";
 import { Dropdown, Space } from "antd";
 
 const Navbar = () => {
+  const listProducts = [
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/programming-tech-thin.56382a2.svg",
+      name: "Programming & Tech",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/graphics-design-thin.ff38893.svg",
+      name: "Graphics & Design",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/digital-marketing-thin.68edb44.svg",
+      name: "Digital Marketing",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/writing-translation-thin.fd3699b.svg",
+      name: "Writing & Translation",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/video-animation-thin.9d3f24d.svg",
+      name: "Video & Animation",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/ai-services-thin.104f389.svg",
+      name: "AI Services",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/music-audio-thin.43a9801.svg",
+      name: "Music & Audio",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/business-thin.885e68e.svg",
+      name: "Business",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/consulting-thin.d5547ff.svg",
+      name: "Consulting",
+    },
+  ];
   const items = [
     {
       key: "1",
@@ -68,96 +115,19 @@ const Navbar = () => {
         <section className="bg-white w-screen border-b fixed top-[85px] pt-3 z-10 hidden lg:block">
           <div className="container">
             <div className="flex justify-between gap-4">
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>Programming & Tech</Space>
-                </a>
-              </Dropdown>
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>Graphics & Design</Space>
-                </a>
-              </Dropdown>
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>Digital Marketing</Space>
-                </a>
-              </Dropdown>
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>Writing & Translation</Space>
-                </a>
-              </Dropdown>
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>Video & Animation</Space>
-                </a>
-              </Dropdown>
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>AI Services</Space>
-                </a>
-              </Dropdown>
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>Music & Audio</Space>
-                </a>
-              </Dropdown>
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>Business</Space>
-                </a>
-              </Dropdown>
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>Consulting</Space>
-                </a>
-              </Dropdown>
+              {listProducts.map((item, index) => (
+                <Dropdown
+                  key={index + 1}
+                  menu={{
+                    items,
+                  }}
+                  className="text-gray-600 cursor-pointer pb-2 border-b-[3px] border-white duration-300"
+                >
+                  <a onClick={(e) => e.preventDefault()}>
+                    <Space>{item.name}</Space>
+                  </a>
+                </Dropdown>
+              ))}
             </div>
           </div>
         </section>
