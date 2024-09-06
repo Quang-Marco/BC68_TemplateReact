@@ -1,0 +1,7 @@
+header .header_navigation svg {
+  width: 12px;
+  height: 12px;
+}
+header .header_navigation .ant-dropdown-open svg {
+  transform: rotate(180deg);
+}/*# sourceMappingURL=header.css.map */
