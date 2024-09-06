@@ -14,25 +14,134 @@ import {
 import { Button, Collapse, Drawer, Dropdown, Modal, Space, Tabs } from "antd";
 
 const Header = () => {
-  const renderLanguage = (content, classCustom) => (
+  const listProducts = [
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/programming-tech-thin.56382a2.svg",
+      name: "Programming & Tech",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/graphics-design-thin.ff38893.svg",
+      name: "Graphics & Design",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/digital-marketing-thin.68edb44.svg",
+      name: "Digital Marketing",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/writing-translation-thin.fd3699b.svg",
+      name: "Writing & Translation",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/video-animation-thin.9d3f24d.svg",
+      name: "Video & Animation",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/ai-services-thin.104f389.svg",
+      name: "AI Services",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/music-audio-thin.43a9801.svg",
+      name: "Music & Audio",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/business-thin.885e68e.svg",
+      name: "Business",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/consulting-thin.d5547ff.svg",
+      name: "Consulting",
+    },
+  ];
+  const explore = [
+    {
+      title: "Discover",
+      content: "Inspiring projects made on Fiverr",
+    },
+    {
+      title: "Community",
+      content: "Connect with Fiverr’s team and community",
+    },
+    {
+      title: "Guides",
+      content: "In-depth guides covering business topics",
+    },
+    {
+      title: "Podcast",
+      content: "Inside tips from top business minds",
+    },
+    {
+      title: "Learn",
+      content: "Professional online courses, led by experts",
+    },
+    {
+      title: "Blog",
+      content: "News, information and community stories",
+    },
+    {
+      title: "Logo Maker",
+      content: "Create your logo instantly",
+    },
+  ];
+  const languages = [
+    <>
+      <CheckCircleFilled /> English
+    </>,
+    "Deutsch",
+    "Español",
+    "Français",
+    "Português",
+    "Italiano",
+    "Nederlands",
+    "Việt Nam",
+  ];
+  const currency = [
+    {
+      name: "Euro",
+      symbol: "EUR - €",
+    },
+    {
+      name: "British Pound",
+      symbol: "GBP - £",
+    },
+    {
+      name: "Australian Dollar",
+      symbol: "AUD - A$",
+    },
+    {
+      name: "Indian Rupee",
+      symbol: "INR - ₹",
+    },
+  ];
+  const renderItem = (content, classCustom = "") => (
     <p
       className={`pl-7 py-2 cursor-pointer text-base text-gray-600 hover:bg-gray-100 duration-300 ${classCustom}`}
     >
       {content}
     </p>
   );
-  const renderCurrency = (name, content) => (
-    <div className="cursor-pointer pl-8 py-2 text-gray-600 hover:bg-gray-100 duration-300">
-      <p className="text-black text-base font-semibold">{name}</p>
-      <p className="text-base">{content}</p>
-    </div>
-  );
-  const renderItem = (title, content) => (
-    <div>
-      <h5 className="font-semibold text-base text-gray-700">{title}</h5>
-      <p className="font-medium text-gray-500">{content}</p>
-    </div>
-  );
+  const itemsExplore = [];
+  explore.map((item, index) => {
+    itemsExplore.push({
+      key: index + 1,
+      label: (
+        <div>
+          <h5 className="font-semibold text-base text-gray-700">
+            {item.title}
+          </h5>
+          <p className="font-medium text-gray-500">{item.content}</p>
+        </div>
+      ),
+    });
+  });
   const itemsFiverrPro = [
     {
       key: "1",
@@ -42,10 +151,15 @@ const Header = () => {
             src="https://fiverr-res.cloudinary.com/npm-assets/layout-service/hire-freelancer.e3fcf5a.svg"
             alt=""
           />
-          {renderItem(
-            "I'm looking to hire",
-            "My team needs vetted freelance talent and a premium business solution."
-          )}
+          <div>
+            <h5 className="font-semibold text-base text-gray-700">
+              I'm looking to hire
+            </h5>
+            <p className="font-medium text-gray-500">
+              My team needs vetted freelance talent and a premium business
+              solution.
+            </p>
+          </div>
         </div>
       ),
     },
@@ -57,64 +171,25 @@ const Header = () => {
             src="https://fiverr-res.cloudinary.com/npm-assets/layout-service/iam-freelancer.6e3c275.svg"
             alt=""
           />
-          {renderItem(
-            "I want to offer Pro services",
-            "I’d like to work on business projects as a Pro freelancer or agency."
-          )}
+          <div>
+            <h5 className="font-semibold text-base text-gray-700">
+              I want to offer Pro services
+            </h5>
+            <p className="font-medium text-gray-500">
+              I’d like to work on business projects as a Pro freelancer or
+              agency.
+            </p>
+          </div>
         </div>
       ),
-    },
-  ];
-  const itemsExplore = [
-    {
-      key: "1",
-      label: renderItem("Discover", "Inspiring projects made on Fiverr"),
-    },
-    {
-      key: "2",
-      label: renderItem(
-        "Community",
-        "Connect with Fiverr’s team and community"
-      ),
-    },
-    {
-      key: "3",
-      label: renderItem("Guides", "In-depth guides covering business topics"),
-    },
-    {
-      key: "4",
-      label: renderItem("Podcast", "Inside tips from top business minds"),
-    },
-    {
-      key: "5",
-      label: renderItem("Learn", "Professional online courses, led by experts"),
-    },
-    {
-      key: "6",
-      label: renderItem("Blog", "News, information and community stories"),
-    },
-    {
-      key: "7",
-      label: renderItem("Logo Maker", "Create your logo instantly"),
     },
   ];
   const itemsLanguage = [
     {
       key: "1",
       label: "Language",
-      children: (
-        <>
-          <p className="p-2 cursor-pointer text-base text-gray-600 hover:bg-gray-100">
-            <CheckCircleFilled /> English
-          </p>
-          {renderLanguage("Deutsch")}
-          {renderLanguage("Español")}
-          {renderLanguage("Français")}
-          {renderLanguage("Português")}
-          {renderLanguage("Italiano")}
-          {renderLanguage("Nederlands")}
-          {renderLanguage("Việt Nam")}
-        </>
+      children: languages.map((item, index) =>
+        renderItem(item, !index ? "pl-[8px]" : "")
       ),
     },
     {
@@ -122,7 +197,7 @@ const Header = () => {
       label: "Currency",
       children: (
         <>
-          <div className="cursor-pointer p-2 text-gray-600 hover:bg-gray-100 flex">
+          <div className="cursor-pointer p-2 text-gray-600 hover:bg-gray-100 duration-300 flex">
             {<CheckCircleFilled />}
             <div className="ml-2">
               <p className="text-black text-base font-semibold">
@@ -131,10 +206,15 @@ const Header = () => {
               <p className="text-base">USD - $</p>
             </div>
           </div>
-          {renderCurrency("Euro", "EUR - €")}
-          {renderCurrency("British Pound", "GBP - £")}
-          {renderCurrency("Australian Dollar", "AUD - A$")}
-          {renderCurrency("Indian Rupee", "INR - ₹")}
+          {currency.map((item, index) => (
+            <div
+              key={index}
+              className="cursor-pointer pl-8 py-2 text-gray-600 hover:bg-gray-100 duration-300"
+            >
+              <p className="text-black text-base font-semibold">{item.name}</p>
+              <p className="text-base">{item.symbol}</p>
+            </div>
+          ))}
         </>
       ),
     },
@@ -143,42 +223,20 @@ const Header = () => {
     {
       key: "1",
       label: "Browse categories",
-      children: (
-        <>
-          {renderLanguage("Programming & Tech")}
-          {renderLanguage("Graphics & Design")}
-          {renderLanguage("Digital Marketing")}
-          {renderLanguage("Writing & Translation")}
-          {renderLanguage("LearnVideo & Animation")}
-          {renderLanguage("AI Services")}
-          {renderLanguage("Music & Audio")}
-          {renderLanguage("Business")}
-          {renderLanguage("Consulting")}
-        </>
-      ),
+      children: listProducts.map((item) => renderItem(item.name)),
     },
     {
       key: "2",
       label: "Explore",
-      children: (
-        <>
-          {renderLanguage("Discover")}
-          {renderLanguage("Community")}
-          {renderLanguage("Guides")}
-          {renderLanguage("Podcast")}
-          {renderLanguage("Learn")}
-          {renderLanguage("Blog")}
-          {renderLanguage("Logo Maker")}
-        </>
-      ),
+      children: explore.map((item) => renderItem(item.title)),
     },
     {
       key: "3",
       label: "Fiverr Pro",
       children: (
         <>
-          {renderLanguage("I'm looking to hire")}
-          {renderLanguage("I want to offer Pro services")}
+          {renderItem("I'm looking to hire")}
+          {renderItem("I want to offer Pro services")}
         </>
       ),
     },
@@ -219,7 +277,7 @@ const Header = () => {
     <header className="bg-white py-5 font-medium border-b sticky top-0 z-10">
       <div className="container px-2">
         <div className="header_content flex items-center justify-between">
-          <Button className="inline-block lg:hidden" onClick={showDrawer}>
+          <Button className="lg:hidden" onClick={showDrawer}>
             <MenuUnfoldOutlined />
           </Button>
           <Drawer
@@ -277,7 +335,7 @@ const Header = () => {
               placeholder={"What service are you looking for today?"}
             />
           </div>
-          <nav className="header_navigation space-x-4 hidden lg:block">
+          <nav className="header_navigation space-x-4 hidden xl:block">
             <Dropdown
               menu={{
                 items: itemsFiverrPro,
