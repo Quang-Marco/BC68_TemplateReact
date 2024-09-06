@@ -23,7 +23,7 @@ const Content = () => {
   };
   const renderAbout = (imageAbout, name, coop, content) => (
     <div className="carouselItem grid grid-cols-1 lg:grid-cols-2 gap-5">
-      <div className="item_left  relative">
+      <div className="item_left hover:cursor-pointer relative">
         <img className=" w-full h-full  rounded " src={imageAbout} />
       </div>
       <div className="item_right ">
@@ -65,7 +65,7 @@ const Content = () => {
     </div>
   );
   const renderMadeImg = (madeImg, topic, by) => (
-    <div className="card rounded-lg  shadow">
+    <div className="card rounded-lg mb-5 shadow hover:cursor-pointer">
       <img
         className="w-full h-full object-cover rounded-lg"
         src={madeImg}
@@ -480,7 +480,7 @@ const Content = () => {
         <div className="container">
           <div className="about_top  flex flex-col lg:py-10 lg:gap-10 ">
             <h2>What they're saying about Fiverr</h2>
-            <div className="carousel_feetback  ">
+            <div className="carousel_feetback ">
               <Carousel arrows dots={false} infinite={false}>
                 <div style={contentStyle}>
                   {renderAbout(
