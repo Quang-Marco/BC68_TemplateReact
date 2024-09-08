@@ -27,12 +27,12 @@ const Content = () => {
         <img className=" w-full h-full  rounded " src={imageAbout} />
       </div>
       <div className="item_right ">
-        <h5 className="text-[#74767e] font-normal flex text-xl pb-4  relative">
+        <h5 className="text-[#74767e] relative font-normal md:flex text-xl pb-4  ">
           <p> {name} |</p>
 
-          <span className="">
+          <span>
             <img
-              className=" inline-block  align-middle ml-3 absolute -top-1 h-9  "
+              className=" ml-12 lg:ml-3 md:items-center lg:absolute lg:-top-1 h-9  "
               src={coop}
               alt="Compony logo"
               loading="lazy"
@@ -49,15 +49,15 @@ const Content = () => {
     </div>
   );
   const renderMadeImg = (madeImg, topic, by) => (
-    <div className="card rounded-lg mb-5 shadow hover:cursor-pointer">
+    <div className="card  rounded-lg mb-5 shadow hover:cursor-pointer">
       <img
         className="w-full h-full object-cover rounded-lg"
         src={madeImg}
         alt=""
       />
 
-      <div className="info">
-        <div className="text-[14px] text-white  ">
+      <div className="info ">
+        <div className="info_content pl-2 text-[14px] text-white  ">
           Featured in:
           <span className="font-semibold">{topic}</span>
           <br />
@@ -85,8 +85,8 @@ const Content = () => {
             </button>
           </span>
         </div>
-        <div className="heart ">
-          <button className="h-10 w-10 ">
+        <div className="heart absolute top-0 right-0">
+          <button className="h-10 w-10 rounded-full bg-white opacity-0 hover:opacity-1">
             <div className="w-4 h-4 fill-white hover:fill-[#7C7E86] ">
               <svg
                 width="16"
@@ -102,64 +102,7 @@ const Content = () => {
       </div>
     </div>
   );
-  const SampleNextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block" }}
-        onClick={onClick}
-      />
-    );
-  };
 
-  const SamplePrevArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block" }}
-        onClick={onClick}
-      />
-    );
-  };
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: false,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 728,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-  const renderGuideItem = (guideImg, title) => (
-    <div>
-      <div className="top_img w-full h-full">
-        <img src={guideImg} alt="" />
-      </div>
-      <div className="bot_title">
-        <h3 className="text-[#404145]">{title}</h3>
-      </div>
-    </div>
-  );
   const service = [
     {
       imgURL:
@@ -253,6 +196,38 @@ const Content = () => {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666561/Logo-Design_2x.png",
       content: "Logo Design",
+    },
+  ];
+  const guideArr = [
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/0c7c1b07050e6ea2a0901861b48b6264-1658846941284/side%20hustle.jpeg",
+      content: "Start a side business",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/687d698a96f4eef875648319685ffeed-1687027332007/1685561103924-12profitableecommercebusinessideasyoucanstarttoday.jpg",
+      content: "Ecommerce business Ideas",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/5907f56b0e099c84efe5f480840f43a2-1593446948907/home%20based%20online%20business-fiverr.jpg",
+      content: "Start an online business and work from home",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/8b1dcc55f5c8582b04aee0b995ae5327-1683590934905/1682363178357-Howtobuildawebsitefromscratch.jpg",
+      content: "Build a website from scratch",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/309ac0d5d01de83b832e421b316352a8-1690708285578/05%20-%20Article%20Cover.jpg",
+      content: "Grow your business with AI",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/10f680cb84a2f3ef4473ecfdede3a1ba-1593438129320/business%20logo%20design-fiverr%20guide.jpg",
+      content: "Create a logo for your business",
     },
   ];
   return (
@@ -422,8 +397,8 @@ const Content = () => {
         </div>
       </section>
       <section className="fiverrPro ">
-        <div className="container">
-          <div className="fiverPro_content grid grid-cols-1 lg:grid-cols-2 gap-5 bg-[#003912] md: rounded-xl text-white py-20 px-16">
+        <div className="container px-2">
+          <div className="fiverPro_content grid grid-cols-1 xl:grid-cols-2 gap-5 bg-[#003912] md: rounded-xl text-white py-20 px-16">
             <div className="pro_left">
               <svg
                 width="139"
@@ -463,7 +438,7 @@ const Content = () => {
                 Get started
               </button>
             </div>
-            <div className="pro_right">
+            <div className="pro_right hidden lg:block">
               <img
                 alt="Fiverr Pro freelancers"
                 src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/d85c8f7113e7f18d6fca144840de5afa-1718619183018/X1.png"
@@ -474,7 +449,7 @@ const Content = () => {
         </div>
       </section>
       <section className="about ">
-        <div className="container">
+        <div className="container px-2">
           <div className="about_top  flex flex-col lg:py-10 lg:gap-10 ">
             <h2>What they're saying about Fiverr</h2>
             <div className="carousel_feetback ">
@@ -521,30 +496,29 @@ const Content = () => {
           </div>
           <div className="about_logo py-10 grid grid-cols-1 lg:grid-cols-2 bg-[#FFF6F2] rounded-lg">
             <div className="logo_left ">
-              <div className="logo_left_content flex flex-col gap-4 md:gap-8 ">
-                <i>
-                  <svg
-                    width="249"
-                    height="34"
-                    viewBox="0 0 249 34"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g fill="#222325">
-                      <path d="M81.6,13.1h-3.1c-2,0-3.1,1.5-3.1,4.1v9.3h-6V13.1h-2.5c-2,0-3.1,1.5-3.1,4.1v9.3h-6V8.1h6v2.8 c1-2.2,2.3-2.8,4.3-2.8h7.3v2.8c1-2.2,2.3-2.8,4.3-2.8h2L81.6,13.1z M56.4,18.7H44c0.3,2.1,1.6,3.2,3.7,3.2 c1.6,0,2.7-0.7,3.1-1.8l5.3,1.5c-1.3,3.2-4.5,5.1-8.4,5.1c-6.5,0-9.5-5.1-9.5-9.5c0-4.3,2.6-9.4,9.1-9.4c6.9,0,9.2,5.2,9.2,9.1 C56.5,17.8,56.5,18.3,56.4,18.7z M50.7,15.2c-0.1-1.6-1.3-3-3.3-3c-1.9,0-3,0.8-3.4,3H50.7z M27.8,26.5H33l6.6-18.3h-6l-3.2,10.7 L27.2,8.1h-6L27.8,26.5z M3.4,26.5h5.9V13.1H15v13.4h5.9V8.1H9.3V7c0-1.2,0.9-2,2.2-2H15V0h-4.4C6.3,0,3.4,2.7,3.4,6.6v1.5H0v5 h3.4L3.4,26.5z"></path>
-                      <path d="M88.4,0h3.5v26.6h-3.5V0z"></path>
-                      <path d="M93.6,17.5c0-5.5,3.9-9.4,9.4-9.4c5.5,0,9.4,3.9,9.4,9.4s-3.9,9.4-9.4,9.4C97.5,26.9,93.6,23,93.6,17.5z M108.8,17.5c0-3.7-2.4-6.3-5.8-6.3c-3.5,0-5.8,2.6-5.8,6.3s2.4,6.3,5.8,6.3C106.4,23.8,108.8,21.2,108.8,17.5z"></path>
-                      <path d="M130.1,28.3c0,3.3-2.1,5.7-5.6,5.7h-5.6c-3.8,0-5.8-2.2-5.8-5.4c0-1.5,0.8-2.9,1.9-3.7 c-0.9-0.7-1.4-1.6-1.4-2.8c0-1.5,0.9-2.5,2.2-3.8c-0.8-1-1.2-2.4-1.2-3.8c0-3.8,3-6.3,7-6.3c1,0,2,0.2,2.9,0.5l2.5-2.9l2.2,2 l-2.2,2.5c1,1.1,1.6,2.6,1.6,4.1c0,3.8-3,6.3-7,6.3c-1.3,0-2.5-0.3-3.5-0.7c-0.7,0.8-1,1.2-1,1.8c0,1,0.9,1.5,2,1.5h5.1 C127.6,23.3,130.1,24.9,130.1,28.3z M126.7,28.5c0-1.7-1.1-2.5-2.9-2.5h-4.2c-0.6,0-1.2,0-1.8-0.1c-0.9,0.7-1.2,1.6-1.2,2.6 c0,1.5,1,2.6,2.5,2.6h5.4C126.1,31.1,126.7,30,126.7,28.5z M117.9,14.4c0,2.2,1.7,3.5,3.7,3.5c2,0,3.7-1.3,3.7-3.5 c0-2.2-1.7-3.5-3.7-3.5C119.6,10.9,117.9,12.2,117.9,14.4z"></path>
-                      <path d="M130.2,17.5c0-5.5,3.9-9.4,9.4-9.4c5.5,0,9.4,3.9,9.4,9.4s-3.9,9.4-9.4,9.4C134.2,26.9,130.2,23,130.2,17.5z M145.4,17.5c0-3.7-2.4-6.3-5.8-6.3c-3.5,0-5.8,2.6-5.8,6.3s2.4,6.3,5.8,6.3C143.1,23.8,145.4,21.2,145.4,17.5z"></path>
-                      <path d="M155,8.4h3.5v3.3c0.8-2.1,2.7-3.5,5.4-3.5c3,0,5.2,1.3,5.9,3.7c0.7-2.1,3.1-3.7,5.9-3.7 c3.9,0,6.4,2.7,6.4,6.9v11.6h-3.5V16c0-2.9-1.5-4.8-3.9-4.8c-2.8,0-4.5,2-4.5,4.8v10.6h-3.5V16c0-2.9-1.5-4.8-3.8-4.8 c-2.8,0-4.5,2-4.5,4.8v10.6H155V8.4z"></path>
-                      <path d="M199.3,14.7v11.9h-3.4v-3c-0.9,2-3.2,3.3-5.9,3.3c-3.7,0-6.2-2.3-6.2-5.5c0-3.7,2.4-5.9,7.1-5.9h3.9 c0.7,0,1.1-0.4,1.1-1v-0.1c0-2.2-2-3.6-4.5-3.6s-4.3,1.6-4.5,3.5h-3.2c0.3-3.6,3.5-6.3,7.6-6.3C195.9,8.1,199.3,10.7,199.3,14.7z M195.9,18.6v-0.5h-4.7c-2.8,0-3.9,1.2-3.9,3.3c0,1.6,1.5,2.8,3.4,2.8C193.9,24.1,195.9,22,195.9,18.6z"></path>
-                      <path d="M207,17.9l-2.3,2.1v6.6h-3.5V0h3.5v15.6l8-7.2h4.5l-7.7,7.1l8.4,11.1h-4.3L207,17.9z"></path>
-                      <path d="M243.2,11.4c-3.3,0-4.4,3-4.4,6.9v8.3h-3.5V8.4h3.5v3.5c0.8-2.4,2.3-3.5,4.8-3.5h2.2v3H243.2z"></path>
-                      <path d="M230.4,20.7c-0.5,2.1-2.2,3.2-4.9,3.2c-3.2,0-5.4-2.4-5.7-5.8h13.9c0-0.3,0.1-0.9,0.1-1.4 c0-4.6-3-8.6-8.6-8.6c-5.6,0-8.8,4.2-8.8,9.3c0,5.1,3.5,9.5,9.2,9.5c4.1,0,7.2-2.1,8.2-5.3L230.4,20.7L230.4,20.7z M225.2,10.9 c3,0,4.9,1.8,5.1,4.6h-10.4C220.5,12.5,222.3,10.9,225.2,10.9z"></path>
-                      <path d="M248.8,24.6L248.8,24.6c0,0.6-0.2,1.2-0.7,1.7c-0.4,0.4-1,0.7-1.6,0.7c-0.3,0-0.6-0.1-0.9-0.2 c-0.3-0.1-0.5-0.3-0.7-0.5c-0.2-0.2-0.4-0.5-0.5-0.7c-0.1-0.3-0.2-0.6-0.2-0.9v0c0-0.3,0.1-0.6,0.2-0.9c0.1-0.3,0.3-0.5,0.5-0.7 c0.2-0.2,0.5-0.4,0.7-0.5c0.3-0.1,0.6-0.2,0.9-0.2c0.6,0,1.2,0.2,1.6,0.7C248.6,23.4,248.8,24,248.8,24.6z"></path>
-                    </g>
-                  </svg>
-                </i>
+              <div className="logo_left_content flex flex-col  gap-4 md:gap-8 ">
+                <svg
+                  width="249"
+                  height="34"
+                  viewBox="0 0 249 34"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g fill="#222325">
+                    <path d="M81.6,13.1h-3.1c-2,0-3.1,1.5-3.1,4.1v9.3h-6V13.1h-2.5c-2,0-3.1,1.5-3.1,4.1v9.3h-6V8.1h6v2.8 c1-2.2,2.3-2.8,4.3-2.8h7.3v2.8c1-2.2,2.3-2.8,4.3-2.8h2L81.6,13.1z M56.4,18.7H44c0.3,2.1,1.6,3.2,3.7,3.2 c1.6,0,2.7-0.7,3.1-1.8l5.3,1.5c-1.3,3.2-4.5,5.1-8.4,5.1c-6.5,0-9.5-5.1-9.5-9.5c0-4.3,2.6-9.4,9.1-9.4c6.9,0,9.2,5.2,9.2,9.1 C56.5,17.8,56.5,18.3,56.4,18.7z M50.7,15.2c-0.1-1.6-1.3-3-3.3-3c-1.9,0-3,0.8-3.4,3H50.7z M27.8,26.5H33l6.6-18.3h-6l-3.2,10.7 L27.2,8.1h-6L27.8,26.5z M3.4,26.5h5.9V13.1H15v13.4h5.9V8.1H9.3V7c0-1.2,0.9-2,2.2-2H15V0h-4.4C6.3,0,3.4,2.7,3.4,6.6v1.5H0v5 h3.4L3.4,26.5z"></path>
+                    <path d="M88.4,0h3.5v26.6h-3.5V0z"></path>
+                    <path d="M93.6,17.5c0-5.5,3.9-9.4,9.4-9.4c5.5,0,9.4,3.9,9.4,9.4s-3.9,9.4-9.4,9.4C97.5,26.9,93.6,23,93.6,17.5z M108.8,17.5c0-3.7-2.4-6.3-5.8-6.3c-3.5,0-5.8,2.6-5.8,6.3s2.4,6.3,5.8,6.3C106.4,23.8,108.8,21.2,108.8,17.5z"></path>
+                    <path d="M130.1,28.3c0,3.3-2.1,5.7-5.6,5.7h-5.6c-3.8,0-5.8-2.2-5.8-5.4c0-1.5,0.8-2.9,1.9-3.7 c-0.9-0.7-1.4-1.6-1.4-2.8c0-1.5,0.9-2.5,2.2-3.8c-0.8-1-1.2-2.4-1.2-3.8c0-3.8,3-6.3,7-6.3c1,0,2,0.2,2.9,0.5l2.5-2.9l2.2,2 l-2.2,2.5c1,1.1,1.6,2.6,1.6,4.1c0,3.8-3,6.3-7,6.3c-1.3,0-2.5-0.3-3.5-0.7c-0.7,0.8-1,1.2-1,1.8c0,1,0.9,1.5,2,1.5h5.1 C127.6,23.3,130.1,24.9,130.1,28.3z M126.7,28.5c0-1.7-1.1-2.5-2.9-2.5h-4.2c-0.6,0-1.2,0-1.8-0.1c-0.9,0.7-1.2,1.6-1.2,2.6 c0,1.5,1,2.6,2.5,2.6h5.4C126.1,31.1,126.7,30,126.7,28.5z M117.9,14.4c0,2.2,1.7,3.5,3.7,3.5c2,0,3.7-1.3,3.7-3.5 c0-2.2-1.7-3.5-3.7-3.5C119.6,10.9,117.9,12.2,117.9,14.4z"></path>
+                    <path d="M130.2,17.5c0-5.5,3.9-9.4,9.4-9.4c5.5,0,9.4,3.9,9.4,9.4s-3.9,9.4-9.4,9.4C134.2,26.9,130.2,23,130.2,17.5z M145.4,17.5c0-3.7-2.4-6.3-5.8-6.3c-3.5,0-5.8,2.6-5.8,6.3s2.4,6.3,5.8,6.3C143.1,23.8,145.4,21.2,145.4,17.5z"></path>
+                    <path d="M155,8.4h3.5v3.3c0.8-2.1,2.7-3.5,5.4-3.5c3,0,5.2,1.3,5.9,3.7c0.7-2.1,3.1-3.7,5.9-3.7 c3.9,0,6.4,2.7,6.4,6.9v11.6h-3.5V16c0-2.9-1.5-4.8-3.9-4.8c-2.8,0-4.5,2-4.5,4.8v10.6h-3.5V16c0-2.9-1.5-4.8-3.8-4.8 c-2.8,0-4.5,2-4.5,4.8v10.6H155V8.4z"></path>
+                    <path d="M199.3,14.7v11.9h-3.4v-3c-0.9,2-3.2,3.3-5.9,3.3c-3.7,0-6.2-2.3-6.2-5.5c0-3.7,2.4-5.9,7.1-5.9h3.9 c0.7,0,1.1-0.4,1.1-1v-0.1c0-2.2-2-3.6-4.5-3.6s-4.3,1.6-4.5,3.5h-3.2c0.3-3.6,3.5-6.3,7.6-6.3C195.9,8.1,199.3,10.7,199.3,14.7z M195.9,18.6v-0.5h-4.7c-2.8,0-3.9,1.2-3.9,3.3c0,1.6,1.5,2.8,3.4,2.8C193.9,24.1,195.9,22,195.9,18.6z"></path>
+                    <path d="M207,17.9l-2.3,2.1v6.6h-3.5V0h3.5v15.6l8-7.2h4.5l-7.7,7.1l8.4,11.1h-4.3L207,17.9z"></path>
+                    <path d="M243.2,11.4c-3.3,0-4.4,3-4.4,6.9v8.3h-3.5V8.4h3.5v3.5c0.8-2.4,2.3-3.5,4.8-3.5h2.2v3H243.2z"></path>
+                    <path d="M230.4,20.7c-0.5,2.1-2.2,3.2-4.9,3.2c-3.2,0-5.4-2.4-5.7-5.8h13.9c0-0.3,0.1-0.9,0.1-1.4 c0-4.6-3-8.6-8.6-8.6c-5.6,0-8.8,4.2-8.8,9.3c0,5.1,3.5,9.5,9.2,9.5c4.1,0,7.2-2.1,8.2-5.3L230.4,20.7L230.4,20.7z M225.2,10.9 c3,0,4.9,1.8,5.1,4.6h-10.4C220.5,12.5,222.3,10.9,225.2,10.9z"></path>
+                    <path d="M248.8,24.6L248.8,24.6c0,0.6-0.2,1.2-0.7,1.7c-0.4,0.4-1,0.7-1.6,0.7c-0.3,0-0.6-0.1-0.9-0.2 c-0.3-0.1-0.5-0.3-0.7-0.5c-0.2-0.2-0.4-0.5-0.5-0.7c-0.1-0.3-0.2-0.6-0.2-0.9v0c0-0.3,0.1-0.6,0.2-0.9c0.1-0.3,0.3-0.5,0.5-0.7 c0.2-0.2,0.5-0.4,0.7-0.5c0.3-0.1,0.6-0.2,0.9-0.2c0.6,0,1.2,0.2,1.6,0.7C248.6,23.4,248.8,24,248.8,24.6z"></path>
+                  </g>
+                </svg>
+
                 <h2>
                   Make an incredible <br />
                   logo <span> in seconds</span>
@@ -566,13 +540,13 @@ const Content = () => {
         </div>
       </section>
       <section className="made  py-10">
-        <div className="container">
+        <div className="container px-2">
           <div className="flex flex-col gap-10">
             <h2 className="text-3xl  lg:text-5xl md:text-4xl ">
               Made on Fiverr
             </h2>
-            <div className="madeImg ">
-              <div className="columns-4 gap-5 sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
+            <div className="madeImg  ">
+              <div className="columns-2 gap-5  lg:columns-3 xl:columns-4">
                 {renderMadeImg(
                   "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/2e957fdf499e4cf782c113b90604ad99-1725204152/3D-Mockup.jpg",
                   "Architecture & Interior Design",
@@ -644,47 +618,52 @@ const Content = () => {
         </div>
       </section>
       <section className="guide pb-16 sm:pb-20">
-        <div className="container relative ">
-          <div className="guide_title px-3 ">
-            <h3 className=" my-5">
-              <p className="text-3xl lg:text-5xl">Guides to help you grow</p>
-              <a className="hover:underline absolute right-4 top-4 " href="#">
+        <div className="container px-2  ">
+          <div className="guide_title relative px-3 ">
+            <div className="">
+              <h3 className=" my-5">
+                <p className="text-3xl lg:text-5xl">Guides to help you grow</p>
+              </h3>
+              <a
+                className="block hover:underline hover:text-[#222325] absolute right-4 top-4 "
+                href="#"
+              >
                 See more
               </a>
-            </h3>
+            </div>
           </div>
           <div className="guide_content lg:pt-10 pb-20">
-            <Slider {...settings}>
-              {renderGuideItem(
-                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/0c7c1b07050e6ea2a0901861b48b6264-1658846941284/side%20hustle.jpeg",
-                "Start a side business"
-              )}
-
-              {renderGuideItem(
-                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/687d698a96f4eef875648319685ffeed-1687027332007/1685561103924-12profitableecommercebusinessideasyoucanstarttoday.jpg",
-                "Ecommerce business Ideas"
-              )}
-
-              {renderGuideItem(
-                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/5907f56b0e099c84efe5f480840f43a2-1593446948907/home%20based%20online%20business-fiverr.jpg",
-                "Start an online business and work from home"
-              )}
-
-              {renderGuideItem(
-                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/8b1dcc55f5c8582b04aee0b995ae5327-1683590934905/1682363178357-Howtobuildawebsitefromscratch.jpg",
-                "Build a website from scratch"
-              )}
-
-              {renderGuideItem(
-                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/309ac0d5d01de83b832e421b316352a8-1690708285578/05%20-%20Article%20Cover.jpg",
-                "Grow your business with AI"
-              )}
-
-              {renderGuideItem(
-                "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_600,dpr_1.0/v1/attachments/generic_asset/asset/10f680cb84a2f3ef4473ecfdede3a1ba-1593438129320/business%20logo%20design-fiverr%20guide.jpg",
-                "Create a logo for your business"
-              )}
-            </Slider>
+            <Swiper
+              modules={[Navigation, A11y]}
+              navigation
+              autoHeight={true}
+              spaceBetween={5}
+              breakpoints={{
+                // 368: {
+                //   slidesPerView: 1.5,
+                // },
+                // 524: {
+                //   slidesPerView: ,
+                // },
+                768: {
+                  slidesPerView: 2,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {guideArr.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div className=" px-6 py-5 cursor-pointer   hover:cursor-pointer duration-300">
+                    <img className="w-full h-full" src={item.imgURL} />
+                    <p className="text-base font-semibold mt-3 h-12">
+                      {item.content}
+                    </p>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
           <div className="guide_panner flex flex-col gap-10 bg-[#4D1727] rounded-xl  lg:pb-10  pt-12 pb-8 text-center my-10">
             <h2 className="text-white ">
@@ -699,7 +678,6 @@ const Content = () => {
           </div>
         </div>
       </section>
-    
     </>
   );
 };
