@@ -9,14 +9,11 @@ import "swiper/css/navigation";
 // import "swiper/css/pagination";
 // import "swiper/css/scrollbar";
 import { Carousel } from "antd";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
 const Content = () => {
   const contentStyle = {
     margin: 0,
-    height: "290px",
+    height: "340px",
     color: "#000",
 
     background: "#fff",
@@ -462,7 +459,6 @@ const Content = () => {
                     "We used Fiverr for SEO, our logo, website, copy, animated videos — literally everything. It was like working with a human right next to you versus being across the world."
                   )}
                 </div>
-
                 <div style={contentStyle}>
                   <div>
                     {renderAbout(
@@ -655,7 +651,7 @@ const Content = () => {
             >
               {guideArr.map((item, index) => (
                 <SwiperSlide key={index}>
-                  <div className=" px-6 py-5 cursor-pointer   hover:cursor-pointer duration-300">
+                  <div className=" px-6 py-5 cursor-pointer  hover:cursor-pointer duration-300">
                     <img className="w-full h-full" src={item.imgURL} />
                     <p className="text-base font-semibold mt-3 h-12">
                       {item.content}
@@ -667,7 +663,7 @@ const Content = () => {
           </div>
           <div className="guide_panner flex flex-col gap-10 bg-[#4D1727] rounded-xl  lg:pb-10  pt-12 pb-8 text-center my-10">
             <h2 className="text-white ">
-              Freelance services at your{" "}
+              Freelance services at your
               <span className="text-[#FF7640]">fingertips!</span>
             </h2>
             <div>

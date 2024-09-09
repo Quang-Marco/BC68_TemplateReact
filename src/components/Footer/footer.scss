@@ -1,27 +1,46 @@
 .foot_top {
   .foot_top_content {
-    .foot_collap {
+    .destop_view {
       ul {
-        list-style: none;
-        .text_display_foot_content {
-          line-height: 140%;
-          padding-bottom: 20px;
-        }
+        font-weight: bold;
+
         li {
-          &:not(:last-child) {
-            padding-bottom: 16px;
+          color: #74767e;
+          margin-bottom: 16px;
+          &:first-child {
+            margin-top: 16px;
+          }
+        }
+      }
+    }
+
+    .ant-collapse {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      ul {
+        li {
+          color: #74767e;
+        }
+      }
+      @media (min-width: 768px) {
+        .ant-collapse-item {
+          border: none;
+          font-size: 16px;
+          .ant-collapse-header {
+            font-weight: bold;
+            .ant-collapse-expand-icon {
+              display: none;
+            }
           }
 
-          a {
-            font-size: 16px;
-            color: #74767e;
-            font-weight: 400;
-            &:hover {
-              text-decoration: underline;
-            }
-            p {
-              font-size: 14px;
-              color: #b5b6ba;
+          .ant-collapse-content {
+            // display: block !important;
+            // height: auto !important;
+            // overflow: visible;
+            ul {
+              li {
+                padding-bottom: 16px;
+              }
             }
           }
         }
@@ -47,9 +66,12 @@
         padding-top: 10px;
         li {
           padding-right: 24px;
+          width: 25px;
+          height: 25px;
+          line-height: 25px;
           svg {
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
           }
           // i {
           //   width: 24px;
@@ -60,7 +82,7 @@
               background-color: #efeff0;
               border-radius: 50%;
               margin: -8px;
-              padding: 8px;
+              padding: 18px 9px 9px;
               // transition: background-color 0.2s;
             }
           }
