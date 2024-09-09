@@ -52,6 +52,33 @@ const Banner = () => {
       name: "Consulting",
     },
   ];
+  const listBrands = [
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/meta.ff37dd3.svg",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/google.e74f4d9.svg",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/netflix.b310314.svg",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/pg.22fca85.svg",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/paypal.d398de5.svg",
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/payoneer.7c1170d.svg",
+    },
+  ];
+
   const [visibleProducts, setVisibleProducts] = useState(9);
   const handleShowMore = () => {
     setVisibleProducts((prev) => prev + 6);
@@ -88,36 +115,13 @@ const Banner = () => {
             <span className="font-semibold text-white opacity-50">
               Trusted by:
             </span>
-            <img
-              className="opacity-50"
-              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/meta.ff37dd3.svg"
-              alt="Meta"
-            />
-            <img
-              className="opacity-50"
-              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/google.e74f4d9.svg"
-              alt="Google"
-            />
-            <img
-              className="opacity-50"
-              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/netflix.b310314.svg"
-              alt="Netflix"
-            />
-            <img
-              className="opacity-50"
-              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/pg.22fca85.svg"
-              alt="P&G"
-            />
-            <img
-              className="opacity-50"
-              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/paypal.d398de5.svg"
-              alt="Paypal"
-            />
-            <img
-              className="opacity-50"
-              src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/payoneer.7c1170d.svg"
-              alt="Payoneer"
-            />
+            {listBrands.map((item, index) => (
+              <img
+                key={index + 1}
+                className="opacity-50"
+                src={item.imgURL}
+              ></img>
+            ))}
           </div>
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-9 gap-4">

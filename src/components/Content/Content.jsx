@@ -1,17 +1,14 @@
 import React from "react";
 import "./content.scss";
-import IconFiverrPro from "../Icon/IconFiverrPro";
-import IconCheck from "../Icon/IconCheck";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// import "swiper/css/scrollbar";
 import { Carousel } from "antd";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import ScrollToTop from "react-scroll-to-top";
 
 const Content = () => {
   const contentStyle = {
@@ -301,7 +298,64 @@ const Content = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="mt-10 px-4 py-8 sm:px-8 lg:p-16 bg-blue-50 rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700 mt-10 lg:mt-20 mb-10">
+              A whole world of freelance talent at your fingertips
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+              <div>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/categories.72379ee.svg"
+                  alt=""
+                />
+                <h3 className="text-2xl text-gray-700 lg:h-16 my-5">
+                  Over 700 categories
+                </h3>
+                <p className="text-gray-500">
+                  Get results from skilled freelancers from all over the world,
+                  for every task, at any price point.
+                </p>
+              </div>
+              <div>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/handshake.287b5d3.svg"
+                  alt=""
+                />
+                <h3 className="text-2xl text-gray-700 lg:h-16 my-5">
+                  Clear, transparent pricing
+                </h3>
+                <p className="text-gray-500">
+                  Pay per project or by the hour (Pro). Payments only get
+                  released when you approve.
+                </p>
+              </div>
+              <div>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lightning.2cded3f.svg"
+                  alt=""
+                />
+                <h3 className="text-2xl text-gray-700 lg:h-16 my-5">
+                  Quality work done faster
+                </h3>
+                <p className="text-gray-500">
+                  Filter to find the right freelancers quickly and get great
+                  work delivered in no time, every time.
+                </p>
+              </div>
+              <div>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/support.660ad7f.svg"
+                  alt=""
+                />
+                <h3 className="text-2xl text-gray-700 lg:h-16 my-5">
+                  24/7 award-winning support
+                </h3>
+                <p className="text-gray-500">
+                  Chat with our team to get your questions answered or resolve
+                  any issues with your orders.
+                </p>
+              </div>
+            </div>
+            {/* <div className="mt-10 px-4 py-8 sm:px-8 lg:p-16 bg-blue-50 rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
               <div>
                 <IconFiverrPro />
                 <h2 className="my-10 text-3xl sm:text-4xl lg:text-5xl">
@@ -363,14 +417,14 @@ const Content = () => {
                   alt=""
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
-      <section className="success pt-10">
+      <section className="success pt-10 lg:pt-20">
         <div className="container px-2">
           <div className="success_content">
-            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-medium text-gray-700">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700">
               What success on Fiverr looks like
             </h2>
             <p className="pt-5 pb-10 text-gray-500">
@@ -378,12 +432,12 @@ const Content = () => {
               to life.
             </p>
             <video
-              className="rounded-xl h-80 sm:h-96 md:h-[480px] lg:h-[600px] w-full object-cover"
+              className="rounded-xl h-80 sm:h-96 md:h-[480px] lg:h-[650px] w-full object-cover"
               autoPlay
               controls
               muted
               poster="https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/generic_asset/asset/ef51b45f79342925d5268e0b2377eae8-1704717764992/thumbnail.png"
-              src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/v1/video-attachments/generic_asset/asset/4934b0c8f6441211d97f83585a7c9c00-1722433273322/Vontelle%20Cutdown-%20Breakthrough%20V5"
+              src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/v1/video-attachments/generic_asset/asset/e0f330e4c8d6e3bf843a3bd3164fa275-1706087048062/How%20Fiverr%20Works%20EN%20Subs%2016x9"
             ></video>
             <h3 className="py-10 text-2xl lg:text-3xl text-gray-700">
               Vontélle’s go-to services
@@ -440,7 +494,7 @@ const Content = () => {
                   <path d="M139 24.5201V24.5629C139 25.814 138.003 26.8294 136.771 26.8294C135.541 26.8294 134.542 25.8152 134.542 24.5629V24.5201C134.542 23.269 135.539 22.2537 136.771 22.2537C138.001 22.2537 139 23.269 139 24.5201Z"></path>
                 </g>
               </svg>
-              <h3 className="sm:text-4xl sm:leading-tight">
+              <h3 className="text-2xl sm:text-3xl lg-text-4xl sm:leading-tight">
                 New e-Commerce project management service
                 <span className="font-bold"> made for your business</span>
               </h3>
@@ -699,7 +753,12 @@ const Content = () => {
           </div>
         </div>
       </section>
-    
+      <ScrollToTop
+        className="hover:bg-green-500 duration-300 flex items-center justify-center"
+        width="16"
+        height="16"
+        smooth
+      />
     </>
   );
 };

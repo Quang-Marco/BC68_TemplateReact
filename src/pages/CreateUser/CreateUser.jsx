@@ -21,7 +21,7 @@ const CreateUser = () => {
     skill: [],
     certification: [],
   });
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [isActive, setIsActive] = useState(true);
   const [uploadImage, setUploadImage] = useState(null);
   const [errorImage, setErrorImage] = useState("");
