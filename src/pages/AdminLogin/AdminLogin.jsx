@@ -61,11 +61,12 @@ const AdminLogin = () => {
         email: string()
           .required(notiValidation.empty)
           .email(notiValidation.email),
-        password: string().required(notiValidation.empty),
-        //   .matches(
-        //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        //     notiValidation.password
-        //   ),
+        password: string()
+          .required(notiValidation.empty)
+          .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            notiValidation.password
+          ),
       }),
     });
   return (

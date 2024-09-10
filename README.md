@@ -12,6 +12,7 @@ Một số thư viện cài đặt bên trong dự án:
 - Lottie-react để quản lý animation.json (done)
 - React-toastify để thông báo lỗi (done)
 - Swiper để quản lý Carousel (done)
+- React-scroll-to-top (done)
 
 Ghi chú về các thư mục trong dự án:
 
