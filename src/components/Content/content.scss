@@ -1,5 +1,6 @@
 .service,
-.success {
+.success,
+.guide {
   .swiper-button-next,
   .swiper-button-prev {
     height: 46px;
@@ -16,7 +17,11 @@
 .fiverrPro {
   .fiverPro_content {
     padding: 80px 64px;
-    margin: 40px;
+    @media only screen and (min-width: 900px) {
+      margin: 40px 0;
+      padding: 48px 40px;
+    }
+
     .pro_left {
       svg {
         margin-bottom: 32px;
@@ -41,7 +46,6 @@
         }
       }
       p {
-        // font-size: 16px;
         padding-bottom: 16px;
       }
       ul {
@@ -63,6 +67,8 @@
 }
 .about {
   .about_top {
+    gap: 20px;
+    padding: 32px 0;
     h2 {
       font-size: 48px;
       letter-spacing: -1.44px;
@@ -124,12 +130,15 @@
     }
   }
   .about_logo {
+    @media only screen and (max-width: 1028px) {
+      display: flex;
+      flex-direction: column-reverse;
+      transition: 0.5s all;
+    }
     .logo_left {
       .logo_left_content {
         padding: 56px 40px;
 
-        i {
-        }
         h2 {
           font-size: 48px;
           span {
@@ -176,17 +185,19 @@
     }
 
     .card .info {
-      position: absolute;
-      bottom: 0;
-      left: 0;
       width: 100%;
-      padding: 10px;
+      height: 100%;
 
       color: white;
       font-size: 16px;
       text-align: left;
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
+      .info_content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
     }
 
     .card:hover .info {
@@ -202,6 +213,7 @@
       right: 0;
       bottom: 0;
       &:hover {
+        fill: #404145;
       }
     }
 
@@ -210,7 +222,7 @@
       top: 0;
       right: 0;
       font-size: 24px;
-      color: white;
+
       cursor: pointer;
     }
   }
@@ -220,38 +232,18 @@
     h3 {
       p {
       }
-      a {
-        @media only screen and (max-width: 900px) {
-          left: 0;
-          top: 360px;
-        }
+    }
+    a {
+      @media only screen and (max-width: 900px) {
+        left: 24px;
+        top: 420px;
       }
     }
   }
   .guide_content {
-    .slick-next {
-      right: 32px;
-    }
-
-    .slick-prev {
-      left: 2px;
-      z-index: 1;
-    }
-
-    .slick-next:before,
-    .slick-prev:before {
-      color: #404145;
-      opacity: 1;
-      font-size: 50px;
-    }
-    .slick-disabled {
-      opacity: 0;
-    }
-
     .top_img {
       padding-bottom: 20px;
       img {
-        width: 100%;
         object-fit: cover;
         min-height: 100%;
         min-width: 100%;
