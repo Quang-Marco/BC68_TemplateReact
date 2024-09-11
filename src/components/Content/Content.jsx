@@ -5,9 +5,6 @@ import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Carousel } from "antd";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 import ScrollToTop from "react-scroll-to-top";
 
 const Content = () => {
