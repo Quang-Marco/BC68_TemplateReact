@@ -6,6 +6,7 @@ const useResponsive = () => {
   const [state, setState] = useState({
     isMobile: false,
     isTablet: false,
+    isIpadAir5: false,
     isDesktop: false,
   });
 
@@ -23,10 +24,11 @@ const useResponsive = () => {
   // update the state on window resize
   const onResizeHandler = () => {
     const isMobile = window.innerWidth <= 524;
-    const isTablet = window.innerWidth >= 524 && window.innerWidth <= 768;
-    const isDesktop = window.innerWidth > 768;
+    const isTablet = window.innerWidth > 524 && window.innerWidth <= 768;
+    const isIpadAir5 = window.innerWidth > 768 && window.innerWidth <= 1024;
+    const isDesktop = window.innerWidth > 1024;
 
-    setState({ isMobile, isTablet, isDesktop });
+    setState({ isMobile, isTablet, isIpadAir5, isDesktop });
   };
 
   // debounce the resize call

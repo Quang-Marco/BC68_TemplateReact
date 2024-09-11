@@ -10,9 +10,9 @@ const RegisterPage = () => {
   };
   const { View } = useLottie(options);
   return (
-    <div className="flex items-center h-screen">
-      <div className="w-1/2">{View}</div>
-      <div className="w-1/2">
+    <div className="grid grid-cols-1 lg:grid-cols-2 items-center h-screen">
+      <div>{View}</div>
+      <div>
         <FormRegister />
       </div>
     </div>

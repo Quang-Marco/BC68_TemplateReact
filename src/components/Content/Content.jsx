@@ -238,18 +238,22 @@ const Content = () => {
               breakpoints={{
                 368: {
                   slidesPerView: 2.5,
+                  slidesPerGroup: 2,
                   spaceBetween: 10,
                 },
                 524: {
                   slidesPerView: 3.5,
+                  slidesPerGroup: 3,
                   spaceBetween: 15,
                 },
                 768: {
                   slidesPerView: 5,
+                  slidesPerGroup: 4,
                   spaceBetween: 15,
                 },
                 1024: {
                   slidesPerView: 6,
+                  slidesPerGroup: 5,
                   spaceBetween: 20,
                 },
               }}
@@ -270,7 +274,7 @@ const Content = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700 mt-10 lg:mt-20 mb-10">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700 mt-10 lg:mt-20 mb-10 lg:mb-14">
               A whole world of freelance talent at your fingertips
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
@@ -327,69 +331,6 @@ const Content = () => {
                 </p>
               </div>
             </div>
-            {/* <div className="mt-10 px-4 py-8 sm:px-8 lg:p-16 bg-blue-50 rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
-              <div>
-                <IconFiverrPro />
-                <h2 className="my-10 text-3xl sm:text-4xl lg:text-5xl">
-                  The{" "}
-                  <span className="title_highlight text-green-500">
-                    premium
-                  </span>{" "}
-                  freelance solution for businesses
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <IconCheck />
-                    <h5 className="font-bold text-lg mt-3">
-                      Dedicated hiring experts
-                    </h5>
-                    <p className="text-sm">
-                      Count on an account manager to find you the right talent
-                      and see to your project’s every need.
-                    </p>
-                  </div>
-                  <div>
-                    <IconCheck />
-                    <h5 className="font-bold text-lg mt-3">
-                      Satisfaction guarantee
-                    </h5>
-                    <p className="text-sm">
-                      Order confidently, with guaranteed refunds for
-                      less-than-satisfactory deliveries.
-                    </p>
-                  </div>
-                  <div>
-                    <IconCheck />
-                    <h5 className="font-bold text-lg mt-3">
-                      Advanced management tools
-                    </h5>
-                    <p className="text-sm">
-                      Seamlessly integrate freelancers into your team and
-                      projects.
-                    </p>
-                  </div>
-                  <div>
-                    <IconCheck />
-                    <h5 className="font-bold text-lg mt-3">
-                      Flexible payment models
-                    </h5>
-                    <p className="text-sm">
-                      Pay per project or opt for hourly rates to facilitate
-                      longer-term collaboration.
-                    </p>
-                  </div>
-                </div>
-                <button className="bg-black text-white rounded-lg mt-10 py-3 px-5 hover:opacity-80 duration-300">
-                  Try now
-                </button>
-              </div>
-              <div className="hidden lg:block">
-                <img
-                  src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/2321104e0c585cceea525419551d3a7c-1721984733481/fiverr-pro.png"
-                  alt=""
-                />
-              </div>
-            </div> */}
           </div>
         </div>
       </section>

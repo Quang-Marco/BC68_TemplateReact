@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./header.scss";
-import { Link } from "react-router-dom";
 import FormSearch from "../FormSearch/FormSearch";
 import IconLogoHeader from "../Icon/IconLogoHeader";
 import Navbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { pathDefault } from "../../common/path";
 import { Button, Collapse, Drawer, Dropdown, Modal, Space, Tabs } from "antd";
 import {
@@ -17,53 +18,11 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const listProducts = [
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/programming-tech-thin.56382a2.svg",
-      name: "Programming & Tech",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/graphics-design-thin.ff38893.svg",
-      name: "Graphics & Design",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/digital-marketing-thin.68edb44.svg",
-      name: "Digital Marketing",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/writing-translation-thin.fd3699b.svg",
-      name: "Writing & Translation",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/video-animation-thin.9d3f24d.svg",
-      name: "Video & Animation",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/ai-services-thin.104f389.svg",
-      name: "AI Services",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/music-audio-thin.43a9801.svg",
-      name: "Music & Audio",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/business-thin.885e68e.svg",
-      name: "Business",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/consulting-thin.d5547ff.svg",
-      name: "Consulting",
-    },
-  ];
+  const toggleDrawer = () => setOpen((prev) => !prev);
+  const toggleModal = () => setIsModalOpen((prev) => !prev);
+
+  const { listDetailsJobs } = useSelector((state) => state.congViecSlice);
+
   const explore = [
     {
       title: "Discover",
@@ -210,7 +169,14 @@ const Header = () => {
     {
       key: "1",
       label: "Browse categories",
-      children: listProducts.map((item) => renderItem(item.name)),
+      children: listDetailsJobs.map((item) => (
+        <Link
+          to={`${pathDefault.listJob}?idJob=${item.id}`}
+          onClick={toggleDrawer}
+        >
+          {renderItem(item.name)}
+        </Link>
+      )),
     },
     {
       key: "2",
@@ -228,9 +194,6 @@ const Header = () => {
       ),
     },
   ];
-
-  const toggleDrawer = () => setOpen((prev) => !prev);
-  const toggleModal = () => setIsModalOpen((prev) => !prev);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -282,6 +245,7 @@ const Header = () => {
               </h4>
               <Link
                 to={pathDefault.homePage}
+                onClick={toggleDrawer}
                 className={
                   "block pl-4 py-3 cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
                 }
@@ -295,6 +259,7 @@ const Header = () => {
                 items={itemsLanguage}
               />
             </Drawer>
+
             <div className="header_logo flex space-x-5">
               <Link to={pathDefault.homePage}>
                 <IconLogoHeader />
@@ -308,23 +273,19 @@ const Header = () => {
                 placeholder={"What service are you looking for today?"}
               />
             </div>
+
             <nav className="header_navigation space-x-4 hidden xl:block">
               <Dropdown
                 menu={{
                   items: itemsFiverrPro,
                 }}
                 trigger={["click"]}
-                className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
+                className="cursor-pointer font-semibold text-gray-700 py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
               >
-                <a
-                  className="font-semibold text-gray-700"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <Space>
-                    Fiverr Pro
-                    <DownOutlined />
-                  </Space>
-                </a>
+                <Space>
+                  Fiverr Pro
+                  <DownOutlined />
+                </Space>
               </Dropdown>
               <Dropdown
                 menu={{
@@ -343,17 +304,12 @@ const Header = () => {
                   })),
                 }}
                 trigger={["click"]}
-                className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
+                className="cursor-pointer font-semibold text-gray-500 py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
               >
-                <a
-                  className="font-semibold text-gray-500"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <Space>
-                    Explore
-                    <DownOutlined />
-                  </Space>
-                </a>
+                <Space>
+                  Explore
+                  <DownOutlined />
+                </Space>
               </Dropdown>
               <button
                 onClick={toggleModal}
@@ -377,7 +333,10 @@ const Header = () => {
               >
                 <Tabs defaultActiveKey="1" items={itemsLanguage}></Tabs>
               </Modal>
-              <Link className="font-semibold text-gray-500 hover:text-green-500 duration-300">
+              <Link
+                to={pathDefault.homePage}
+                className="font-semibold text-gray-500 hover:text-green-500 duration-300"
+              >
                 Become a Seller
               </Link>
               <Link
@@ -389,6 +348,7 @@ const Header = () => {
                 Sign in
               </Link>
             </nav>
+
             <Link
               to={pathDefault.register}
               className={

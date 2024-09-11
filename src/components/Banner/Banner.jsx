@@ -37,22 +37,13 @@ const Banner = () => {
   ];
 
   const [visibleProducts, setVisibleProducts] = useState(9);
-  const handleShowMore = () => {
-    setVisibleProducts((prev) => prev + 6);
-  };
-  const { isMobile, isTablet, isDesktop } = useResponsive();
+  const handleShowMore = () => setVisibleProducts((prev) => prev + 6);
+  const { isMobile, isTablet, isIpadAir5 } = useResponsive();
 
   useEffect(() => {
-    if (isDesktop) {
-      setVisibleProducts(8);
-    } else if (isTablet) {
-      setVisibleProducts(6);
-    } else if (isMobile) {
-      setVisibleProducts(3);
-    } else {
-      setVisibleProducts(9);
-    }
-  }, [isMobile, isTablet, isDesktop]);
+    const visibleCount = isIpadAir5 ? 8 : isTablet ? 6 : isMobile ? 3 : 9;
+    setVisibleProducts(visibleCount);
+  }, [isMobile, isIpadAir5, isTablet]);
 
   return (
     <section className="banner">

@@ -11,6 +11,7 @@ import { NotificationContext } from "../../App";
 import { setLocalStorage } from "../../utils/utils";
 import { useDispatch } from "react-redux";
 import { setValueUser } from "../../redux/authSlice";
+import { pathDefault } from "../../common/path";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -66,13 +67,13 @@ const LoginPage = () => {
     }),
   });
   return (
-    <div>
-      <div className="container">
-        <div className="loginPage_content flex items-center h-screen">
-          <div className="loginPage_img w-1/2">{View}</div>
-          <div className="loginPage_form w-1/2">
+    <>
+      <div className="container px-2">
+        <div className="loginPage_content grid grid-cols-1 lg:grid-cols-2 items-center h-screen">
+          <div className="loginPage_img">{View}</div>
+          <div className="loginPage_form">
             <form onSubmit={handleSubmit} className="space-y-5">
-              <h1 className="text-4xl font-medium text-center">
+              <h1 className="text-3xl lg:text-4xl font-medium text-center">
                 Giao diện đăng nhập
               </h1>
               <InputCustom
@@ -104,7 +105,7 @@ const LoginPage = () => {
                   Đăng nhập
                 </button>
                 <Link
-                  to={"/dang-ky"}
+                  to={pathDefault.register}
                   className="text-blue-600 inline-block mt-5 hover:underline duration-300"
                 >
                   Chưa có tài khoản? Nhấn vào đây để đăng ký
@@ -114,7 +115,7 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
