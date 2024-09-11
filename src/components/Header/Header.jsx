@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import IconLogoHeader from "../Icon/IconLogoHeader";
-import { pathDefault } from "../../common/path";
-import LinkCustom from "../LinkCustom/LinkCustom";
 import "./header.scss";
+import { Link } from "react-router-dom";
 import FormSearch from "../FormSearch/FormSearch";
+import IconLogoHeader from "../Icon/IconLogoHeader";
+import Navbar from "../Navbar/Navbar";
+import { pathDefault } from "../../common/path";
+import { Button, Collapse, Drawer, Dropdown, Modal, Space, Tabs } from "antd";
 import {
   DownOutlined,
   MenuUnfoldOutlined,
   GlobalOutlined,
-  CheckCircleFilled,
 } from "@ant-design/icons";
-import { Button, Collapse, Drawer, Dropdown, Modal, Space, Tabs } from "antd";
 
 const Header = () => {
+  const [isScroll, setIsScroll] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const listProducts = [
     {
       imgURL:
@@ -92,9 +95,7 @@ const Header = () => {
     },
   ];
   const languages = [
-    <>
-      <CheckCircleFilled /> English
-    </>,
+    "✔️ English",
     "Deutsch",
     "Español",
     "Français",
@@ -128,20 +129,6 @@ const Header = () => {
       {content}
     </p>
   );
-  const itemsExplore = [];
-  explore.map((item, index) => {
-    itemsExplore.push({
-      key: index + 1,
-      label: (
-        <div>
-          <h5 className="font-semibold text-base text-gray-700">
-            {item.title}
-          </h5>
-          <p className="font-medium text-gray-500">{item.content}</p>
-        </div>
-      ),
-    });
-  });
   const itemsFiverrPro = [
     {
       key: "1",
@@ -189,7 +176,7 @@ const Header = () => {
       key: "1",
       label: "Language",
       children: languages.map((item, index) =>
-        renderItem(item, !index ? "pl-[8px]" : "")
+        renderItem(item, !index ? "pl-[1px]" : "")
       ),
     },
     {
@@ -197,8 +184,8 @@ const Header = () => {
       label: "Currency",
       children: (
         <>
-          <div className="cursor-pointer p-2 text-gray-600 hover:bg-gray-100 duration-300 flex">
-            {<CheckCircleFilled />}
+          <div className="cursor-pointer p-2 text-gray-600 hover:bg-gray-100 duration-300 flex items-center">
+            ✔️
             <div className="ml-2">
               <p className="text-black text-base font-semibold">
                 United States Dollar
@@ -209,7 +196,7 @@ const Header = () => {
           {currency.map((item, index) => (
             <div
               key={index}
-              className="cursor-pointer pl-8 py-2 text-gray-600 hover:bg-gray-100 duration-300"
+              className="cursor-pointer pl-9 py-2 text-gray-600 hover:bg-gray-100 duration-300"
             >
               <p className="text-black text-base font-semibold">{item.name}</p>
               <p className="text-base">{item.symbol}</p>
@@ -241,179 +228,180 @@ const Header = () => {
       ),
     },
   ];
-  const [isScroll, setIsScroll] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showDrawer = () => {
-    setOpen(true);
-  };
-  const onClose = () => {
-    setOpen(false);
-  };
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+
+  const toggleDrawer = () => setOpen((prev) => !prev);
+  const toggleModal = () => setIsModalOpen((prev) => !prev);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setIsScroll(true);
-      } else {
-        setIsScroll(false);
-      }
+      setIsScroll(window.scrollY > 600);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
-    <header className="bg-white py-5 font-medium border-b sticky top-0 z-10">
-      <div className="container px-2">
-        <div className="header_content flex items-center justify-between">
-          <Button className="lg:hidden" onClick={showDrawer}>
-            <MenuUnfoldOutlined />
-          </Button>
-          <Drawer
-            title={
-              <LinkCustom
-                content="Join Fiverr"
-                to={pathDefault.register}
+    <>
+      <header className="bg-white py-5 font-medium border-b sticky top-0 z-10">
+        <div className="container px-2">
+          <div className="header_content flex items-center justify-between">
+            <Button className="lg:hidden" onClick={toggleDrawer}>
+              <MenuUnfoldOutlined />
+            </Button>
+            <Drawer
+              title={
+                <Link
+                  to={pathDefault.register}
+                  className={
+                    "px-6 py-3 bg-black text-white rounded-md text-base font-semibold hover:text-white hover:opacity-80 duration-300"
+                  }
+                >
+                  Join Fiverr
+                </Link>
+              }
+              placement="left"
+              onClose={toggleDrawer}
+              open={open}
+            >
+              <Link
+                to={pathDefault.login}
                 className={
-                  "px-6 py-3 bg-black text-white rounded-md text-base font-semibold hover:text-white hover:opacity-80 duration-300"
+                  "block pl-4 py-3 rounded cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
                 }
+              >
+                Sign in
+              </Link>
+              <Collapse
+                className="text-base"
+                ghost
+                expandIconPosition="end"
+                items={itemsCollapse}
               />
-            }
-            placement="left"
-            onClose={onClose}
-            open={open}
-          >
-            <LinkCustom
-              content={"Sign in"}
-              to={pathDefault.login}
+              <h4 className="mt-10 ml-4 mb-4 text-base font-semibold">
+                General
+              </h4>
+              <Link
+                to={pathDefault.homePage}
+                className={
+                  "block pl-4 py-3 cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
+                }
+              >
+                Home
+              </Link>
+              <Collapse
+                className="text-base"
+                ghost
+                expandIconPosition="end"
+                items={itemsLanguage}
+              />
+            </Drawer>
+            <div className="header_logo flex space-x-5">
+              <Link to={pathDefault.homePage}>
+                <IconLogoHeader />
+              </Link>
+              <FormSearch
+                classWrapper={`lg:w-[470px] hidden lg:block ${
+                  isScroll ? "visible" : "invisible"
+                }`}
+                classInput="rounded-md min-w-[400px]"
+                classIcon="bg-black py-3 px-4"
+                placeholder={"What service are you looking for today?"}
+              />
+            </div>
+            <nav className="header_navigation space-x-4 hidden xl:block">
+              <Dropdown
+                menu={{
+                  items: itemsFiverrPro,
+                }}
+                trigger={["click"]}
+                className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
+              >
+                <a
+                  className="font-semibold text-gray-700"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <Space>
+                    Fiverr Pro
+                    <DownOutlined />
+                  </Space>
+                </a>
+              </Dropdown>
+              <Dropdown
+                menu={{
+                  items: explore.map((item, index) => ({
+                    key: index + 1,
+                    label: (
+                      <div>
+                        <h5 className="font-semibold text-base text-gray-700">
+                          {item.title}
+                        </h5>
+                        <p className="font-medium text-gray-500">
+                          {item.content}
+                        </p>
+                      </div>
+                    ),
+                  })),
+                }}
+                trigger={["click"]}
+                className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
+              >
+                <a
+                  className="font-semibold text-gray-500"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <Space>
+                    Explore
+                    <DownOutlined />
+                  </Space>
+                </a>
+              </Dropdown>
+              <button
+                onClick={toggleModal}
+                className="font-semibold text-gray-500 hover:text-green-500 duration-300"
+              >
+                <span className="flex justify-between w-[74px]">
+                  <GlobalOutlined /> English
+                </span>
+              </button>
+              <Modal
+                centered
+                title="Select your preferences"
+                footer={[
+                  <Button key="ok" type="primary" onClick={toggleModal}>
+                    OK
+                  </Button>,
+                ]}
+                open={isModalOpen}
+                onOk={toggleModal}
+                onCancel={toggleModal}
+              >
+                <Tabs defaultActiveKey="1" items={itemsLanguage}></Tabs>
+              </Modal>
+              <Link className="font-semibold text-gray-500 hover:text-green-500 duration-300">
+                Become a Seller
+              </Link>
+              <Link
+                to={pathDefault.login}
+                className={
+                  "font-semibold text-gray-500 hover:text-green-500 duration-300"
+                }
+              >
+                Sign in
+              </Link>
+            </nav>
+            <Link
+              to={pathDefault.register}
               className={
-                "block pl-4 py-3 cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
+                "py-2 px-4 font-semibold rounded border border-green-600 text-green-600 hover:bg-green-600 hover:text-white duration-300"
               }
-            />
-            <Collapse
-              className="text-base"
-              ghost
-              expandIconPosition="end"
-              items={itemsCollapse}
-            />
-            <h4 className="mt-10 ml-4 mb-4 text-base font-semibold">General</h4>
-            <LinkCustom
-              content={"Home"}
-              to={pathDefault.homePage}
-              className={
-                "block pl-4 py-3 cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
-              }
-            />
-            <Collapse
-              className="text-base"
-              ghost
-              expandIconPosition="end"
-              items={itemsLanguage}
-            />
-          </Drawer>
-          <div className="header_logo flex space-x-5">
-            <Link to={pathDefault.homePage}>
-              <IconLogoHeader />
+            >
+              Join
             </Link>
-            <FormSearch
-              classWrapper={`lg:w-[470px] hidden lg:block ${
-                isScroll ? "visible" : "invisible"
-              }`}
-              classInput="rounded-md min-w-[400px]"
-              classIcon="bg-black py-3 px-4"
-              placeholder={"What service are you looking for today?"}
-            />
           </div>
-          <nav className="header_navigation space-x-4 hidden xl:block">
-            <Dropdown
-              menu={{
-                items: itemsFiverrPro,
-              }}
-              trigger={["click"]}
-              className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
-            >
-              <a
-                className="font-semibold text-gray-700"
-                onClick={(e) => e.preventDefault()}
-              >
-                <Space>
-                  Fiverr Pro
-                  <DownOutlined />
-                </Space>
-              </a>
-            </Dropdown>
-            <Dropdown
-              menu={{
-                items: itemsExplore,
-              }}
-              trigger={["click"]}
-              className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
-            >
-              <a
-                className="font-semibold text-gray-500"
-                onClick={(e) => e.preventDefault()}
-              >
-                <Space>
-                  Explore
-                  <DownOutlined />
-                </Space>
-              </a>
-            </Dropdown>
-            <button
-              onClick={showModal}
-              className="font-semibold text-gray-500 hover:text-green-500 duration-300"
-            >
-              <GlobalOutlined /> English
-            </button>
-            <Modal
-              centered
-              title="Select your preferences"
-              footer={[
-                <Button key="ok" type="primary" onClick={handleOk}>
-                  OK
-                </Button>,
-              ]}
-              open={isModalOpen}
-              onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <Tabs defaultActiveKey="1" items={itemsLanguage}></Tabs>
-            </Modal>
-            <a
-              href="#"
-              className="font-semibold text-gray-500 hover:text-green-500 duration-300"
-            >
-              Become a Seller
-            </a>
-            <LinkCustom
-              content={"Sign in"}
-              to={pathDefault.login}
-              className={
-                "font-semibold text-gray-500 hover:text-green-500 duration-300"
-              }
-            />
-          </nav>
-          <LinkCustom
-            content="Join"
-            to={pathDefault.register}
-            className={
-              "py-2 px-4 font-semibold border border-green-600 text-green-600 hover:bg-green-600 hover:text-white duration-300"
-            }
-          />
         </div>
-      </div>
-    </header>
+      </header>
+      {isScroll && <Navbar />}
+    </>
   );
 };
 

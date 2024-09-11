@@ -20,9 +20,9 @@ const AdminTemplate = () => {
   } = theme.useToken();
   useEffect(() => {
     let dataLocal = getLocalStorage("user");
-    dataLocal.user.role !== "ADMIN"
-      ? (window.location.href = "https://google.com")
-      : null;
+    // dataLocal.user.role !== "ADMIN"
+    //   ? (window.location.href = "https://google.com")
+    //   : null;
   }, []);
 
   return (
