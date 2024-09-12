@@ -5,7 +5,6 @@ import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Carousel } from "antd";
-import ScrollToTop from "react-scroll-to-top";
 
 const Content = () => {
   const contentStyle = {
@@ -669,12 +668,6 @@ const Content = () => {
           </div>
         </div>
       </section>
-      <ScrollToTop
-        className="hover:bg-green-500 duration-300 flex items-center justify-center"
-        width="16"
-        height="16"
-        smooth
-      />
     </>
   );
 };

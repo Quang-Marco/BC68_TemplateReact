@@ -3,11 +3,16 @@ import "./banner.scss";
 import { DownOutlined } from "@ant-design/icons";
 import FormSearch from "../FormSearch/FormSearch";
 import useResponsive from "../../hooks/useResponsive";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateJobs } from "../../redux/congViecSlice";
 import { Link } from "react-router-dom";
 import { pathDefault } from "../../common/path";
+import { Trans, useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const Banner = () => {
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
   const { listDetailsJobs } = useSelector((state) => state.congViecSlice);
   const listBrands = [
     {
@@ -45,27 +50,46 @@ const Banner = () => {
     setVisibleProducts(visibleCount);
   }, [isMobile, isIpadAir5, isTablet]);
 
+  useEffect(() => {
+    if (i18n.isInitialized) {
+      dispatch(updateJobs());
+    }
+  }, [i18n.isInitialized, dispatch]);
+
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      dispatch(updateJobs());
+    };
+
+    i18n.on("languageChanged", handleLanguageChange);
+    return () => {
+      i18n.off("languageChanged", handleLanguageChange);
+    };
+  }, [dispatch]);
+
   return (
     <section className="banner">
       <div className="container lg:px-2">
         <div className="banner_content md:rounded-2xl md:mt-10 mb-5 h-72 md:h-96 xl:h-[500px] flex flex-col justify-around items-center">
           <h1 className="text-white text-4xl sm:text-5xl xl:text-6xl text-center w-80 sm:w-7/12 xl:w-[800px] pt-5 sm:pt-10 xl:pt-28">
-            Find the right
-            <span className="title_highlight text-green-600 text-4xl sm:text-5xl lg:text-[63px]">
-              {" "}
-              freelance{" "}
-            </span>
-            service, right away
+            <Trans
+              i18nKey="banner.title"
+              components={{
+                strong: (
+                  <strong className="title_highlight font-medium text-green-600 text-4xl sm:text-5xl lg:text-6xl" />
+                ),
+              }}
+            />
           </h1>
           <FormSearch
             classWrapper=""
             classIcon="p-3 mr-2 rounded-lg bg-green-800"
-            placeholder={"Search for any service..."}
+            placeholder={t("search.banner")}
             classInput="py-2 rounded-xl min-w-[350px] sm:min-w-[500px] lg:min-w-[650px]"
           />
           <div className="banner_social space-x-10 pt-5 hidden lg:flex">
             <span className="font-semibold text-white opacity-50">
-              Trusted by:
+              {t("banner.trust")}
             </span>
             {listBrands.map((item, index) => (
               <img

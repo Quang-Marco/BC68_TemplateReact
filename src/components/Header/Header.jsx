@@ -2,83 +2,83 @@ import React, { useEffect, useState } from "react";
 import "./header.scss";
 import FormSearch from "../FormSearch/FormSearch";
 import IconLogoHeader from "../Icon/IconLogoHeader";
-import Navbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { pathDefault } from "../../common/path";
 import { Button, Collapse, Drawer, Dropdown, Modal, Space, Tabs } from "antd";
-import {
-  DownOutlined,
-  MenuUnfoldOutlined,
-  GlobalOutlined,
-} from "@ant-design/icons";
+import { DownOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import LanguageSwitcher from "../LanguageSwicher/LanguageSwicher";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t } = useTranslation();
   const [isScroll, setIsScroll] = useState(false);
   const [open, setOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleDrawer = () => setOpen((prev) => !prev);
-  const toggleModal = () => setIsModalOpen((prev) => !prev);
+  // const toggleModal = () => setIsModalOpen((prev) => !prev);
 
   const { listDetailsJobs } = useSelector((state) => state.congViecSlice);
 
   const explore = [
     {
-      title: "Discover",
-      content: "Inspiring projects made on Fiverr",
+      title: t("header.exploreList.discover.title"),
+      content: t("header.exploreList.discover.content"),
     },
     {
-      title: "Community",
-      content: "Connect with Fiverr’s team and community",
+      title: t("header.exploreList.community.title"),
+      content: t("header.exploreList.community.content"),
     },
     {
-      title: "Guides",
-      content: "In-depth guides covering business topics",
+      title: t("header.exploreList.guides.title"),
+      content: t("header.exploreList.guides.content"),
     },
     {
-      title: "Podcast",
-      content: "Inside tips from top business minds",
+      title: t("header.exploreList.podcast.title"),
+      content: t("header.exploreList.podcast.content"),
     },
     {
-      title: "Learn",
-      content: "Professional online courses, led by experts",
+      title: t("header.exploreList.learn.title"),
+      content: t("header.exploreList.learn.content"),
     },
     {
-      title: "Blog",
-      content: "News, information and community stories",
+      title: t("header.exploreList.blog.title"),
+      content: t("header.exploreList.blog.content"),
     },
     {
-      title: "Logo Maker",
-      content: "Create your logo instantly",
+      title: t("header.exploreList.logoMaker.title"),
+      content: t("header.exploreList.logoMaker.content"),
     },
   ];
+
   const languages = [
-    "✔️ English",
-    "Deutsch",
-    "Español",
-    "Français",
-    "Português",
-    "Italiano",
-    "Nederlands",
-    "Việt Nam",
+    t("languages.english"),
+    t("languages.german"),
+    t("languages.french"),
+    t("languages.italia"),
+    t("languages.spain"),
+    t("languages.portugal"),
+    t("languages.netherlands"),
+    t("languages.vietNam"),
   ];
+
   const currency = [
     {
-      name: "Euro",
-      symbol: "EUR - €",
+      name: t("currency.euro.name"),
+      symbol: t("currency.euro.symbol"),
     },
     {
-      name: "British Pound",
-      symbol: "GBP - £",
+      name: t("currency.pound.name"),
+      symbol: t("currency.pound.symbol"),
     },
     {
-      name: "Australian Dollar",
-      symbol: "AUD - A$",
+      name: t("currency.aud.name"),
+      symbol: t("currency.aud.symbol"),
     },
     {
-      name: "Indian Rupee",
-      symbol: "INR - ₹",
+      name: t("currency.inr.name"),
+      symbol: t("currency.inr.symbol"),
     },
   ];
   const renderItem = (content, classCustom = "") => (
@@ -99,11 +99,10 @@ const Header = () => {
           />
           <div>
             <h5 className="font-semibold text-base text-gray-700">
-              I'm looking to hire
+              {t("header.hire")}
             </h5>
             <p className="font-medium text-gray-500">
-              My team needs vetted freelance talent and a premium business
-              solution.
+              {t("header.hireDetails")}
             </p>
           </div>
         </div>
@@ -119,11 +118,10 @@ const Header = () => {
           />
           <div>
             <h5 className="font-semibold text-base text-gray-700">
-              I want to offer Pro services
+              {t("header.proServices")}
             </h5>
             <p className="font-medium text-gray-500">
-              I’d like to work on business projects as a Pro freelancer or
-              agency.
+              {t("header.proServicesDetails")}
             </p>
           </div>
         </div>
@@ -197,7 +195,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScroll(window.scrollY > 600);
+      setIsScroll(window.scrollY > 500);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -265,20 +263,21 @@ const Header = () => {
                 <IconLogoHeader />
               </Link>
               <FormSearch
-                classWrapper={`lg:w-[470px] hidden lg:block ${
+                classWrapper={`lg:w-[500px] hidden lg:block ${
                   isScroll ? "visible" : "invisible"
                 }`}
                 classInput="rounded-md min-w-[400px]"
                 classIcon="bg-black py-3 px-4"
-                placeholder={"What service are you looking for today?"}
+                placeholder={t("search.header")}
               />
             </div>
 
-            <nav className="header_navigation space-x-4 hidden xl:block">
+            <nav className="header_navigation space-x-4 hidden xl:flex items-center">
               <Dropdown
                 menu={{
                   items: itemsFiverrPro,
                 }}
+                placement="bottom"
                 trigger={["click"]}
                 className="cursor-pointer font-semibold text-gray-700 py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
               >
@@ -303,21 +302,21 @@ const Header = () => {
                     ),
                   })),
                 }}
+                placement="bottom"
                 trigger={["click"]}
                 className="cursor-pointer font-semibold text-gray-500 py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
               >
                 <Space>
-                  Explore
+                  {t("header.explore")}
                   <DownOutlined />
                 </Space>
               </Dropdown>
-              <button
+
+              {/* <button
                 onClick={toggleModal}
                 className="font-semibold text-gray-500 hover:text-green-500 duration-300"
               >
-                <span className="flex justify-between w-[74px]">
-                  <GlobalOutlined /> English
-                </span>
+                <span className="flex justify-between w-[74px]">English</span>
               </button>
               <Modal
                 centered
@@ -332,20 +331,24 @@ const Header = () => {
                 onCancel={toggleModal}
               >
                 <Tabs defaultActiveKey="1" items={itemsLanguage}></Tabs>
-              </Modal>
+              </Modal> */}
+
+              <LanguageSwitcher />
+
               <Link
                 to={pathDefault.homePage}
                 className="font-semibold text-gray-500 hover:text-green-500 duration-300"
               >
-                Become a Seller
+                {t("header.seller")}
               </Link>
+
               <Link
                 to={pathDefault.login}
                 className={
                   "font-semibold text-gray-500 hover:text-green-500 duration-300"
                 }
               >
-                Sign in
+                {t("signin")}
               </Link>
             </nav>
 
@@ -355,12 +358,11 @@ const Header = () => {
                 "py-2 px-4 font-semibold rounded border border-green-600 text-green-600 hover:bg-green-600 hover:text-white duration-300"
               }
             >
-              Join
+              {t("signup")}
             </Link>
           </div>
         </div>
       </header>
-      {isScroll && <Navbar />}
     </>
   );
 };

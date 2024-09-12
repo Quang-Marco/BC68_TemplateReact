@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
 import { congViecService } from "../../services/congViec.service";
 import { pathDefault } from "../../common/path";
-import ScrollToTop from "react-scroll-to-top";
 import { Breadcrumb, Modal } from "antd";
 import {
   ArrowRightOutlined,
@@ -228,12 +227,6 @@ const ListJobPage = () => {
           )}
         </div>
       </section>
-      <ScrollToTop
-        className="hover:bg-green-500 duration-300 flex items-center justify-center"
-        width="16"
-        height="16"
-        smooth
-      />
     </>
   );
 };
