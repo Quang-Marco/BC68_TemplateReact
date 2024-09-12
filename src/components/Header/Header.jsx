@@ -1,124 +1,84 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import IconLogoHeader from "../Icon/IconLogoHeader";
-import { pathDefault } from "../../common/path";
-import LinkCustom from "../LinkCustom/LinkCustom";
 import "./header.scss";
 import FormSearch from "../FormSearch/FormSearch";
-import {
-  DownOutlined,
-  MenuUnfoldOutlined,
-  GlobalOutlined,
-  CheckCircleFilled,
-} from "@ant-design/icons";
+import IconLogoHeader from "../Icon/IconLogoHeader";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { pathDefault } from "../../common/path";
 import { Button, Collapse, Drawer, Dropdown, Modal, Space, Tabs } from "antd";
+import { DownOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import LanguageSwitcher from "../LanguageSwicher/LanguageSwicher";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
-  const listProducts = [
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/programming-tech-thin.56382a2.svg",
-      name: "Programming & Tech",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/graphics-design-thin.ff38893.svg",
-      name: "Graphics & Design",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/digital-marketing-thin.68edb44.svg",
-      name: "Digital Marketing",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/writing-translation-thin.fd3699b.svg",
-      name: "Writing & Translation",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/video-animation-thin.9d3f24d.svg",
-      name: "Video & Animation",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/ai-services-thin.104f389.svg",
-      name: "AI Services",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/music-audio-thin.43a9801.svg",
-      name: "Music & Audio",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/business-thin.885e68e.svg",
-      name: "Business",
-    },
-    {
-      imgURL:
-        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/consulting-thin.d5547ff.svg",
-      name: "Consulting",
-    },
-  ];
+  const { t } = useTranslation();
+  const [isScroll, setIsScroll] = useState(false);
+  const [open, setOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleDrawer = () => setOpen((prev) => !prev);
+  // const toggleModal = () => setIsModalOpen((prev) => !prev);
+
+  const { listDetailsJobs } = useSelector((state) => state.congViecSlice);
+
   const explore = [
     {
-      title: "Discover",
-      content: "Inspiring projects made on Fiverr",
+      title: t("header.exploreList.discover.title"),
+      content: t("header.exploreList.discover.content"),
     },
     {
-      title: "Community",
-      content: "Connect with Fiverr’s team and community",
+      title: t("header.exploreList.community.title"),
+      content: t("header.exploreList.community.content"),
     },
     {
-      title: "Guides",
-      content: "In-depth guides covering business topics",
+      title: t("header.exploreList.guides.title"),
+      content: t("header.exploreList.guides.content"),
     },
     {
-      title: "Podcast",
-      content: "Inside tips from top business minds",
+      title: t("header.exploreList.podcast.title"),
+      content: t("header.exploreList.podcast.content"),
     },
     {
-      title: "Learn",
-      content: "Professional online courses, led by experts",
+      title: t("header.exploreList.learn.title"),
+      content: t("header.exploreList.learn.content"),
     },
     {
-      title: "Blog",
-      content: "News, information and community stories",
+      title: t("header.exploreList.blog.title"),
+      content: t("header.exploreList.blog.content"),
     },
     {
-      title: "Logo Maker",
-      content: "Create your logo instantly",
+      title: t("header.exploreList.logoMaker.title"),
+      content: t("header.exploreList.logoMaker.content"),
     },
   ];
+
   const languages = [
-    <>
-      <CheckCircleFilled /> English
-    </>,
-    "Deutsch",
-    "Español",
-    "Français",
-    "Português",
-    "Italiano",
-    "Nederlands",
-    "Việt Nam",
+    t("languages.english"),
+    t("languages.german"),
+    t("languages.french"),
+    t("languages.italia"),
+    t("languages.spain"),
+    t("languages.portugal"),
+    t("languages.netherlands"),
+    t("languages.vietNam"),
   ];
+
   const currency = [
     {
-      name: "Euro",
-      symbol: "EUR - €",
+      name: t("currency.euro.name"),
+      symbol: t("currency.euro.symbol"),
     },
     {
-      name: "British Pound",
-      symbol: "GBP - £",
+      name: t("currency.pound.name"),
+      symbol: t("currency.pound.symbol"),
     },
     {
-      name: "Australian Dollar",
-      symbol: "AUD - A$",
+      name: t("currency.aud.name"),
+      symbol: t("currency.aud.symbol"),
     },
     {
-      name: "Indian Rupee",
-      symbol: "INR - ₹",
+      name: t("currency.inr.name"),
+      symbol: t("currency.inr.symbol"),
     },
   ];
   const renderItem = (content, classCustom = "") => (
@@ -128,20 +88,6 @@ const Header = () => {
       {content}
     </p>
   );
-  const itemsExplore = [];
-  explore.map((item, index) => {
-    itemsExplore.push({
-      key: index + 1,
-      label: (
-        <div>
-          <h5 className="font-semibold text-base text-gray-700">
-            {item.title}
-          </h5>
-          <p className="font-medium text-gray-500">{item.content}</p>
-        </div>
-      ),
-    });
-  });
   const itemsFiverrPro = [
     {
       key: "1",
@@ -153,11 +99,10 @@ const Header = () => {
           />
           <div>
             <h5 className="font-semibold text-base text-gray-700">
-              I'm looking to hire
+              {t("header.hire")}
             </h5>
             <p className="font-medium text-gray-500">
-              My team needs vetted freelance talent and a premium business
-              solution.
+              {t("header.hireDetails")}
             </p>
           </div>
         </div>
@@ -173,11 +118,10 @@ const Header = () => {
           />
           <div>
             <h5 className="font-semibold text-base text-gray-700">
-              I want to offer Pro services
+              {t("header.proServices")}
             </h5>
             <p className="font-medium text-gray-500">
-              I’d like to work on business projects as a Pro freelancer or
-              agency.
+              {t("header.proServicesDetails")}
             </p>
           </div>
         </div>
@@ -189,7 +133,7 @@ const Header = () => {
       key: "1",
       label: "Language",
       children: languages.map((item, index) =>
-        renderItem(item, !index ? "pl-[8px]" : "")
+        renderItem(item, !index ? "pl-[1px]" : "")
       ),
     },
     {
@@ -197,8 +141,8 @@ const Header = () => {
       label: "Currency",
       children: (
         <>
-          <div className="cursor-pointer p-2 text-gray-600 hover:bg-gray-100 duration-300 flex">
-            {<CheckCircleFilled />}
+          <div className="cursor-pointer p-2 text-gray-600 hover:bg-gray-100 duration-300 flex items-center">
+            ✔️
             <div className="ml-2">
               <p className="text-black text-base font-semibold">
                 United States Dollar
@@ -209,7 +153,7 @@ const Header = () => {
           {currency.map((item, index) => (
             <div
               key={index}
-              className="cursor-pointer pl-8 py-2 text-gray-600 hover:bg-gray-100 duration-300"
+              className="cursor-pointer pl-9 py-2 text-gray-600 hover:bg-gray-100 duration-300"
             >
               <p className="text-black text-base font-semibold">{item.name}</p>
               <p className="text-base">{item.symbol}</p>
@@ -223,7 +167,14 @@ const Header = () => {
     {
       key: "1",
       label: "Browse categories",
-      children: listProducts.map((item) => renderItem(item.name)),
+      children: listDetailsJobs.map((item) => (
+        <Link
+          to={`${pathDefault.listJob}?idJob=${item.id}`}
+          onClick={toggleDrawer}
+        >
+          {renderItem(item.name)}
+        </Link>
+      )),
     },
     {
       key: "2",
@@ -241,179 +192,178 @@ const Header = () => {
       ),
     },
   ];
-  const [isScroll, setIsScroll] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showDrawer = () => {
-    setOpen(true);
-  };
-  const onClose = () => {
-    setOpen(false);
-  };
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setIsScroll(true);
-      } else {
-        setIsScroll(false);
-      }
+      setIsScroll(window.scrollY > 500);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
-    <header className="bg-white py-5 font-medium border-b sticky top-0 z-10">
-      <div className="container px-2">
-        <div className="header_content flex items-center justify-between">
-          <Button className="lg:hidden" onClick={showDrawer}>
-            <MenuUnfoldOutlined />
-          </Button>
-          <Drawer
-            title={
-              <LinkCustom
-                content="Join Fiverr"
-                to={pathDefault.register}
-                className={
-                  "px-6 py-3 bg-black text-white rounded-md text-base font-semibold hover:text-white hover:opacity-80 duration-300"
-                }
-              />
-            }
-            placement="left"
-            onClose={onClose}
-            open={open}
-          >
-            <LinkCustom
-              content={"Sign in"}
-              to={pathDefault.login}
-              className={
-                "block pl-4 py-3 cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
+    <>
+      <header className="bg-white py-5 font-medium border-b sticky top-0 z-10">
+        <div className="container px-2">
+          <div className="header_content flex items-center justify-between">
+            <Button className="lg:hidden" onClick={toggleDrawer}>
+              <MenuUnfoldOutlined />
+            </Button>
+            <Drawer
+              title={
+                <Link
+                  to={pathDefault.register}
+                  className={
+                    "px-6 py-3 bg-black text-white rounded-md text-base font-semibold hover:text-white hover:opacity-80 duration-300"
+                  }
+                >
+                  Join Fiverr
+                </Link>
               }
-            />
-            <Collapse
-              className="text-base"
-              ghost
-              expandIconPosition="end"
-              items={itemsCollapse}
-            />
-            <h4 className="mt-10 ml-4 mb-4 text-base font-semibold">General</h4>
-            <LinkCustom
-              content={"Home"}
-              to={pathDefault.homePage}
-              className={
-                "block pl-4 py-3 cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
-              }
-            />
-            <Collapse
-              className="text-base"
-              ghost
-              expandIconPosition="end"
-              items={itemsLanguage}
-            />
-          </Drawer>
-          <div className="header_logo flex space-x-5">
-            <Link to={pathDefault.homePage}>
-              <IconLogoHeader />
-            </Link>
-            <FormSearch
-              classWrapper={`lg:w-[470px] hidden lg:block ${
-                isScroll ? "visible" : "invisible"
-              }`}
-              classInput="rounded-md min-w-[400px]"
-              classIcon="bg-black py-3 px-4"
-              placeholder={"What service are you looking for today?"}
-            />
-          </div>
-          <nav className="header_navigation space-x-4 hidden xl:block">
-            <Dropdown
-              menu={{
-                items: itemsFiverrPro,
-              }}
-              trigger={["click"]}
-              className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
+              placement="left"
+              onClose={toggleDrawer}
+              open={open}
             >
-              <a
-                className="font-semibold text-gray-700"
-                onClick={(e) => e.preventDefault()}
+              <Link
+                to={pathDefault.login}
+                className={
+                  "block pl-4 py-3 rounded cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
+                }
+              >
+                Sign in
+              </Link>
+              <Collapse
+                className="text-base"
+                ghost
+                expandIconPosition="end"
+                items={itemsCollapse}
+              />
+              <h4 className="mt-10 ml-4 mb-4 text-base font-semibold">
+                General
+              </h4>
+              <Link
+                to={pathDefault.homePage}
+                onClick={toggleDrawer}
+                className={
+                  "block pl-4 py-3 cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
+                }
+              >
+                Home
+              </Link>
+              <Collapse
+                className="text-base"
+                ghost
+                expandIconPosition="end"
+                items={itemsLanguage}
+              />
+            </Drawer>
+
+            <div className="header_logo flex space-x-5">
+              <Link to={pathDefault.homePage}>
+                <IconLogoHeader />
+              </Link>
+              <FormSearch
+                classWrapper={`lg:w-[500px] hidden lg:block ${
+                  isScroll ? "visible" : "invisible"
+                }`}
+                classInput="rounded-md min-w-[400px]"
+                classIcon="bg-black py-3 px-4"
+                placeholder={t("search.header")}
+              />
+            </div>
+
+            <nav className="header_navigation space-x-4 hidden xl:flex items-center">
+              <Dropdown
+                menu={{
+                  items: itemsFiverrPro,
+                }}
+                placement="bottom"
+                trigger={["click"]}
+                className="cursor-pointer font-semibold text-gray-700 py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
               >
                 <Space>
                   Fiverr Pro
                   <DownOutlined />
                 </Space>
-              </a>
-            </Dropdown>
-            <Dropdown
-              menu={{
-                items: itemsExplore,
-              }}
-              trigger={["click"]}
-              className="cursor-pointer py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
-            >
-              <a
-                className="font-semibold text-gray-500"
-                onClick={(e) => e.preventDefault()}
+              </Dropdown>
+              <Dropdown
+                menu={{
+                  items: explore.map((item, index) => ({
+                    key: index + 1,
+                    label: (
+                      <div>
+                        <h5 className="font-semibold text-base text-gray-700">
+                          {item.title}
+                        </h5>
+                        <p className="font-medium text-gray-500">
+                          {item.content}
+                        </p>
+                      </div>
+                    ),
+                  })),
+                }}
+                placement="bottom"
+                trigger={["click"]}
+                className="cursor-pointer font-semibold text-gray-500 py-3 px-4 rounded-md hover:bg-gray-100 duration-300"
               >
                 <Space>
-                  Explore
+                  {t("header.explore")}
                   <DownOutlined />
                 </Space>
-              </a>
-            </Dropdown>
-            <button
-              onClick={showModal}
-              className="font-semibold text-gray-500 hover:text-green-500 duration-300"
-            >
-              <GlobalOutlined /> English
-            </button>
-            <Modal
-              centered
-              title="Select your preferences"
-              footer={[
-                <Button key="ok" type="primary" onClick={handleOk}>
-                  OK
-                </Button>,
-              ]}
-              open={isModalOpen}
-              onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <Tabs defaultActiveKey="1" items={itemsLanguage}></Tabs>
-            </Modal>
-            <a
-              href="#"
-              className="font-semibold text-gray-500 hover:text-green-500 duration-300"
-            >
-              Become a Seller
-            </a>
-            <LinkCustom
-              content={"Sign in"}
-              to={pathDefault.login}
+              </Dropdown>
+
+              {/* <button
+                onClick={toggleModal}
+                className="font-semibold text-gray-500 hover:text-green-500 duration-300"
+              >
+                <span className="flex justify-between w-[74px]">English</span>
+              </button>
+              <Modal
+                centered
+                title="Select your preferences"
+                footer={[
+                  <Button key="ok" type="primary" onClick={toggleModal}>
+                    OK
+                  </Button>,
+                ]}
+                open={isModalOpen}
+                onOk={toggleModal}
+                onCancel={toggleModal}
+              >
+                <Tabs defaultActiveKey="1" items={itemsLanguage}></Tabs>
+              </Modal> */}
+
+              <LanguageSwitcher />
+
+              <Link
+                to={pathDefault.homePage}
+                className="font-semibold text-gray-500 hover:text-green-500 duration-300"
+              >
+                {t("header.seller")}
+              </Link>
+
+              <Link
+                to={pathDefault.login}
+                className={
+                  "font-semibold text-gray-500 hover:text-green-500 duration-300"
+                }
+              >
+                {t("signin")}
+              </Link>
+            </nav>
+
+            <Link
+              to={pathDefault.register}
               className={
-                "font-semibold text-gray-500 hover:text-green-500 duration-300"
+                "py-2 px-4 font-semibold rounded border border-green-600 text-green-600 hover:bg-green-600 hover:text-white duration-300"
               }
-            />
-          </nav>
-          <LinkCustom
-            content="Join"
-            to={pathDefault.register}
-            className={
-              "py-2 px-4 font-semibold border border-green-600 text-green-600 hover:bg-green-600 hover:text-white duration-300"
-            }
-          />
+            >
+              {t("signup")}
+            </Link>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 

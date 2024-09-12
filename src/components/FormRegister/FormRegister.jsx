@@ -7,6 +7,7 @@ import { notiValidation } from "../../common/notiValidation";
 import { authService } from "../../services/auth.service";
 import { NotificationContext } from "../../App";
 import { Link, useNavigate } from "react-router-dom";
+import { pathDefault } from "../../common/path";
 
 const FormRegister = () => {
   const { handleNotification } = useContext(NotificationContext);
@@ -73,7 +74,9 @@ const FormRegister = () => {
   });
   return (
     <div className="flex items-center justify-center flex-col h-full">
-      <h1 className="text-4xl font-medium text-center">Form đăng ký</h1>
+      <h1 className="text-3xl lg:text-4xl font-medium text-center">
+        Form đăng ký
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-wrap">
           <InputCustom
@@ -163,7 +166,7 @@ const FormRegister = () => {
               Đăng ký
             </button>
             <Link
-              to={"/dang-nhap"}
+              to={pathDefault.login}
               className="text-blue-600 inline-block mt-5 hover:underline"
             >
               Đã có tài khoản? Nhấn vào đây để đăng nhập

@@ -24,7 +24,6 @@ const FormSearch = ({ placeholder, classInput, classWrapper, classIcon }) => {
   };
 
   useEffect(() => {
-    // Call API
     if (valueSearch) {
       congViecService
         .layCongViecTheoTen(debounceValue)
@@ -36,7 +35,7 @@ const FormSearch = ({ placeholder, classInput, classWrapper, classIcon }) => {
                 key: index,
                 label: (
                   <Link
-                    to={`/chi-tiet-cong-viec/${item.id}`}
+                    to={`${pathDefault.listJob}/${item.id}`}
                     className="flex items-center space-x-4"
                   >
                     <img className="h-14" src={item.congViec.hinhAnh} alt="" />
