@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
@@ -26,7 +26,14 @@ const ListJobPage = () => {
   );
 
   const showModal = () => setIsModalOpen(true);
-  const handleCancel = () => setIsModalOpen(false);
+  const videoRef = useRef(null);
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
 
   const fetchData = async () => {
     try {
@@ -162,6 +169,7 @@ const ListJobPage = () => {
                   onCancel={handleCancel}
                 >
                   <video
+                    ref={videoRef}
                     className="rounded-lg h-80 sm:h-96 md:h-[440px] lg:h-[500px] w-full object-cover"
                     controls
                     autoPlay
