@@ -5,7 +5,7 @@ import IconLogoHeader from "../Icon/IconLogoHeader";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { pathDefault } from "../../common/path";
-import { Button, Collapse, Drawer, Dropdown, Modal, Space, Tabs } from "antd";
+import { Button, Collapse, Drawer, Dropdown, Space } from "antd";
 import { DownOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import LanguageSwitcher from "../LanguageSwicher/LanguageSwicher";
 import { useTranslation } from "react-i18next";
@@ -14,10 +14,8 @@ const Header = () => {
   const { t } = useTranslation();
   const [isScroll, setIsScroll] = useState(false);
   const [open, setOpen] = useState(false);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleDrawer = () => setOpen((prev) => !prev);
-  // const toggleModal = () => setIsModalOpen((prev) => !prev);
 
   const { listDetailsJobs } = useSelector((state) => state.congViecSlice);
 
@@ -51,40 +49,30 @@ const Header = () => {
       content: t("header.exploreList.logoMaker.content"),
     },
   ];
-
-  const languages = [
-    t("languages.english"),
-    t("languages.german"),
-    t("languages.french"),
-    t("languages.italia"),
-    t("languages.spain"),
-    t("languages.portugal"),
-    t("languages.netherlands"),
-    t("languages.vietNam"),
-  ];
-
   const currency = [
     {
-      name: t("currency.euro.name"),
-      symbol: t("currency.euro.symbol"),
+      name: t("listCurrency.usd.name"),
+      symbol: t("listCurrency.usd.symbol"),
     },
     {
-      name: t("currency.pound.name"),
-      symbol: t("currency.pound.symbol"),
+      name: t("listCurrency.euro.name"),
+      symbol: t("listCurrency.euro.symbol"),
     },
     {
-      name: t("currency.aud.name"),
-      symbol: t("currency.aud.symbol"),
+      name: t("listCurrency.pound.name"),
+      symbol: t("listCurrency.pound.symbol"),
     },
     {
-      name: t("currency.inr.name"),
-      symbol: t("currency.inr.symbol"),
+      name: t("listCurrency.aud.name"),
+      symbol: t("listCurrency.aud.symbol"),
+    },
+    {
+      name: t("listCurrency.inr.name"),
+      symbol: t("listCurrency.inr.symbol"),
     },
   ];
-  const renderItem = (content, classCustom = "") => (
-    <p
-      className={`pl-7 py-2 cursor-pointer text-base text-gray-600 hover:bg-gray-100 duration-300 ${classCustom}`}
-    >
+  const renderItem = (content) => (
+    <p className="pl-7 py-2 cursor-pointer text-base text-gray-600 hover:bg-gray-100 duration-300">
       {content}
     </p>
   );
@@ -131,42 +119,27 @@ const Header = () => {
   const itemsLanguage = [
     {
       key: "1",
-      label: "Language",
-      children: languages.map((item, index) =>
-        renderItem(item, !index ? "pl-[1px]" : "")
-      ),
+      label: t("language"),
+      children: <LanguageSwitcher trigger={["click"]} />,
     },
     {
       key: "2",
-      label: "Currency",
-      children: (
-        <>
-          <div className="cursor-pointer p-2 text-gray-600 hover:bg-gray-100 duration-300 flex items-center">
-            ✔️
-            <div className="ml-2">
-              <p className="text-black text-base font-semibold">
-                United States Dollar
-              </p>
-              <p className="text-base">USD - $</p>
-            </div>
-          </div>
-          {currency.map((item, index) => (
-            <div
-              key={index}
-              className="cursor-pointer pl-9 py-2 text-gray-600 hover:bg-gray-100 duration-300"
-            >
-              <p className="text-black text-base font-semibold">{item.name}</p>
-              <p className="text-base">{item.symbol}</p>
-            </div>
-          ))}
-        </>
-      ),
+      label: t("currency"),
+      children: currency.map((item, index) => (
+        <div
+          key={index}
+          className="cursor-pointer pl-9 py-2 text-gray-600 hover:bg-gray-100 duration-300"
+        >
+          <p className="text-black text-base font-semibold">{item.name}</p>
+          <p className="text-base">{item.symbol}</p>
+        </div>
+      )),
     },
   ];
   const itemsCollapse = [
     {
       key: "1",
-      label: "Browse categories",
+      label: t("categories"),
       children: listDetailsJobs.map((item) => (
         <Link
           to={`${pathDefault.listJob}?idJob=${item.id}`}
@@ -178,7 +151,7 @@ const Header = () => {
     },
     {
       key: "2",
-      label: "Explore",
+      label: t("header.explore"),
       children: explore.map((item) => renderItem(item.title)),
     },
     {
@@ -186,8 +159,8 @@ const Header = () => {
       label: "Fiverr Pro",
       children: (
         <>
-          {renderItem("I'm looking to hire")}
-          {renderItem("I want to offer Pro services")}
+          {renderItem(t("header.hire"))}
+          {renderItem(t("header.proServices"))}
         </>
       ),
     },
@@ -217,7 +190,7 @@ const Header = () => {
                     "px-6 py-3 bg-black text-white rounded-md text-base font-semibold hover:text-white hover:opacity-80 duration-300"
                   }
                 >
-                  Join Fiverr
+                  {t("signup")}
                 </Link>
               }
               placement="left"
@@ -230,7 +203,7 @@ const Header = () => {
                   "block pl-4 py-3 rounded cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
                 }
               >
-                Sign in
+                {t("signin")}
               </Link>
               <Collapse
                 className="text-base"
@@ -239,7 +212,7 @@ const Header = () => {
                 items={itemsCollapse}
               />
               <h4 className="mt-10 ml-4 mb-4 text-base font-semibold">
-                General
+                {t("general")}
               </h4>
               <Link
                 to={pathDefault.homePage}
@@ -248,7 +221,7 @@ const Header = () => {
                   "block pl-4 py-3 cursor-pointer text-base text-gray-600 hover:text-gray-600 hover:bg-gray-100 duration-300"
                 }
               >
-                Home
+                {t("home")}
               </Link>
               <Collapse
                 className="text-base"
@@ -263,7 +236,7 @@ const Header = () => {
                 <IconLogoHeader />
               </Link>
               <FormSearch
-                classWrapper={`lg:w-[500px] hidden lg:block ${
+                classWrapper={`w-[500px] max-w-[600px] hidden lg:block ${
                   isScroll ? "visible" : "invisible"
                 }`}
                 classInput="rounded-md min-w-[400px]"
@@ -312,40 +285,19 @@ const Header = () => {
                 </Space>
               </Dropdown>
 
-              {/* <button
-                onClick={toggleModal}
-                className="font-semibold text-gray-500 hover:text-green-500 duration-300"
-              >
-                <span className="flex justify-between w-[74px]">English</span>
-              </button>
-              <Modal
-                centered
-                title="Select your preferences"
-                footer={[
-                  <Button key="ok" type="primary" onClick={toggleModal}>
-                    OK
-                  </Button>,
-                ]}
-                open={isModalOpen}
-                onOk={toggleModal}
-                onCancel={toggleModal}
-              >
-                <Tabs defaultActiveKey="1" items={itemsLanguage}></Tabs>
-              </Modal> */}
-
               <LanguageSwitcher />
 
-              <Link
+              {/* <Link
                 to={pathDefault.homePage}
                 className="font-semibold text-gray-500 hover:text-green-500 duration-300"
               >
                 {t("header.seller")}
-              </Link>
+              </Link> */}
 
               <Link
                 to={pathDefault.login}
                 className={
-                  "font-semibold text-gray-500 hover:text-green-500 duration-300"
+                  "font-semibold text-gray-500 hover:text-green-500 duration-300 pl-4"
                 }
               >
                 {t("signin")}

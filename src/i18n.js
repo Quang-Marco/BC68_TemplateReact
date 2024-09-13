@@ -6,19 +6,17 @@ const resources = {
     translation: {
       signin: "Sign in",
       signup: "Join",
+      general: "General",
+      home: "Home",
+      categories: "Browse categories",
+      language: "Language",
+      currency: "Currency",
 
-      languages: {
-        english: "✔️ English",
-        german: "Deutsch",
-        french: "Français",
-        italia: "Italiano",
-        spain: "Español",
-        portugal: "Português",
-        netherlands: "Nederlands",
-        vietNam: "Vietnam",
-      },
-
-      currency: {
+      listCurrency: {
+        usd: {
+          name: "United States Dollar",
+          symbol: "USD - $",
+        },
         euro: {
           name: "Euro",
           symbol: "EUR - €",
@@ -128,7 +126,59 @@ const resources = {
         banner: "Search for any service...",
       },
 
-      content: {},
+      content: {
+        popular: "Popular services",
+        services: {
+          websiteDevelopment: "Website Development",
+          logoDesign: "Logo Design",
+          seo: "SEO",
+          architectureDesign: "Architecture & Interior Design",
+          socialMediaMarketing: "Social Media Marketing",
+          voiceOver: "Voice Over",
+          softwareDevelopment: "Software Development",
+          dataScience: "Data Science & ML",
+          productPhotography: "Product Photography",
+          ecommerceMarketing: "E-Commerce Marketing",
+          videoEditing: "Video Editing",
+        },
+
+        yourFingertips: "A whole world of freelance talent at your fingertips",
+        fingertip: {
+          over700Categories: {
+            title: "Over 700 categories",
+            content:
+              "Get results from skilled freelancers from all over the world, for every task, at any price point.",
+          },
+          clearTransparentPricing: {
+            title: "Clear, transparent pricing",
+            content:
+              "Pay per project or by the hour (Pro). Payments only get released when you approve.",
+          },
+          qualityWorkDoneFaster: {
+            title: "Quality work done faster",
+            content:
+              "Filter to find the right freelancers quickly and get great work delivered in no time, every time.",
+          },
+          awardWinningSupport: {
+            title: "24/7 award-winning support",
+            content:
+              "Chat with our team to get your questions answered or resolve any issues with your orders.",
+          },
+        },
+
+        successFiverr: "What success on Fiverr looks like",
+        voltelleEyewear:
+          "Vontélle Eyewear turns to Fiverr freelancers to bring their vision to life.",
+        voltelleServices: "Vontélle’s go-to services",
+        success: {
+          industrialDesign: "3D Industrial Design",
+          ecommerceWebsiteDevelopment: "E-commerce Website Development",
+          emailMarketing: "Email Marketing",
+          pressReleases: "Press Releases",
+          logoDesign: "Logo Design",
+        },
+      },
+
       footer: {},
     },
   },
@@ -137,19 +187,17 @@ const resources = {
     translation: {
       signin: "Đăng nhập",
       signup: "Đăng ký",
+      general: "Tổng quan",
+      home: "Trang chủ",
+      categories: "Danh mục",
+      language: "Ngôn ngữ",
+      currency: "Đơn vị tiền tệ",
 
-      languages: {
-        english: "✔️ Tiếng Anh",
-        german: "Tiếng Đức",
-        french: "Tiếng Pháp",
-        italia: "Tiếng Ý",
-        spain: "Tiếng Tây Ban Nha",
-        portugal: "Tiếng Bồ Đào Nha",
-        netherlands: "Tiếng Hà Lan",
-        vietNam: "Tiếng Việt",
-      },
-
-      currency: {
+      listCurrency: {
+        usd: {
+          name: "Đô la Mỹ",
+          symbol: "USD - $",
+        },
         euro: {
           name: "Euro",
           symbol: "EUR - €",
@@ -263,7 +311,59 @@ const resources = {
         banner: "Tìm kiếm bất kỳ dịch vụ nào...",
       },
 
-      content: {},
+      content: {
+        popular: "Dịch vụ phổ biến",
+        services: {
+          websiteDevelopment: "Phát triển Website",
+          logoDesign: "Thiết kế Logo",
+          seo: "Tối ưu hóa tìm kiếm",
+          architectureDesign: "Thiết kế Kiến trúc & Nội thất",
+          socialMediaMarketing: "Tiếp thị Truyền thông Xã hội",
+          voiceOver: "Lồng tiếng",
+          softwareDevelopment: "Phát triển Phần mềm",
+          dataScience: "Khoa học Dữ liệu & Máy tính",
+          productPhotography: "Nhiếp ảnh",
+          ecommerceMarketing: "Tiếp thị Thương mại Điện tử",
+          videoEditing: "Chỉnh sửa Video",
+        },
+
+        yourFingertips: "Một thế giới tự do đáng mơ ước trong tầm tay bạn.",
+        fingertip: {
+          over700Categories: {
+            title: "Hơn 700 danh mục",
+            content:
+              "Nhận kết quả từ những người làm việc tự do lành nghề trên khắp thế giới, cho mọi nhiệm vụ, với mọi mức giá.",
+          },
+          clearTransparentPricing: {
+            title: "Giá cả rõ ràng, minh bạch",
+            content:
+              "Thanh toán theo dự án hoặc theo giờ (Pro). Thanh toán chỉ được thực hiện khi bạn chấp thuận.",
+          },
+          qualityWorkDoneFaster: {
+            title: "Hoàn thành công việc nhanh hơn",
+            content:
+              "Tìm kiếm người làm việc tự do phù hợp nhanh chóng và nhận được công việc tuyệt vời trong thời gian ngắn, bất kì lúc nào.",
+          },
+          awardWinningSupport: {
+            title: "Đội ngũ hỗ trợ 24/7",
+            content:
+              "Trò chuyện với đội ngũ của chúng tôi để được giải đáp thắc mắc hoặc giải quyết mọi vấn đề liên quan đến đơn hàng của bạn.",
+          },
+        },
+
+        successFiverr: "Fiverr đã thành công như thế nào",
+        voltelleEyewear:
+          "Vontélle Eyewear - thương hiệu kính mắt nổi tiếng đã hợp tác với những người làm việc tự do trên Fiverr để biến mục tiêu của họ thành hiện thực.",
+        voltelleServices: "Những dịch vụ của Voltelle",
+        success: {
+          industrialDesign: "Thiết kế Công nghiệp 3D",
+          ecommerceWebsiteDevelopment: "Phát triển Website Thương mại Điện tử",
+          emailMarketing: "Tiếp thị qua Email",
+          pressReleases: "Thông cáo Báo chí",
+          logoDesign: "Thiết kế Logo",
+        },
+      },
+
       footer: {},
     },
   },
