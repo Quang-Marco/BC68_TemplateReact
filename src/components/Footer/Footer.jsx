@@ -193,9 +193,9 @@ const Footer = () => {
             </div>
             <h3 className=" mt-2">© Fiverr International Ltd. 2024 </h3>
           </div>
-          <div className="bottom_right pt-4 flex-row   lg:flex">
+          <div className="bottom_right pt-4 flex-row  lg:flex">
             <div className="social">
-              <ul className="flex justify-between items-center ">
+              <ul className="flex justify-between items-center lg:gap-5 gap-2  lg:pt-5">
                 <li>
                   <a href="#">
                     <i className="fa-brands fa-tiktok"></i>

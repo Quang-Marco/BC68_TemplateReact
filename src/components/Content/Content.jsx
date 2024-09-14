@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./content.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Carousel } from "antd";
+import { Button, Modal } from "antd";
+import ScrollToTop from "react-scroll-to-top";
 import { useTranslation } from "react-i18next";
+
 
 const Content = () => {
   const { t } = useTranslation();
@@ -13,14 +16,71 @@ const Content = () => {
     margin: 0,
     height: "340px",
     color: "#000",
-
     background: "#fff",
   };
-  const renderAbout = (imageAbout, name, coop, content) => (
+
+  const videoRef = useRef(null);
+  const handleCancel = (modal) => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      // videoRef.current.currentTime = 0;
+    }
+    modal();
+  };
+
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const [isModalOpen3, setIsModalOpen3] = useState(false);
+  const [isModalOpen4, setIsModalOpen4] = useState(false);
+
+  const toggleModal1 = () => setIsModalOpen1((prev) => !prev);
+  const toggleModal2 = () => setIsModalOpen2((prev) => !prev);
+  const toggleModal3 = () => setIsModalOpen3((prev) => !prev);
+  const toggleModal4 = () => setIsModalOpen4((prev) => !prev);
+
+  const renderAbout = (
+    imageAbout,
+    name,
+    coop,
+    content,
+    video,
+    show,
+    toggle
+  ) => (
     <div className="carouselItem grid grid-cols-1 lg:grid-cols-2 gap-5">
-      <div className="item_left hover:cursor-pointer relative">
+      <Button
+        className="item_left border-none  hover:cursor-pointer h-full relative"
+        onClick={toggle}
+      >
         <img className=" w-full h-full  rounded " src={imageAbout} />
-      </div>
+      </Button>
+      <Modal
+        open={show}
+        okButtonProps={{ style: { display: "none" } }}
+        onCancel={() => handleCancel(toggle)}
+        width={800}
+        centered
+        footer={null}
+        styles={{
+          content: {
+            padding: "0px",
+          },
+        }}
+      >
+        <video
+          ref={videoRef}
+          style={{
+            width: "100%",
+            top: "20px",
+            borderRadius: "5px",
+            objectFit: "cover",
+          }}
+          controls
+          autoPlay
+        >
+          <source src={video} type="video/mp4" />
+        </video>
+      </Modal>
       <div className="item_right ">
         <h5 className="text-[#74767e] relative font-normal md:flex text-xl pb-4  ">
           <p> {name} |</p>
@@ -435,7 +495,10 @@ const Content = () => {
                     "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173396/testimonial-video-still-lavender.jpg",
                     "Brighid Gannon (DNP, PMHNP-BC), Co-Founder",
                     "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lavender-logo-x2.3fff9e7.png",
-                    "We used Fiverr for SEO, our logo, website, copy, animated videos — literally everything. It was like working with a human right next to you versus being across the world."
+                    "We used Fiverr for SEO, our logo, website, copy, animated videos — literally everything. It was like working with a human right next to you versus being across the world.",
+                    "https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/rb8jtakrisiz0xtsffwi",
+                    isModalOpen1,
+                    toggleModal1
                   )}
                 </div>
                 <div style={contentStyle}>
@@ -444,7 +507,10 @@ const Content = () => {
                       "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173399/testimonial-video-still-rooted.jpg",
                       "Kay Kim, Co-Founder",
                       "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/rooted-logo-x2.7da3bc9.png",
-                      "It's extremely exciting that Fiverr has freelancers from all over the world — it broadens the talent pool. One of the best things about Fiverr is that while we're sleeping, someone's working."
+                      "It's extremely exciting that Fiverr has freelancers from all over the world — it broadens the talent pool. One of the best things about Fiverr is that while we're sleeping, someone's working.",
+                      "https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/yja2ld5fnolhsixj3xxw",
+                      isModalOpen2,
+                      toggleModal2
                     )}
                   </div>
                 </div>
@@ -454,7 +520,10 @@ const Content = () => {
                     "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173414/testimonial-video-still-naadam.jpg",
                     "Caitlin Tormey, Chief Commercial Officer",
                     "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/naadam-logo-x2.a79031d.png",
-                    "We've used Fiverr for Shopify web development, graphic design, and backend web development. Working with Fiverr makes my job a little easier every day."
+                    "We've used Fiverr for Shopify web development, graphic design, and backend web development. Working with Fiverr makes my job a little easier every day.",
+                    "https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/plfa6gdjihpdvr10rchl",
+                    isModalOpen3,
+                    toggleModal3
                   )}
                 </div>
 
@@ -463,7 +532,10 @@ const Content = () => {
                     "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173395/testimonial-video-still-haerfest.jpg",
                     "Tim and Dan Joo, Co-Founders",
                     "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/haerfest-logo-x2.934ab63.png",
-                    "When you want to create a business bigger than yourself, you need a lot of help. That's what Fiverr does."
+                    "When you want to create a business bigger than yourself, you need a lot of help. That's what Fiverr does.",
+                    "https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/bsncmkwya3nectkensun",
+                    isModalOpen4,
+                    toggleModal4
                   )}
                 </div>
               </Carousel>
@@ -565,7 +637,8 @@ const Content = () => {
                 {renderMadeImg(
                   "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/4a81f86c63667a53faebf124f4647c14-1721428494/image_2024-07-08_10-33-49.png",
                   "Architecture & Interior Design",
-                  " handeoner"
+                  " handeoner",
+                  "https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/rb8jtakrisiz0xtsffw"
                 )}
                 {renderMadeImg(
                   "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_delivery_web_tile/v1/attachments/delivery/asset/11f2137d40e6c56ebafbbf650922d0f5-1720628869/5.jpg",
