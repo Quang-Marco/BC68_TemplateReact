@@ -142,7 +142,7 @@ const Header = () => {
       label: t("categories"),
       children: listDetailsJobs.map((item) => (
         <Link
-          to={`${pathDefault.listJob}?idJob=${item.id}`}
+          to={`${pathDefault.listJob}?maLoaiCongViec=${item.id}`}
           onClick={toggleDrawer}
         >
           {renderItem(item.name)}
