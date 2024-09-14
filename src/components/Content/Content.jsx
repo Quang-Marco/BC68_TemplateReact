@@ -7,18 +7,19 @@ import "swiper/css/navigation";
 import { Carousel } from "antd";
 import { Button, Modal } from "antd";
 import ScrollToTop from "react-scroll-to-top";
+import { useTranslation } from "react-i18next";
+
 
 const Content = () => {
+  const { t } = useTranslation();
   const contentStyle = {
     margin: 0,
     height: "340px",
     color: "#000",
-
     background: "#fff",
   };
 
   const videoRef = useRef(null);
-
   const handleCancel = (modal) => {
     if (videoRef.current) {
       videoRef.current.pause();
@@ -26,12 +27,6 @@ const Content = () => {
     }
     modal();
   };
-
-  // const afterOpenChange = (open) => {
-  //   if (open && videoRef.current) {
-  //     videoRef.current.play();
-  //   }
-  // };
 
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
@@ -167,95 +162,122 @@ const Content = () => {
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156477/website-development.png",
-      content: "Website Development",
+      content: t("content.services.websiteDevelopment"),
       color: "bg-green-700",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156494/logo-design.png",
-      content: "Logo Design",
+      content: t("content.services.logoDesign"),
       color: "bg-orange-600",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156488/seo.png",
-      content: "SEO",
+      content: t("content.services.seo"),
       color: "bg-green-900",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156473/architecture-design.png",
-      content: "Architecture & Interior Design",
+      content: t("content.services.architectureDesign"),
       color: "bg-pink-950",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156476/social-media-marketing.png",
-      content: "Social Media Marketing",
+      content: t("content.services.socialMediaMarketing"),
       color: "bg-lime-700",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156479/voice-over.png",
-      content: "Voice Over",
+      content: t("content.services.voiceOver"),
       color: "bg-orange-950",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156476/software-development.png",
-      content: "Software Development",
+      content: t("content.services.softwareDevelopment"),
       color: "bg-lime-900",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156495/data-science.png",
-      content: "Data Science & ML",
+      content: t("content.services.dataScience"),
       color: "bg-orange-800",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156481/product-photography.png",
-      content: "Product Photography",
+      content: t("content.services.productPhotography"),
       color: "bg-lime-700",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156474/e-commerce.png",
-      content: "E-Commerce Marketing",
+      content: t("content.services.ecommerceMarketing"),
       color: "bg-green-700",
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_188,dpr_1.0/v1/attachments/generic_asset/asset/798403f5b92b1b5af997acc704a3d21c-1702465156494/video-editing.png",
-      content: "Video Editing",
+      content: t("content.services.videoEditing"),
       color: "bg-pink-700",
     },
   ];
+  const fingertip = [
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/categories.72379ee.svg",
+      title: t("content.fingertip.over700Categories.title"),
+      content: t("content.fingertip.over700Categories.content"),
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/handshake.287b5d3.svg",
+      title: t("content.fingertip.clearTransparentPricing.title"),
+      content: t("content.fingertip.clearTransparentPricing.content"),
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lightning.2cded3f.svg",
+      title: t("content.fingertip.qualityWorkDoneFaster.title"),
+      content: t("content.fingertip.qualityWorkDoneFaster.content"),
+    },
+    {
+      imgURL:
+        "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/support.660ad7f.svg",
+      title: t("content.fingertip.awardWinningSupport.title"),
+      content: t("content.fingertip.awardWinningSupport.content"),
+    },
+  ];
+
   const success = [
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666557/3D-Industrial-Design_2x.png",
-      content: "3D Industrial Design",
+      content: t("content.success.industrialDesign"),
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666565/E-commerce-Website-Development_2x.png",
-      content: "E-commerce Website Development",
+      content: t("content.success.ecommerceWebsiteDevelopment"),
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666560/Email-Marketing_2x.png",
-      content: "Email Marketing",
+      content: t("content.success.emailMarketing"),
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666567/Press-Releases_2x.png",
-      content: "Press Releases",
+      content: t("content.success.pressReleases"),
     },
     {
       imgURL:
         "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_80,dpr_1.0/v1/attachments/generic_asset/asset/818fbc450c6b7f14664e7d15584f008b-1722417666561/Logo-Design_2x.png",
-      content: "Logo Design",
+      content: t("content.success.logoDesign"),
     },
   ];
   const guideArr = [
@@ -296,7 +318,7 @@ const Content = () => {
         <div className="container px-2">
           <div className="service_content">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700 pb-10">
-              Popular services
+              {t("content.popular")}
             </h2>
             <Swiper
               modules={[Navigation, A11y]}
@@ -341,61 +363,18 @@ const Content = () => {
               ))}
             </Swiper>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700 mt-10 lg:mt-20 mb-10 lg:mb-14">
-              A whole world of freelance talent at your fingertips
+              {t("content.yourFingertips")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
-              <div>
-                <img
-                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/categories.72379ee.svg"
-                  alt=""
-                />
-                <h3 className="text-2xl text-gray-700 lg:h-16 my-5">
-                  Over 700 categories
-                </h3>
-                <p className="text-gray-500">
-                  Get results from skilled freelancers from all over the world,
-                  for every task, at any price point.
-                </p>
-              </div>
-              <div>
-                <img
-                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/handshake.287b5d3.svg"
-                  alt=""
-                />
-                <h3 className="text-2xl text-gray-700 lg:h-16 my-5">
-                  Clear, transparent pricing
-                </h3>
-                <p className="text-gray-500">
-                  Pay per project or by the hour (Pro). Payments only get
-                  released when you approve.
-                </p>
-              </div>
-              <div>
-                <img
-                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/lightning.2cded3f.svg"
-                  alt=""
-                />
-                <h3 className="text-2xl text-gray-700 lg:h-16 my-5">
-                  Quality work done faster
-                </h3>
-                <p className="text-gray-500">
-                  Filter to find the right freelancers quickly and get great
-                  work delivered in no time, every time.
-                </p>
-              </div>
-              <div>
-                <img
-                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/support.660ad7f.svg"
-                  alt=""
-                />
-                <h3 className="text-2xl text-gray-700 lg:h-16 my-5">
-                  24/7 award-winning support
-                </h3>
-                <p className="text-gray-500">
-                  Chat with our team to get your questions answered or resolve
-                  any issues with your orders.
-                </p>
-              </div>
+              {fingertip.map((item, index) => (
+                <div key={index + 1}>
+                  <img src={item.imgURL} />
+                  <h3 className="text-2xl text-gray-700 lg:h-16 my-5">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-500">{item.content}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -404,11 +383,10 @@ const Content = () => {
         <div className="container px-2">
           <div className="success_content">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-gray-700">
-              What success on Fiverr looks like
+              {t("content.successFiverr")}
             </h2>
             <p className="pt-5 pb-10 text-gray-500">
-              Vontélle Eyewear turns to Fiverr freelancers to bring their vision
-              to life.
+              {t("content.voltelleEyewear")}
             </p>
             <video
               className="rounded-xl h-80 sm:h-96 md:h-[480px] lg:h-[650px] w-full object-cover"
@@ -419,7 +397,7 @@ const Content = () => {
               src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/v1/video-attachments/generic_asset/asset/e0f330e4c8d6e3bf843a3bd3164fa275-1706087048062/How%20Fiverr%20Works%20EN%20Subs%2016x9"
             ></video>
             <h3 className="py-10 text-2xl lg:text-3xl text-gray-700">
-              Vontélle’s go-to services
+              {t("content.voltelleServices")}
             </h3>
             <Swiper
               modules={[Navigation, A11y]}

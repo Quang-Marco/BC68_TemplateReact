@@ -105,7 +105,7 @@ const Banner = () => {
             <Link
               key={index + 1}
               className="border rounded-2xl p-3 lg:p-5 shadow-lg cursor-pointer hover:bg-cyan-100 duration-300"
-              to={`${pathDefault.listJob}?idJob=${product.id}`}
+              to={`${pathDefault.listJob}?maLoaiCongViec=${product.id}`}
             >
               <img src={product.imgURL} />
               <p className="text-sm font-semibold mt-3">{product.name}</p>

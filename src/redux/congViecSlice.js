@@ -63,7 +63,7 @@ const getTranslatedJobs = () => {
           imgURL:
             "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/consulting-thin.d5547ff.svg",
           bgURL:
-            "https://fiverr-res.cloudinary.com/f_auto,q_auto/v1/attachments/generic_asset/asset/5fbfd5a9c4ce12c0f9a81c968c1ea8a4-1706422351810/01%20Header%20desktop%20%282%29.png",
+            "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/generic_asset/asset/509f310d48d17eafe768a87f78d10af8-1688626476769/Lifestyle-%20Desktop%20banner.png",
           name: t("listDetailsJobs.consulting.name"),
           content: t("listDetailsJobs.consulting.content"),
         },
