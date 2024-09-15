@@ -14,7 +14,7 @@ const InputCustom = ({
 }) => {
   return (
     <div className={classWrapper}>
-      <label className="block mb-2 text-sm font-medium text-gray-900">
+      <label className="block mb-2 text-sm font-medium text-white">
         {contentLabel}
       </label>
       <input
@@ -28,7 +28,7 @@ const InputCustom = ({
         value={value}
         onBlur={onBlur}
       />
-      {errors && touched && <p className="text-red-500 mt-2">{errors}</p>}
+      {errors && touched && <span className="text-red-500 mt-2">{errors}</span>}
     </div>
   );
 };

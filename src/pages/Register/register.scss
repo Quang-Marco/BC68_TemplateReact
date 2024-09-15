@@ -1,0 +1,37 @@
+.registerContent {
+  background: rgb(42, 116, 74);
+  background: linear-gradient(
+    54deg,
+    rgba(42, 116, 74, 1) 16%,
+    rgba(48, 134, 70, 1) 35%,
+    rgba(84, 241, 44, 0.8604691876750701) 49%
+  );
+  form {
+    button {
+      border-radius: 30em;
+      font-size: 15px;
+      font-family: inherit;
+
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+      &::before {
+        content: "";
+        width: 0;
+        height: 100%;
+        border-radius: 30em;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+        transition: 0.5s ease;
+        display: block;
+        z-index: -1;
+      }
+      &:hover::before {
+        width: 100%;
+      }
+    }
+  }
+}

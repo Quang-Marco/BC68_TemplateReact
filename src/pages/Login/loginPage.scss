@@ -1,0 +1,57 @@
+.container {
+  .loginPage_content {
+    //   background-color: rgb(29, 191, 115);
+    background: url(https://itcenter.vn/wp-content/uploads/2017/05/tao-hai-tai-khoan-tren-fiverr.jpg)
+      no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    // width: 100%;
+    .loginPage_form {
+      form {
+        div {
+          .btnDn {
+            position: relative;
+            font-size: 17px;
+
+            text-decoration: none;
+            padding: 1em 2.5em;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 6em;
+            transition: all 0.2s;
+            border: none;
+            font-family: inherit;
+            font-weight: 500;
+
+            &:hover {
+              transform: translateY(-3px);
+              box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+              &::after {
+                transform: scaleX(1.1) scaleY(1.1);
+                opacity: 0;
+              }
+            }
+            &:active {
+              transform: translateY(-1px);
+              box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+            &::after {
+              content: "";
+              display: inline-block;
+              height: 100%;
+              width: 100%;
+              border-radius: 100px;
+              position: absolute;
+              top: 0;
+              left: 0;
+              z-index: -1;
+              transition: all 0.4s;
+              background-color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
