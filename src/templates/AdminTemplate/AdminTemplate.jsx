@@ -36,18 +36,18 @@ const AdminTemplate = () => {
           items={[
             {
               key: "1",
-              icon: <UserOutlined />,
-              label: <Link to={"/admin"}>Người dùng</Link>,
+              icon: <VideoCameraOutlined />,
+              label: <Link to={"/admin"}>Manage job</Link>,
             },
             {
               key: "2",
-              icon: <VideoCameraOutlined />,
-              label: <Link to={"/admin/manager-user"}>Manage</Link>,
+              icon: <UserOutlined />,
+              label: <Link to={"/admin/manager-user"}>Manage user</Link>,
             },
             {
               key: "3",
               icon: <UploadOutlined />,
-              label: <Link to={"create-user"}>Create</Link>,
+              label: <Link to={"create-user"}>Create account</Link>,
             },
           ]}
         />

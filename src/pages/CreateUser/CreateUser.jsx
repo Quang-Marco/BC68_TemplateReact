@@ -97,7 +97,7 @@ const CreateUser = () => {
             />
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                Ngày sinh
+                Date of birth
               </label>
               <input
                 type="date"
@@ -112,7 +112,7 @@ const CreateUser = () => {
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                Giới tính
+                Gender
               </label>
               <select
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -138,7 +138,7 @@ const CreateUser = () => {
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                Chọn Skills
+                Select skills
               </label>
               <Select
                 mode="multiple"
@@ -155,7 +155,7 @@ const CreateUser = () => {
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                Chọn Certification
+                Select Certification
               </label>
               <Select
                 mode="tags"
@@ -247,7 +247,7 @@ const CreateUser = () => {
   return (
     <div>
       <h2 className="font-semibold text-3xl text-center mb-5">
-        Form tạo người dùng trong hệ thống
+        Create new account
       </h2>
       {renderLayoutForm()}
       <button
@@ -255,11 +255,11 @@ const CreateUser = () => {
         onClick={() => {
           setStep(step + 1);
         }}
-        className={`py-2 px-5 bg-black text-white rounded mt-5 duration-300 ${
-          isActive ? "cursor-not-allowed bg-black/70" : "hover:bg-red-500"
+        className={`py-2 px-5 bg-blue-700 text-white rounded mt-5 duration-300 ${
+          isActive ? "cursor-not-allowed bg-blue-700/70" : "hover:bg-red-500"
         }`}
       >
-        Chuyển tới bước tiếp theo
+        Next step
       </button>
     </div>
   );
