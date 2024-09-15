@@ -11,6 +11,7 @@ import AdminLogin from "../pages/AdminLogin/AdminLogin";
 import CreateUser from "../pages/CreateUser/CreateUser";
 import { Skeleton } from "antd";
 import Body from "../components/Body/Body";
+import ManagerJob from "../pages/ManagerJob/ManagerJob";
 const ManagerUser = lazy(() => import("../pages/ManagerUser/ManagerUser"));
 
 const useRoutesCustom = () => {
@@ -41,10 +42,10 @@ const useRoutesCustom = () => {
       path: pathDefault.admin,
       element: <AdminTemplate />,
       children: [
-        // {
-        //   index: true,
-        //   element: <ManagerUser />,
-        // },
+        {
+          index: true,
+          element: <ManagerJob />,
+        },
         {
           path: "manager-user",
           element: (
@@ -57,6 +58,10 @@ const useRoutesCustom = () => {
           path: "create-user",
           element: <CreateUser />,
         },
+        // {
+        //   path: "manager-job",
+        //   element: <ManagerJob />,
+        // },
       ],
     },
     {

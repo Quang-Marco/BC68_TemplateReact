@@ -1,24 +1,92 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Modal, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getValueUserApi } from "../../redux/nguoiDungSlice";
+import { getValueUserApi, updateUser } from "../../redux/nguoiDungSlice";
 import { nguoiDungService } from "../../services/nguoiDung.service";
 import { NotificationContext } from "../../App";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import InputCustom from "../../components/Input/InputCustom";
+import { notiValidation } from "../../common/notiValidation";
 
 const ManagerUser = () => {
   const { handleNotification } = useContext(NotificationContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
+  const dispatch = useDispatch();
+  const { listUsers } = useSelector((state) => state.nguoiDungSlice);
+
+  const {
+    handleBlur,
+    handleChange,
+    handleReset,
+    handleSubmit,
+    values,
+    setFieldValue,
+    setValues,
+    errors,
+    touched,
+  } = useFormik({
+    initialValues: {
+      id: "",
+      name: "",
+      email: "",
+      phone: "",
+      birthday: "",
+      gender: "",
+      role: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      setIsModalOpen(false);
+      nguoiDungService
+        .updateUser(values.id, values)
+        .then((res) => {
+          console.log(res);
+          handleNotification("Update thành công", "success");
+          dispatch(updateUser());
+          dispatch(getValueUserApi());
+        })
+        .catch((err) => {
+          console.log(err);
+          handleNotification("Update thất bại", "error");
+        });
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .required(notiValidation.empty)
+        .matches(/^[a-zA-Z\s-]+$/, "Vui lòng nhập tên không chứa số"),
+      email: Yup.string()
+        .required(notiValidation.empty)
+        .email(notiValidation.email),
+      phone: Yup.string()
+        .required(notiValidation.empty)
+        .matches(/^(0|\+84)[3|5|7|8|9][0-9]{8}$/, notiValidation.phone),
+      birthday: Yup.string().required(notiValidation.empty),
+      gender: Yup.string().required(notiValidation.empty),
+    }),
+  });
+
+  const showModal = (userId) => {
     setIsModalOpen(true);
+    nguoiDungService
+      .getUserById(userId)
+      .then((res) => {
+        console.log(res);
+        setValues(res.data.content);
+        const birthdayConvert = new Date(res.data.content.birthday)
+          .toISOString()
+          .split("T")[0];
+        setFieldValue("birthday", birthdayConvert);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const dispatch = useDispatch();
-  const { listUsers } = useSelector((state) => state.nguoiDungSlice);
+
   const columns = [
     {
       title: "ID",
@@ -87,28 +155,115 @@ const ManagerUser = () => {
             Xóa
           </button>
           <button
-            onClick={showModal}
+            onClick={() => {
+              showModal(record.id);
+            }}
             className="bg-yellow-500 text-white py-2 px-5 rounded-md hover:bg-yellow-500/80 duration-300"
           >
             Sửa
           </button>
           <Modal
-            title="Basic Modal"
+            title="Thông tin người dùng"
             open={isModalOpen}
-            onOk={handleOk}
+            onOk={handleSubmit}
             onCancel={handleCancel}
           >
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <InputCustom
+                contentLabel={"ID"}
+                name="id"
+                value={values.id}
+                disabled
+              />
+
+              <InputCustom
+                contentLabel={"Name"}
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors.name}
+                touched={touched.name}
+              />
+
+              <InputCustom
+                contentLabel={"Email"}
+                value={values.email}
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors.email}
+                touched={touched.email}
+              />
+
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Date of birth
+                </label>
+                <input
+                  type="date"
+                  name="birthday"
+                  value={values.birthday}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Gender
+                </label>
+                <select
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  name="gender"
+                  value={values.gender}
+                  onChange={handleChange}
+                >
+                  <option value={true}>Nam</option>
+                  <option value={false}>Nữ</option>
+                </select>
+                {errors.gender && touched.gender && (
+                  <p className="text-red-500 mt-2">{errors.gender}</p>
+                )}
+              </div>
+
+              <InputCustom
+                contentLabel={"Phone number"}
+                value={values.phone}
+                name="phone"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors.phone}
+                touched={touched.phone}
+              />
+
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Role
+                </label>
+                <select
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  name="role"
+                  value={values.role}
+                  onChange={handleChange}
+                >
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="USER">USER</option>
+                </select>
+                {errors.role && touched.role && (
+                  <p className="text-red-500 mt-2">{errors.role}</p>
+                )}
+              </div>
+            </form>
           </Modal>
         </Space>
       ),
     },
   ];
+
   useEffect(() => {
     dispatch(getValueUserApi());
   }, []);
+
   return <Table columns={columns} dataSource={listUsers} />;
 };
 export default ManagerUser;

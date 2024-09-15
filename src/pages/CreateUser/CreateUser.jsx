@@ -5,9 +5,12 @@ import { skillsService } from "../../services/skills.service";
 import { nguoiDungService } from "../../services/nguoiDung.service";
 import { NotificationContext } from "../../App";
 import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { pathDefault } from "../../common/path";
 
 const CreateUser = () => {
   const { user } = useSelector((state) => state.authSlice);
+  const navigate = useNavigate();
   const { handleNotification } = useContext(NotificationContext);
   const [listSkills, setListSkills] = useState([]);
   const [userValue, setUserValue] = useState({
@@ -101,12 +104,17 @@ const CreateUser = () => {
               </label>
               <input
                 type="date"
+                // value={userValue.birthday.split("-").reverse().join("-")}
                 onChange={(e) => {
-                  const valueDate = e.target.value
-                    .split("-")
-                    .reverse()
-                    .join("/");
-                  setUserValue({ ...userValue, birthday: valueDate });
+                  // console.log(e.target.value);
+                  // const valueDate = e.target.value
+                  //   .split("-")
+                  //   .reverse()
+                  //   .join("/");
+                  // const [year, month, day] = event.target.value.split("-");
+                  // let valueDate = `${day}-${month}-${year}`;
+                  // console.log(valueDate);
+                  setUserValue({ ...userValue, birthday: e.target.value });
                 }}
               />
             </div>
@@ -182,7 +190,7 @@ const CreateUser = () => {
         return (
           <div>
             <form onSubmit={handleSubmitAvatar} className="space-y-2">
-              <h2>Upload hình ảnh cho người dùng</h2>
+              <h2 className="text-2xl">Upload avatar cho người dùng</h2>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                   Avatar
@@ -204,10 +212,12 @@ const CreateUser = () => {
                 />
               </div>
               <p className="text-red-500">{errorImage}</p>
-              <img className="w-32" src={uploadImage?.imgURL} alt="avatar" />
+              {uploadImage ? (
+                <img className="w-32" src={uploadImage?.imgURL} alt="avatar" />
+              ) : null}
               <button
                 type="submit"
-                className="py-2 px-5 bg-green-600 text-white rounded-md hover:bg-red-500 duration-300"
+                className="py-2 px-5 bg-green-700 text-white rounded-md hover:bg-green-600 duration-300"
               >
                 Upload hình ảnh
               </button>
@@ -215,9 +225,9 @@ const CreateUser = () => {
                 onClick={() => {
                   setUploadImage(null);
                 }}
-                className="py-2 px-5 ml-5 bg-black text-white rounded-md hover:bg-red-500 duration-300"
+                className="py-2 px-5 ml-5 bg-red-600 text-white rounded-md hover:bg-red-500 duration-300"
               >
-                Chọn hình khác
+                Xóa ảnh
               </button>
             </form>
           </div>
@@ -250,17 +260,28 @@ const CreateUser = () => {
         Create new account
       </h2>
       {renderLayoutForm()}
-      <button
-        disabled={isActive}
-        onClick={() => {
-          setStep(step + 1);
-        }}
-        className={`py-2 px-5 bg-blue-700 text-white rounded mt-5 duration-300 ${
-          isActive ? "cursor-not-allowed bg-blue-700/70" : "hover:bg-red-500"
-        }`}
-      >
-        Next step
-      </button>
+      {step !== 1 ? (
+        <button
+          disabled={isActive}
+          onClick={() => {
+            setStep(step + 1);
+          }}
+          className={`py-2 px-5 bg-blue-600 text-white rounded mt-5 duration-300 ${
+            isActive ? "cursor-not-allowed bg-blue-600/70" : "hover:bg-blue-800"
+          }`}
+        >
+          Next step
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            navigate(pathDefault.admin);
+          }}
+          className="py-2 px-5 bg-black text-white rounded-md mt-5"
+        >
+          Back to Admin
+        </button>
+      )}
     </div>
   );
 };

@@ -9,8 +9,17 @@ export const getValueUserApi = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk(
+  "nguoiDung/updateUser",
+  async ({ userId, userData }, ThunkAPI) => {
+    const result = await nguoiDungService.updateUser(userId, userData);
+    return result.data.content;
+  }
+);
+
 const initialState = {
   listUsers: [],
+  updatingUser: null,
 };
 
 const nguoiDungSlice = createSlice({
@@ -27,6 +36,21 @@ const nguoiDungSlice = createSlice({
     });
     builder.addCase(getValueUserApi.rejected, (state, action) => {
       console.log("Call API Bị lỗi");
+    });
+
+    // update user
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      console.log(action);
+      console.log("Cập nhật người dùng thành công");
+      // Cập nhật danh sách người dùng với dữ liệu mới
+      state.listUsers = state.listUsers.map((user) => {
+        user.id === action.payload.id ? action.payload : user;
+      });
+      state.updatingUser = action.payload;
+    });
+    builder.addCase(updateUser.pending, (state, action) => {
+      console.log("Đang chờ xử lý cập nhật");
+      // console.log(action);
     });
   },
 });
