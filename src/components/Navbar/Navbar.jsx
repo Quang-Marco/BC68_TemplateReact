@@ -33,7 +33,7 @@ const Navbar = () => {
                       }-${subchildIndex}`,
                       label: (
                         <Link
-                          to={`${pathDefault.listJob}?idDetails=${subchild.id}`}
+                          to={`${pathDefault.listJob}?maChiTietLoai=${subchild.id}`}
                         >
                           {subchild.tenChiTiet}
                         </Link>
@@ -47,7 +47,7 @@ const Navbar = () => {
               <Space>
                 <Link
                   className="hover:text-gray-500"
-                  to={`${pathDefault.listJob}?idJob=${parent.id}`}
+                  to={`${pathDefault.listJob}?maLoaiCongViec=${parent.id}`}
                 >
                   {parent.tenLoaiCongViec}
                 </Link>

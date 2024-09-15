@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Dropdown, Space } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ trigger = ["hover"] }) => {
   const { i18n } = useTranslation();
 
   const handleChange = (e) => {
@@ -31,7 +31,7 @@ const LanguageSwitcher = () => {
   return (
     <Dropdown
       menu={{ items }}
-      // trigger={["click"]}
+      trigger={trigger}
       className="cursor-pointer font-semibold text-gray-500 hover:text-green-500 duration-300"
     >
       <Space>

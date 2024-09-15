@@ -10,4 +10,6 @@ export const congViecService = {
     http.get(`/cong-viec/lay-cong-viec-theo-chi-tiet-loai/${id}`),
   layCongViecChiTiet: (id) =>
     http.get(`/cong-viec/lay-cong-viec-chi-tiet/${id}`),
+  layBinhLuanCongViec: (id) =>
+    http.get(`/binh-luan/lay-binh-luan-theo-cong-viec/${id}`),
 };
