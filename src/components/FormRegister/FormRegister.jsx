@@ -73,17 +73,17 @@ const FormRegister = () => {
     }),
   });
   return (
-    <div className="flex items-center justify-center flex-col h-full">
-      <h1 className="text-3xl lg:text-4xl font-medium text-center">
-        Form đăng ký
+    <div className="flex items-center justify-center flex-col h-full ">
+      <h1 className="text-3xl lg:text-4xl font-bold lg:font-medium text-center lg:text-[#013A12] text-white">
+        ĐĂNG KÝ TÀI KHOẢN
       </h1>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-wrap">
+        <div className="lg:flex lg:flex-wrap  grid grid-cols-1 space-y-3 lg:space-y-0">
           <InputCustom
             contentLabel="Họ tên"
             name="name"
             placeholder="Vui lòng nhập họ tên"
-            classWrapper="w-1/2 p-3"
+            classWrapper="lg:w-1/2 lg:p-3 w-full"
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -94,7 +94,7 @@ const FormRegister = () => {
             contentLabel="Email"
             name="email"
             placeholder="Vui lòng nhập email"
-            classWrapper="w-1/2 p-3"
+            classWrapper="lg:w-1/2 lg:p-3 w-full"
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -105,7 +105,7 @@ const FormRegister = () => {
             contentLabel="Mật khẩu"
             name="password"
             placeholder="Vui lòng nhập mật khẩu"
-            classWrapper="w-full p-3"
+            classWrapper="lg:w-full lg:p-3 w-full"
             type="password"
             value={values.password}
             onChange={handleChange}
@@ -117,15 +117,15 @@ const FormRegister = () => {
             contentLabel="Số điện thoại"
             name="phone"
             placeholder="Vui lòng nhập số điện thoại"
-            classWrapper="w-1/3 p-3"
+            classWrapper="lg:w-1/3 lg:p-3 w-full"
             value={values.phone}
             onChange={handleChange}
             onBlur={handleBlur}
             errors={errors.phone}
             touched={touched.phone}
           />
-          <div className="w-1/3 p-3">
-            <label className="block mb-2 text-sm font-medium text-gray-900">
+          <div className="lg:w-1/3 lg:p-3 w-full">
+            <label className="block mb-2 text-sm font-medium text-white ">
               Ngày sinh
             </label>
             <DatePicker
@@ -140,12 +140,12 @@ const FormRegister = () => {
               <p className="text-red-500 mt-2">{errors.birthday}</p>
             )}
           </div>
-          <div className="w-1/3 p-3">
-            <label className="block mb-2 text-sm font-medium text-gray-900">
+          <div className="lg:w-1/3 lg:p-3 w-full">
+            <label className="block mb-2 text-sm font-medium text-white">
               Vui lòng chọn giới tính
             </label>
             <select
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               name="gender"
               value={values.gender}
               onChange={handleChange}
@@ -161,13 +161,13 @@ const FormRegister = () => {
           <div className="w-full m-3 text-center">
             <button
               type="submit"
-              className="py-3 px-6 bg-black text-white rounded-md w-full hover:bg-red-500 duration-300"
+              className="lg:py-3 lg:px-6 mt-2 lg:mt-0 w-3/4 py-4 px-5 text-2xl lg:text-xl bg-black text-white  lg:w-full duration-300"
             >
               Đăng ký
             </button>
             <Link
               to={pathDefault.login}
-              className="text-blue-600 inline-block mt-5 hover:underline"
+              className="text-blue-600 lg:text-xl font-bold lg:font-medium text-sm inline-block mt-5 hover:underline"
             >
               Đã có tài khoản? Nhấn vào đây để đăng nhập
             </Link>
