@@ -10,4 +10,6 @@ export const nguoiDungService = {
         token,
       },
     }),
+  getUserById: (id) => http.get(`/users/${id}`),
+  updateUser: (id, data) => http.put(`/users/${id}`, data),
 };

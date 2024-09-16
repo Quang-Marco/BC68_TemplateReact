@@ -10,6 +10,14 @@ export const getListJobs = createAsyncThunk(
   }
 );
 
+export const getAllJobs = createAsyncThunk(
+  "congViec/getAllJobs",
+  async (_, ThunkAPI) => {
+    const response = await congViecService.layCongViec();
+    return response.data.content;
+  }
+);
+
 const getTranslatedJobs = () => {
   return i18n.isInitialized
     ? [
@@ -101,6 +109,7 @@ const getTranslatedJobs = () => {
 const initialState = {
   listJobs: [],
   listDetailsJobs: getTranslatedJobs(),
+  listAllJobs: [],
 };
 
 const congViecSlice = createSlice({
@@ -113,13 +122,23 @@ const congViecSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getListJobs.fulfilled, (state, action) => {
+      console.log("Lấy API listJobs thành công");
       state.listJobs = action.payload;
     });
     builder.addCase(getListJobs.pending, (state, action) => {
-      console.log("Đang chờ xử lý API");
+      console.log("Đang chờ xử lý API listJobs");
     });
     builder.addCase(getListJobs.rejected, (state, action) => {
       console.log("Call API Bị lỗi");
+    });
+
+    builder.addCase(getAllJobs.fulfilled, (state, action) => {
+      console.log("Lấy API listDetailJobs thành công");
+      state.listAllJobs = action.payload;
+    });
+    builder.addCase(getAllJobs.pending, (state, action) => {
+      console.log("Đang chờ xử lý API listDetailJobs");
+      state.listAllJobs = action.payload;
     });
   },
 });
