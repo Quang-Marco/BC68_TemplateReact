@@ -177,9 +177,136 @@ const resources = {
           pressReleases: "Press Releases",
           logoDesign: "Logo Design",
         },
+
+        fiverrPro: {
+          title:
+            "New e-Commerce project management service <strong>made for your business</strong>",
+          content:
+            "An experienced e-Commerce project manager will plan, coordinate, and execute your project. Overseeing a team of e-Commerce experts, they'll handle everything from site building, design and content to optimization, marketing strategies, and UGC videos.",
+          listTitle: "To get started, you should have:",
+          list1: "An e-Commerce project requiring expertise in various fields",
+          list2: "A budget exceeding $1000",
+          list3: "A desire to get things done, without the hassle",
+          getStarted: "Get started",
+        },
+
+        aboutFiverr: "What they're saying about Fiverr",
+        about: {
+          name1: "Kay Kim, Co-Founder",
+          content1:
+            "It's extremely exciting that Fiverr has freelancers from all over the world — it broadens the talent pool. One of the best things about Fiverr is that while we're sleeping, someone's working.",
+          name2: "Brighid Gannon (DNP, PMHNP-BC), Co-Founder",
+          content2:
+            "We used Fiverr for SEO, our logo, website, copy, animated videos — literally everything. It was like working with a human right next to you versus being across the world.",
+          name3: "Tim and Dan Joo, Co-Founders",
+          content3:
+            "When you want to create a business bigger than yourself, you need a lot of help. That's what Fiverr does.",
+          name4: "Caitlin Tormey, Chief Commercial Officer",
+          content4:
+            "We've used Fiverr for Shopify web development, graphic design, and backend web development. Working with Fiverr makes my job a little easier every day.",
+        },
+        makeLogo: "Make an incredible logo <strong>in seconds</strong>",
+        makeLogoContent: "Pre-designed by top talent. Just add your touch.",
+        makeLogoBtn: "Try Fiverr Logo Maker",
+
+        madeOnFiverr: "Made on Fiverr",
+        featuredIn: "Featured in:",
+        by: "by:",
+        albumCoverDesign: "Album Cover Design",
+        appDesign: "App Design",
+        illustration: "Illustration",
+        socialMediaDesign: "Social Media Design",
+
+        guidesHelpYou: "Guides to help you grow",
+        seeMore: "See more",
+        guide: {
+          content1: "Start a side business",
+          content2: "Ecommerce business Ideas",
+          content3: "Start an online business and work from home",
+          content4: "Build a website from scratch",
+          content5: "Grow your business with AI",
+          content6: "Create a logo for your business",
+        },
+        freelanceServices:
+          "Freelance services at your <strong>fingertips!</strong>",
       },
 
-      footer: {},
+      footer: {
+        categories: {
+          title: "Categories",
+          content: {
+            graphics_design: "Graphics & Design",
+            digital_marketing: "Digital Marketing",
+            writing_translation: "Writing & Translation",
+            video_animation: "Video & Animation",
+            music_audio: "Music & Audio",
+            fiverr_logo_maker: "Fiverr Logo Maker",
+            programming_tech: "Programming & Tech",
+            data: "Data",
+            business: "Business",
+            personal_growth_hobbies: "Personal Growth & Hobbies",
+            photography: "Photography",
+            finance: "Finance",
+            end_to_end_projects: "End-to-End Projects",
+            sitemap: "Sitemap",
+          },
+        },
+        about: {
+          title: "About",
+          content: {
+            careers: "Careers",
+            press_news: "Press & News",
+            partnerships: "Partnerships",
+            privacy_policy: "Privacy Policy",
+            terms_of_service: "Terms of Service",
+            intellectual_property_claims: "Intellectual Property Claims",
+            investor_relations: "Investor Relations",
+          },
+        },
+        support_education: {
+          title: "Support and Education",
+          content: {
+            help_support: "Help & Support",
+            trust_safety: "Trust & Safety",
+            quality_guide: "Quality Guide",
+            selling_on_fiverr: "Selling on Fiverr",
+            buying_on_fiverr: "Buying on Fiverr",
+            fiverr_guides: "Fiverr Guides",
+            learn: "Learn",
+            online_courses: "Online Courses",
+          },
+        },
+        community: {
+          title: "Community",
+          content: {
+            customer_success_stories: "Customer Success Stories",
+            community_hub: "Community Hub",
+            forum: "Forum",
+            events: "Events",
+            blog: "Blog",
+            creators: "Creators",
+            affiliates: "Affiliates",
+            podcast: "Podcast",
+            invite_a_friend: "Invite a Friend",
+            become_a_seller: "Become a Seller",
+            community_standards: "Community Standards",
+          },
+        },
+        business_solutions: {
+          title: "Business Solutions",
+          content: {
+            about_business_solutions: "About Business Solutions",
+            fiverr_pro: "Fiverr Pro",
+            fiverr_certified: "Fiverr Certified",
+            become_an_agency: "Become an Agency",
+            fiverr_enterprise: "Fiverr Enterprise",
+            clearvoice: "ClearVoice",
+            content_marketing: "Content Marketing",
+            working_not_working: "Working Not Working",
+            contact_sales: "Contact Sales",
+          },
+        },
+      },
     },
   },
 
@@ -362,9 +489,137 @@ const resources = {
           pressReleases: "Thông cáo Báo chí",
           logoDesign: "Thiết kế Logo",
         },
+
+        fiverrPro: {
+          title:
+            "Dịch vụ quản lý dự án thương mại điện tử mới <strong>dành cho doanh nghiệp của bạn</strong>",
+          content:
+            "Một quản lý dự án thương mại điện tử giàu kinh nghiệm sẽ lập kế hoạch, phối hợp và thực hiện dự án của bạn. Họ sẽ giám sát một đội ngũ chuyên gia thương mại điện tử, xử lý mọi thứ từ xây dựng trang web, thiết kế và nội dung đến tối ưu hóa, chiến lược tiếp thị và video do người dùng tạo (UGC).",
+          listTitle: "Để bắt đầu, bạn cần có:",
+          list1: "Một dự án thương mại điện tử cần chuyên môn ở nhiều lĩnh vực",
+          list2: "Ngân sách trên 1000 Đô La",
+          list3: "Mong muốn hoàn thành công việc mà không gặp rắc rối",
+          getStarted: "Bắt đầu",
+        },
+
+        aboutFiverr: "Mọi người nói gì về Fiverr",
+        about: {
+          name1: "Kay Kim, Đồng sáng lập",
+          content1:
+            "Thật là thú vị khi Fiverr có các freelancer từ khắp nơi trên thế giới — điều này mở rộng nguồn nhân lực. Một trong những điều tuyệt vời nhất về Fiverr là khi chúng tôi đang ngủ, có người khác đang làm việc.",
+          name2: "Brighid Gannon (DNP, PMHNP-BC), Đồng sáng lập",
+          content2:
+            "Chúng tôi đã sử dụng Fiverr cho SEO, logo, trang web, bản sao, video hoạt hình — mọi thứ. Nó giống như làm việc với một người ngay cạnh bạn hơn là ở nửa kia của thế giới.",
+          name3: "Tim và Dan Joo, Đồng sáng lập",
+          content3:
+            "Khi bạn muốn tạo ra một doanh nghiệp lớn hơn chính mình, bạn cần rất nhiều sự trợ giúp. Đó là những gì Fiverr làm.",
+          name4: "Caitlin Tormey, Giám đốc thương mại",
+          content4:
+            "Chúng tôi đã sử dụng Fiverr cho phát triển web Shopify, thiết kế đồ họa và phát triển web backend. Làm việc với Fiverr giúp công việc của tôi dễ dàng hơn mỗi ngày.",
+        },
+        makeLogo: "Tạo một logo tuyệt đẹp <strong>chỉ trong vài giây</strong>",
+        makeLogoContent:
+          "Được thiết kế trước bởi những tài năng hàng đầu. Chỉ cần thêm nét chấm phá của bạn.",
+        makeLogoBtn: "Công cụ tạo logo Fiverr",
+
+        madeOnFiverr: "Được thực hiện bởi Fiverr",
+        featuredIn: "Nổi bật trong:",
+        by: "Thực hiện bởi:",
+        albumCoverDesign: "Thiết kế bìa bộ sưu tập",
+        appDesign: "Thiết kế ứng dụng",
+        illustration: "Minh họa",
+        socialMediaDesign: "Minh họa",
+
+        guidesHelpYou: "Hướng dẫn giúp bạn phát triển",
+        seeMore: "Xem thêm",
+        guide: {
+          content1: "Bắt đầu một công việc phụ",
+          content2: "Ý tưởng kinh doanh thương mại điện tử",
+          content3: "Bắt đầu kinh doanh trực tuyến và làm việc tại nhà",
+          content4: "Xây dựng trang web từ đầu",
+          content5: "Phát triển doanh nghiệp của bạn với trí tuệ nhân tạo",
+          content6: "Tạo logo cho doanh nghiệp của bạn",
+        },
+        freelanceServices:
+          "Dịch vụ làm việc tự do <strong>trong tầm tay bạn!</strong>",
       },
 
-      footer: {},
+      footer: {
+        categories: {
+          title: "Danh mục",
+          content: {
+            graphics_design: "Thiết kế & Đồ họa",
+            digital_marketing: "Tiếp thị kỹ thuật số",
+            writing_translation: "Viết bài & Dịch thuật",
+            video_animation: "Video & Hiệu ứng",
+            music_audio: "Âm nhạc & Âm thanh",
+            fiverr_logo_maker: "Công cụ tạo logo Fiverr",
+            programming_tech: "Lập trình & Công nghệ",
+            data: "Dữ liệu",
+            business: "Kinh doanh",
+            personal_growth_hobbies: "Phát triển cá nhân & Sở thích",
+            photography: "Nhiếp ảnh",
+            finance: "Tài chính",
+            end_to_end_projects: "Dự án End-to-End",
+            sitemap: "Sơ đồ trang web",
+          },
+        },
+        about: {
+          title: "Về chúng tôi",
+          content: {
+            careers: "Nghề nghiệp",
+            press_news: "Báo chí & Tin tức",
+            partnerships: "Đối tác",
+            privacy_policy: "Chính sách bảo mật",
+            terms_of_service: "Điều khoản dịch vụ",
+            intellectual_property_claims: "Yêu cầu quyền sở hữu trí tuệ",
+            investor_relations: "Quan hệ nhà đầu tư",
+          },
+        },
+        support_education: {
+          title: "Hỗ trợ và Giáo dục",
+          content: {
+            help_support: "Trợ giúp & Hỗ trợ",
+            trust_safety: "Đảm bảo an toàn",
+            quality_guide: "Hướng dẫn chất lượng",
+            selling_on_fiverr: "Bán hàng trên Fiverr",
+            buying_on_fiverr: "Mua hàng trên Fiverr",
+            fiverr_guides: "Hướng dẫn Fiverr",
+            learn: "Học tập",
+            online_courses: "Khóa học trực tuyến",
+          },
+        },
+        community: {
+          title: "Cộng đồng",
+          content: {
+            customer_success_stories: "Câu chuyện thành công của khách hàng",
+            community_hub: "Trung tâm cộng đồng",
+            forum: "Diễn đàn",
+            events: "Sự kiện",
+            blog: "Blog",
+            creators: "Người sáng tạo",
+            affiliates: "Đối tác liên kết",
+            podcast: "Podcast",
+            invite_a_friend: "Mời bạn bè",
+            become_a_seller: "Trở thành người bán",
+            community_standards: "Tiêu chuẩn cộng đồng",
+          },
+        },
+        business_solutions: {
+          title: "Giải pháp kinh doanh",
+          content: {
+            about_business_solutions: "Về giải pháp kinh doanh",
+            fiverr_pro: "Fiverr Pro",
+            fiverr_certified: "Fiverr được chứng nhận",
+            become_an_agency: "Trở thành đại lý",
+            fiverr_enterprise: "Fiverr Enterprise",
+            clearvoice: "ClearVoice",
+            content_marketing: "Tiếp thị nội dung",
+            working_not_working: "Working Not Working",
+            contact_sales: "Liên hệ bán hàng",
+          },
+        },
+      },
     },
   },
 };
