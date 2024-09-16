@@ -48,7 +48,7 @@ const LoginPage = () => {
           "success"
         );
         setTimeout(() => {
-          navigate("/admin");
+          navigate(pathDefault.homePage);
         }, 3000);
       } catch (err) {
         console.log(err);

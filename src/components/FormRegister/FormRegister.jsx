@@ -44,7 +44,7 @@ const FormRegister = () => {
             "success"
           );
           setTimeout(() => {
-            navigate("/dang-nhap");
+            navigate(pathDefault.login);
           }, 3000);
         })
         .catch((err) => {
