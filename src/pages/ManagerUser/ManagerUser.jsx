@@ -54,7 +54,7 @@ const ManagerUser = () => {
     validationSchema: Yup.object({
       name: Yup.string()
         .required(notiValidation.empty)
-        .matches(/^[a-zA-Z\s-]+$/, "Vui lòng nhập tên không chứa số"),
+        .matches(/^[^\d0-9]*$/, "Vui lòng nhập tên không chứa số"),
       email: Yup.string()
         .required(notiValidation.empty)
         .email(notiValidation.email),

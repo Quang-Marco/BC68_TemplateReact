@@ -1,26 +1,75 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Modal, Space, Table, Tag } from "antd";
+import React, { useEffect, useState } from "react";
+import { Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllJobs, getListJobs } from "../../redux/congViecSlice";
 
 const ManagerJob = () => {
-  const { listJobs } = useSelector((state) => state.congViecSlice);
-  console.log(listJobs);
+  const dispatch = useDispatch();
+  const { listJobs, listAllJobs } = useSelector((state) => state.congViecSlice);
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    dispatch(getListJobs());
+    dispatch(getAllJobs());
+
+    const flattenData = () => {
+      const flattenedData = [];
+      listJobs.forEach((loaiCongViec) => {
+        loaiCongViec.dsNhomChiTietLoai.forEach((nhomCongViec) => {
+          nhomCongViec.dsChiTietLoai.forEach((chiTiet) => {
+            flattenedData.push({
+              key: chiTiet.id,
+              tenLoaiCongViec: loaiCongViec.tenLoaiCongViec,
+              tenNhom: nhomCongViec.tenNhom,
+              tenChiTiet: chiTiet.tenChiTiet,
+            });
+          });
+        });
+      });
+
+      const mergedData = flattenedData.map((item) => {
+        const matchedJob = listAllJobs.find(
+          (job) => job.maChiTietLoaiCongViec === item.key
+        );
+        if (matchedJob) {
+          return {
+            ...item,
+            tenCongViec: matchedJob.tenCongViec,
+            giaTien: matchedJob.giaTien,
+            hinhAnh: matchedJob.hinhAnh,
+          };
+        }
+        return item;
+      });
+      setDataSource(mergedData);
+    };
+    flattenData();
+  }, []);
+
   const columns = [
     {
-      title: "Mã loại công việc",
-      dataIndex: "maLoaiCongViec",
-      key: "maLoaiCongViec",
+      title: "Loại công việc",
+      dataIndex: "tenLoaiCongViec",
+      key: "tenLoaiCongViec",
     },
     {
-      title: "Mã chi tiết loại",
-      dataIndex: "maChiTietLoai",
-      key: "maChiTietLoai",
+      title: "Nhóm Công Việc",
+      dataIndex: "tenNhom",
+      key: "tenNhom",
     },
 
     {
-      title: "Mã công việc",
-      dataIndex: "maCongViec",
-      key: "maCogViec",
+      title: "Chi Tiết Công Việc",
+      dataIndex: "tenChiTiet",
+      key: "tenChiTiet",
+    },
+    {
+      title: "Hình ảnh",
+      dataIndex: "hinhAnh",
+      key: "hinhAnh",
+      render: (text) => (
+        <img className="h-14" src={text} alt="hinhAnhCongViec" />
+      ),
     },
     {
       title: "Tên công việc",
@@ -38,7 +87,7 @@ const ManagerJob = () => {
       render: (_, record) => (
         <Space size="middle">
           <button className="bg-red-500 text-white py-2 px-5 rounded-md hover:bg-red-500/80 duration-300">
-            Xóa
+            Gỡ
           </button>
           <button className="bg-yellow-500 text-white py-2 px-5 rounded-md hover:bg-yellow-500/80 duration-300">
             Sửa
@@ -47,7 +96,7 @@ const ManagerJob = () => {
       ),
     },
   ];
-  return <Table columns={columns} dataSource={listJobs} />;
+  return <Table columns={columns} dataSource={dataSource} />;
 };
 
 export default ManagerJob;

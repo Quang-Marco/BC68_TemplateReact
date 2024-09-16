@@ -46,7 +46,6 @@ const CreateUser = () => {
         console.log(res);
         handleNotification("Tạo thành công", "success");
         setIsActive(false);
-        // setTimeout(() => setStep(step + 1), 2000);
       })
       .catch((err) => {
         console.log(err);
@@ -104,16 +103,7 @@ const CreateUser = () => {
               </label>
               <input
                 type="date"
-                // value={userValue.birthday.split("-").reverse().join("-")}
                 onChange={(e) => {
-                  // console.log(e.target.value);
-                  // const valueDate = e.target.value
-                  //   .split("-")
-                  //   .reverse()
-                  //   .join("/");
-                  // const [year, month, day] = event.target.value.split("-");
-                  // let valueDate = `${day}-${month}-${year}`;
-                  // console.log(valueDate);
                   setUserValue({ ...userValue, birthday: e.target.value });
                 }}
               />
@@ -179,7 +169,7 @@ const CreateUser = () => {
             </div>
             <button
               type="submit"
-              className="px-5 py-2 bg-black text-white rounded-md w-full hover:bg-green-500 duration-300"
+              className="px-5 py-2 bg-black text-white rounded-md w-full hover:bg-black/70 duration-300"
             >
               Submit
             </button>
