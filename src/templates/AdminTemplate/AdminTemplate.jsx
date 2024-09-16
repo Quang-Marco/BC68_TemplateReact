@@ -8,21 +8,19 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { getLocalStorage } from "../../utils/utils";
-import { useDispatch } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
-  const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   useEffect(() => {
     let dataLocal = getLocalStorage("user");
-    // dataLocal.user.role !== "ADMIN"
-    //   ? (window.location.href = "https://google.com")
-    //   : null;
+    dataLocal.user.role !== "ADMIN"
+      ? (window.location.href = "https://google.com")
+      : null;
   }, []);
 
   return (
@@ -36,18 +34,18 @@ const AdminTemplate = () => {
           items={[
             {
               key: "1",
-              icon: <UserOutlined />,
-              label: <Link to={"/admin"}>Người dùng</Link>,
+              icon: <VideoCameraOutlined />,
+              label: <Link to={"/admin"}>Manage job</Link>,
             },
             {
               key: "2",
-              icon: <VideoCameraOutlined />,
-              label: <Link to={"/admin/manager-user"}>Manage</Link>,
+              icon: <UserOutlined />,
+              label: <Link to={"/admin/manager-user"}>Manage user</Link>,
             },
             {
               key: "3",
               icon: <UploadOutlined />,
-              label: <Link to={"create-user"}>Create</Link>,
+              label: <Link to={"create-user"}>Create account</Link>,
             },
           ]}
         />

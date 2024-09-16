@@ -5,9 +5,12 @@ import { skillsService } from "../../services/skills.service";
 import { nguoiDungService } from "../../services/nguoiDung.service";
 import { NotificationContext } from "../../App";
 import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { pathDefault } from "../../common/path";
 
 const CreateUser = () => {
   const { user } = useSelector((state) => state.authSlice);
+  const navigate = useNavigate();
   const { handleNotification } = useContext(NotificationContext);
   const [listSkills, setListSkills] = useState([]);
   const [userValue, setUserValue] = useState({
@@ -43,7 +46,6 @@ const CreateUser = () => {
         console.log(res);
         handleNotification("Tạo thành công", "success");
         setIsActive(false);
-        // setTimeout(() => setStep(step + 1), 2000);
       })
       .catch((err) => {
         console.log(err);
@@ -97,22 +99,18 @@ const CreateUser = () => {
             />
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                Ngày sinh
+                Date of birth
               </label>
               <input
                 type="date"
                 onChange={(e) => {
-                  const valueDate = e.target.value
-                    .split("-")
-                    .reverse()
-                    .join("/");
-                  setUserValue({ ...userValue, birthday: valueDate });
+                  setUserValue({ ...userValue, birthday: e.target.value });
                 }}
               />
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                Giới tính
+                Gender
               </label>
               <select
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -138,7 +136,7 @@ const CreateUser = () => {
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                Chọn Skills
+                Select skills
               </label>
               <Select
                 mode="multiple"
@@ -155,7 +153,7 @@ const CreateUser = () => {
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
-                Chọn Certification
+                Select Certification
               </label>
               <Select
                 mode="tags"
@@ -171,7 +169,7 @@ const CreateUser = () => {
             </div>
             <button
               type="submit"
-              className="px-5 py-2 bg-black text-white rounded-md w-full hover:bg-green-500 duration-300"
+              className="px-5 py-2 bg-black text-white rounded-md w-full hover:bg-black/70 duration-300"
             >
               Submit
             </button>
@@ -182,7 +180,7 @@ const CreateUser = () => {
         return (
           <div>
             <form onSubmit={handleSubmitAvatar} className="space-y-2">
-              <h2>Upload hình ảnh cho người dùng</h2>
+              <h2 className="text-2xl">Upload avatar cho người dùng</h2>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                   Avatar
@@ -204,10 +202,12 @@ const CreateUser = () => {
                 />
               </div>
               <p className="text-red-500">{errorImage}</p>
-              <img className="w-32" src={uploadImage?.imgURL} alt="avatar" />
+              {uploadImage ? (
+                <img className="w-32" src={uploadImage?.imgURL} alt="avatar" />
+              ) : null}
               <button
                 type="submit"
-                className="py-2 px-5 bg-green-600 text-white rounded-md hover:bg-red-500 duration-300"
+                className="py-2 px-5 bg-green-700 text-white rounded-md hover:bg-green-600 duration-300"
               >
                 Upload hình ảnh
               </button>
@@ -215,9 +215,9 @@ const CreateUser = () => {
                 onClick={() => {
                   setUploadImage(null);
                 }}
-                className="py-2 px-5 ml-5 bg-black text-white rounded-md hover:bg-red-500 duration-300"
+                className="py-2 px-5 ml-5 bg-red-600 text-white rounded-md hover:bg-red-500 duration-300"
               >
-                Chọn hình khác
+                Xóa ảnh
               </button>
             </form>
           </div>
@@ -247,20 +247,31 @@ const CreateUser = () => {
   return (
     <div>
       <h2 className="font-semibold text-3xl text-center mb-5">
-        Form tạo người dùng trong hệ thống
+        Create new account
       </h2>
       {renderLayoutForm()}
-      <button
-        disabled={isActive}
-        onClick={() => {
-          setStep(step + 1);
-        }}
-        className={`py-2 px-5 bg-black text-white rounded mt-5 duration-300 ${
-          isActive ? "cursor-not-allowed bg-black/70" : "hover:bg-red-500"
-        }`}
-      >
-        Chuyển tới bước tiếp theo
-      </button>
+      {step !== 1 ? (
+        <button
+          disabled={isActive}
+          onClick={() => {
+            setStep(step + 1);
+          }}
+          className={`py-2 px-5 bg-blue-600 text-white rounded mt-5 duration-300 ${
+            isActive ? "cursor-not-allowed bg-blue-600/70" : "hover:bg-blue-800"
+          }`}
+        >
+          Next step
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            navigate(pathDefault.admin);
+          }}
+          className="py-2 px-5 bg-black text-white rounded-md mt-5"
+        >
+          Back to Admin
+        </button>
+      )}
     </div>
   );
 };

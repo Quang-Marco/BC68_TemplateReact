@@ -16,7 +16,7 @@ const FormSearch = ({ placeholder, classInput, classWrapper, classIcon }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`${pathDefault.listJob}?tenCongViec=${valueSearch}`);
-    setCheckDropdown(false);
+    setValueSearch("");
   };
   const handleChange = (e) => {
     setValueSearch(e.target.value);
@@ -26,27 +26,47 @@ const FormSearch = ({ placeholder, classInput, classWrapper, classIcon }) => {
   useEffect(() => {
     if (valueSearch) {
       congViecService
-        .layCongViecTheoTen(debounceValue)
+        .layCongViecTheoTen(valueSearch)
         .then((res) => {
-          const newListJobSuggest = res.data.content
-            .slice(0, 4)
-            .map((item, index) => {
-              return {
-                key: index,
-                label: (
-                  <Link
-                    to={`${pathDefault.listJob}/${item.id}`}
-                    className="flex items-center space-x-4"
-                  >
-                    <img className="h-14" src={item.congViec.hinhAnh} alt="" />
-                    <div>
-                      <h4>{item.congViec.tenCongViec}</h4>
-                      <p>{item.congViec.giaTien}</p>
-                    </div>
-                  </Link>
-                ),
-              };
+          console.log(res);
+          setCheckDropdown(true);
+          let newListJobSuggest = res.data.content;
+          if (newListJobSuggest.length == 0) {
+            newListJobSuggest.push({
+              key: 1,
+              label: (
+                <p className="italic">Không tìm thấy kết quả nào phù hợp</p>
+              ),
             });
+          } else {
+            newListJobSuggest = res.data.content
+              .slice(0, 4)
+              .map((item, index) => {
+                return {
+                  key: index,
+                  label: (
+                    <Link
+                      to={`${pathDefault.listJob}?maCongViec=${item.id}`}
+                      className="flex items-center space-x-4"
+                      onClick={() => {
+                        setCheckDropdown(false);
+                        setValueSearch("");
+                      }}
+                    >
+                      <img
+                        className="h-14"
+                        src={item.congViec.hinhAnh}
+                        alt=""
+                      />
+                      <div>
+                        <h4>{item.congViec.tenCongViec}</h4>
+                        <p>{item.congViec.giaTien}</p>
+                      </div>
+                    </Link>
+                  ),
+                };
+              });
+          }
           setListJobSuggest(newListJobSuggest);
           setCheckDropdown(true);
         })
