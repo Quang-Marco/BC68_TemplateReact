@@ -193,6 +193,10 @@ const ListJobPage = () => {
     });
   }, [tenCongViec, maLoaiCongViec, maChiTietLoai, maCongViec]);
 
+  useEffect(() => {
+    fetchData();
+  }, [listComment]);
+
   const [activeTabKey, setActiveTabKey] = useState("tab1");
   const onTab1Change = (key) => {
     setActiveTabKey(key);
@@ -512,7 +516,7 @@ const ListJobPage = () => {
                   key={index + 1}
                   className="grid grid-cols-1 lg:grid-cols-3 gap-5"
                 >
-                  <div className="lg:col-span-2 lg:mr-10">
+                  <div className="lg:col-span-2 lg:mr-10 xl:mr-32">
                     <h3 className="text-2xl lg:text-3xl font-semibold mt-5 lg:mt-10 mb-5">
                       {item.congViec.tenCongViec}
                     </h3>
@@ -718,7 +722,7 @@ const ListJobPage = () => {
                     </form>
                   </div>
 
-                  <div className="lg:fixed lg:right-28 lg:w-80 xl:w-[450px]">
+                  <div className="lg:fixed lg:right-14 xl:right-28 lg:w-80 xl:w-[450px]">
                     <Card
                       tabList={tabList}
                       activeTabKey={activeTabKey}

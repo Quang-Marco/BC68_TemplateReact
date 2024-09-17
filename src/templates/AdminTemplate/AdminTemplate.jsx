@@ -8,10 +8,14 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { getLocalStorage } from "../../utils/utils";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
+  const navigate = useNavigate();
+  const handleBackToLoginLayout = () => {
+    navigate("/admin-login");
+  };
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -67,6 +71,7 @@ const AdminTemplate = () => {
               height: 64,
             }}
           />
+          <Button onClick={handleBackToLoginLayout}>Login Admin</Button>
         </Header>
         <Content
           style={{
