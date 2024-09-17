@@ -40,7 +40,7 @@ const FormRegister = () => {
         .then((res) => {
           console.log(res);
           handleNotification(
-            "Account created successfully! You will be redirected to the login page",
+            "Account created successfully! Redirecting to login page",
             "success"
           );
           setTimeout(() => {

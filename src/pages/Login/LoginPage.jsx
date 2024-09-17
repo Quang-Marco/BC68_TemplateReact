@@ -44,7 +44,7 @@ const LoginPage = () => {
         setLocalStorage("user", result.data.content);
         dispatch(setValueUser(result.data.content));
         handleNotification(
-          "Login successful! You will be redirected to the homepage",
+          "Login successful! Redirecting to homepage",
           "success"
         );
         setTimeout(() => {

@@ -147,7 +147,7 @@ const ListJobPage = () => {
         .catch((err) => console.log(err));
     } else {
       handleNotification(
-        "Đăng nhập để bình luận, bạn sẽ được chuyển hướng đến trang đăng nhập",
+        "Please log in to comment, redirecting to login page",
         "error"
       );
       setTimeout(() => {
