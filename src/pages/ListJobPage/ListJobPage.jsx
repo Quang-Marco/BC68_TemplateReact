@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useMemo, useRef } from "react";
+import React, { useEffect, useState, useMemo, useRef, useContext } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { congViecService } from "../../services/congViec.service";
+import { useSelector } from "react-redux";
 import { pathDefault } from "../../common/path";
+import { NotificationContext } from "../../App";
 import { Breadcrumb, Card, Modal } from "antd";
 import {
   ArrowRightOutlined,
@@ -16,6 +18,9 @@ import { useTranslation } from "react-i18next";
 
 const ListJobPage = () => {
   const { t } = useTranslation();
+  const { user } = useSelector((state) => state.authSlice);
+  const navigate = useNavigate();
+  const { handleNotification } = useContext(NotificationContext);
   const listDetailsJobs = [
     {
       id: 1,
@@ -81,6 +86,8 @@ const ListJobPage = () => {
       content: t("listDetailsJobs.aiServices.content"),
     },
   ];
+
+  const [valueComment, setValueComment] = useState("");
   const [listJob, setListJob] = useState([]);
   const [listComment, setListComment] = useState([]);
   const [listJobGroup, setListJobGroup] = useState([]);
@@ -102,6 +109,50 @@ const ListJobPage = () => {
     if (videoRef.current) {
       videoRef.current.pause();
       // videoRef.current.currentTime = 0;
+    }
+  };
+
+  const getCurrentDateTime = () => {
+    const currentDate = new Date();
+
+    const day = String(currentDate.getDate()).padStart(2, "0"); // Ngày
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Tháng
+    const year = currentDate.getFullYear(); // Năm
+
+    const hours = String(currentDate.getHours()).padStart(2, "0"); // Giờ
+    const minutes = String(currentDate.getMinutes()).padStart(2, "0"); // Phút
+    const seconds = String(currentDate.getSeconds()).padStart(2, "0"); // Giây
+
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (user) {
+      const token = user.token;
+      const data = {
+        maCongViec: maCongViec,
+        maNguoiBinhLuan: user.user.id,
+        noiDung: valueComment,
+        ngayBinhLuan: getCurrentDateTime(),
+        saoBinhLuan: 100,
+      };
+      congViecService
+        .postBinhLuanCongViec(data, token)
+        .then((res) => {
+          console.log(res);
+          setValueComment("");
+          handleNotification(res.data.message, "success");
+        })
+        .catch((err) => console.log(err));
+    } else {
+      handleNotification(
+        "Đăng nhập để bình luận, bạn sẽ được chuyển hướng đến trang đăng nhập",
+        "error"
+      );
+      setTimeout(() => {
+        navigate(pathDefault.login);
+      }, 3000);
     }
   };
 
@@ -256,11 +307,8 @@ const ListJobPage = () => {
   const renderListJob = (jobs) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
       {jobs.map((item, index) => (
-        <Link to={`${pathDefault.listJob}?maCongViec=${item.id}`}>
-          <div
-            key={index}
-            className="border border-gray-300 cursor-pointer rounded-xl hover:shadow-xl duration-300"
-          >
+        <Link key={index} to={`${pathDefault.listJob}?maCongViec=${item.id}`}>
+          <div className="border border-gray-300 cursor-pointer rounded-xl hover:shadow-xl duration-300">
             <img
               className="w-full rounded-t-xl"
               src={item.congViec?.hinhAnh}
@@ -526,7 +574,8 @@ const ListJobPage = () => {
                       </p>
                     </div>
                     <h3 className="text-xl lg:text-2xl font-semibold mt-10 mb-5">
-                      Get to know {item.tenNguoiTao}
+                      Get to know{" "}
+                      <span className="capitalize">{item.tenNguoiTao}</span>
                     </h3>
                     <div className="flex space-x-3 items-center mb-5">
                       <img
@@ -591,12 +640,14 @@ const ListJobPage = () => {
                     <h3 className="text-xl lg:text-2xl font-semibold mt-5 lg:mt-10 mb-5">
                       Reviews
                     </h3>
+
+                    {/* Comment */}
                     {listComment.map((cmt, cmtIndex) => (
                       <div key={cmtIndex}>
                         <div className="p-7 rounded-md border space-y-5">
                           <div className="flex items-center space-x-3 pb-5 border-b">
                             <img
-                              className="w-12 h-1w-12 rounded-full"
+                              className="w-12 h-12 rounded-full"
                               src={cmt.avatar}
                               alt="avatar"
                             />
@@ -611,10 +662,10 @@ const ListJobPage = () => {
                             </div>
                           </div>
                           <p className="">
-                            Unbelievable! I placed my order early this morning
+                            {/* Unbelievable! I placed my order early this morning
                             and had my new Logo designed and completed before
                             noon the same day. What a great experience and great
-                            designs. Thank you {cmt.tenNguoiBinhLuan}.{" "}
+                            designs. Thank you {item.tenNguoiTao}. */}
                             {cmt.noiDung}
                           </p>
                           <div className="flex space-x-5 lg:space-x-10">
@@ -641,6 +692,30 @@ const ListJobPage = () => {
                         </div>
                       </div>
                     ))}
+
+                    <form onSubmit={handleSubmit}>
+                      <div className="flex">
+                        <img
+                          className="w-12 h-12 rounded-full mr-2"
+                          src={user?.user.avatar}
+                          alt="avatar"
+                        />
+                        <textarea
+                          className="h-32 w-full p-3 border"
+                          placeholder="Leave a recommendations here"
+                          value={valueComment}
+                          onChange={(e) => {
+                            setValueComment(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        className="px-5 py-2 mt-5 rounded-lg text-white bg-green-600 hover:opacity-70 duration-300"
+                      >
+                        Add comment
+                      </button>
+                    </form>
                   </div>
 
                   <div className="lg:fixed lg:right-28 lg:w-80 xl:w-[450px]">
