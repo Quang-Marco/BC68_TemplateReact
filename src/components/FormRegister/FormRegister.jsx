@@ -40,7 +40,7 @@ const FormRegister = () => {
         .then((res) => {
           console.log(res);
           handleNotification(
-            "Tạo tài khoản thành công, bạn sẽ được chuyển hướng đến trang đăng nhập",
+            "Account created successfully! You will be redirected to the login page",
             "success"
           );
           setTimeout(() => {

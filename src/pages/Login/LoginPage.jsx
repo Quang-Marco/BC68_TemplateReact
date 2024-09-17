@@ -44,11 +44,11 @@ const LoginPage = () => {
         setLocalStorage("user", result.data.content);
         dispatch(setValueUser(result.data.content));
         handleNotification(
-          "Đăng nhập thành công, bạn sẽ được chuyển hướng về trang chủ",
+          "Login successful! You will be redirected to the homepage",
           "success"
         );
         setTimeout(() => {
-          navigate("/admin");
+          navigate(pathDefault.homePage);
         }, 3000);
       } catch (err) {
         console.log(err);
