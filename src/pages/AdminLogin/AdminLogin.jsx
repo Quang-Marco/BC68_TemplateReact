@@ -87,9 +87,19 @@ const AdminLogin = () => {
               </div>
               <div className="loginPage_form rounded-md bg-transparent">
                 <form onSubmit={handleSubmit} className="space-y-5   ">
-                  <h1 className="text-3xl font-semibold lg:font-bold lg:text-[#013A12] text-white  lg:text-4xl  text-center">
-                    ĐĂNG NHẬP ADMIN MODE
-                  </h1>
+                  <div className="flex flex-col justify-between">
+                    <h1 className="text-3xl font-semibold lg:font-bold lg:text-[#013A12] text-white  lg:text-4xl  text-center">
+                      ĐĂNG NHẬP ADMIN MODE
+                    </h1>
+                    <div className="absolute lg:top-40 lg:left-1/2 lg:pl-5  top-1/2  left-10  pt-0  hidden lg:block hover:text-green-500 ">
+                      <Link
+                        className=" lg:text-4xl  text-3xl"
+                        to={pathDefault.homePage}
+                      >
+                        <i class="fa-solid fa-house"></i>
+                      </Link>
+                    </div>
+                  </div>
                   <div className="grid grid-cols-10 px-7 lg:px-5 relative w-full">
                     <InputCustom
                       classWrapper={`col-span-9 pr-10 ${
@@ -160,14 +170,6 @@ const AdminLogin = () => {
                     </Link>
                   </div>
                 </form>
-              </div>
-              <div className="absolute lg:top-32 lg:left-1/2 lg:pl-5  top-1/2  left-10  pt-7 hidden lg:block  hover:text-green-500 ">
-                <Link
-                  className=" lg:text-4xl  text-3xl"
-                  to={pathDefault.homePage}
-                >
-                  <i class="fa-solid fa-house"></i>
-                </Link>
               </div>
             </div>
           </div>
