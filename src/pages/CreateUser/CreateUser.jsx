@@ -7,6 +7,7 @@ import { NotificationContext } from "../../App";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { pathDefault } from "../../common/path";
+import "./createUser.scss";
 
 const CreateUser = () => {
   const { user } = useSelector((state) => state.authSlice);
@@ -75,7 +76,10 @@ const CreateUser = () => {
     switch (step) {
       case 0:
         return (
-          <form onSubmit={handleSubmitFormCreateUser} className="space-y-5">
+          <form
+            onSubmit={handleSubmitFormCreateUser}
+            className="formCreateUser space-y-5"
+          >
             <InputCustom
               contentLabel="Name"
               name="name"

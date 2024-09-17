@@ -10,6 +10,13 @@ import InputCustom from "../../components/Input/InputCustom";
 import { notiValidation } from "../../common/notiValidation";
 
 const ManagerUser = () => {
+  const awaitContext = useContext(NotificationContext);
+
+  if (!awaitContext) {
+    console.error("undefined");
+    return null; // Hoặc hiển thị loading screen
+  }
+
   const { handleNotification } = useContext(NotificationContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();

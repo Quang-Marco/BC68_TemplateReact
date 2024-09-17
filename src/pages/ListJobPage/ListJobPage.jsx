@@ -193,6 +193,10 @@ const ListJobPage = () => {
     });
   }, [tenCongViec, maLoaiCongViec, maChiTietLoai, maCongViec]);
 
+  useEffect(() => {
+    fetchData();
+  }, [listComment]);
+
   const [activeTabKey, setActiveTabKey] = useState("tab1");
   const onTab1Change = (key) => {
     setActiveTabKey(key);

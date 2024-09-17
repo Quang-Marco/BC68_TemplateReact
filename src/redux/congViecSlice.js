@@ -138,7 +138,7 @@ const congViecSlice = createSlice({
     });
     builder.addCase(getAllJobs.pending, (state, action) => {
       console.log("Đang chờ xử lý API listDetailJobs");
-      state.listAllJobs = action.payload;
+      state.listAllJobs = action.payload || [];
     });
   },
 });
