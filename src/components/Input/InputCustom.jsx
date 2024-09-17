@@ -14,7 +14,7 @@ const InputCustom = ({
 }) => {
   return (
     <div className={classWrapper}>
-      <label className="block mb-2 text-sm font-medium text-white">
+      <label className="block mb-2 text-sm font-medium text-black">
         {contentLabel}
       </label>
       <input
