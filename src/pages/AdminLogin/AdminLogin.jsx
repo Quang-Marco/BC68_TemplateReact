@@ -161,7 +161,7 @@ const AdminLogin = () => {
                   </div>
                 </form>
               </div>
-              <div className="absolute lg:top-32 lg:left-1/2 lg:pl-5  top-1/2  left-10  pt-7 hidden  hover:text-green-500 ">
+              <div className="absolute lg:top-32 lg:left-1/2 lg:pl-5  top-1/2  left-10  pt-7 hidden lg:block  hover:text-green-500 ">
                 <Link
                   className=" lg:text-4xl  text-3xl"
                   to={pathDefault.homePage}
