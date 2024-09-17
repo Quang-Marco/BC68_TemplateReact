@@ -48,7 +48,7 @@ const LoginPage = () => {
           "success"
         );
         setTimeout(() => {
-          navigate(pathDefault.homePage);
+          navigate("/admin");
         }, 3000);
       } catch (err) {
         console.log(err);
@@ -71,10 +71,10 @@ const LoginPage = () => {
   const hasErrorP = Boolean(errors.password && touched.password);
   return (
     <>
-      <div className="loginPage ">
+      <div className="loginPage">
         <div className="container ">
-          <div className="loginPage_content h-screen  ">
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:mx-32  mx-3 lg:h-full  rounded-lg lg:backdrop-blur-sm  backdrop-blur-lg  bg-green-700/10">
+          <div className="loginPage_content h-screen">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:mx-32  mx-3 lg:h-full  rounded-lg lg:backdrop-blur-sm  backdrop-blur-lg  bg-green-700/10 relative">
               <div className="loginPage_img hidden lg:block">{View}</div>
               <div className=" md:hidden block">
                 <img
@@ -85,7 +85,7 @@ const LoginPage = () => {
               </div>
               <div className="loginPage_form rounded-md bg-transparent">
                 <form onSubmit={handleSubmit} className="space-y-5   ">
-                  <h1 className="text-3xl font-semibold lg:font-bold lg:text-[#013A12] text-white  lg:text-4xl  text-center">
+                  <h1 className="text-3xl font-semibold lg:font-bold lg:text-[#013A12] text-white  lg:text-5xl  text-center">
                     ĐĂNG NHẬP
                   </h1>
                   <div className="grid grid-cols-10 px-7 lg:px-5 relative w-full">
@@ -146,12 +146,26 @@ const LoginPage = () => {
                     </button>
                     <Link
                       to={pathDefault.register}
-                      className="text-blue-600 inline-block mt-5 font-bold lg:font-medium lg:text-xl text-sm hover:underline duration-300"
+                      className="text-blue-600 inline-block mt-5 font-bold lg:font-medium lg:text-2xl text-base hover:underline duration-300"
                     >
                       Chưa có tài khoản? Nhấn vào đây để đăng ký
                     </Link>
+                    <Link
+                      to={pathDefault.homePage}
+                      className="md:hidden block  hover:underline hover:font-bold  duration-100"
+                    >
+                      Trở về trang chủ
+                    </Link>
                   </div>
                 </form>
+              </div>
+              <div className="absolute lg:top-40 lg:left-1/2 lg:pl-5  top-1/2  left-10  pt-7 hidden hover:text-green-500 ">
+                <Link
+                  className=" lg:text-4xl  text-3xl"
+                  to={pathDefault.homePage}
+                >
+                  <i class="fa-solid fa-house"></i>
+                </Link>
               </div>
             </div>
           </div>

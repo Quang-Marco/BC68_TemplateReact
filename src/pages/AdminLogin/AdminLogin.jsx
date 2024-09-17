@@ -76,7 +76,7 @@ const AdminLogin = () => {
       <div className="loginPage ">
         <div className="container ">
           <div className="loginPage_content h-screen  ">
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:mx-32  mx-3 lg:h-full  rounded-lg lg:backdrop-blur-sm  backdrop-blur-lg  bg-green-700/10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:mx-32  mx-3 lg:h-full  rounded-lg lg:backdrop-blur-sm  backdrop-blur-lg  bg-green-700/10 relative">
               <div className="loginPage_img hidden lg:block">{View}</div>
               <div className=" md:hidden block">
                 <img
@@ -152,8 +152,22 @@ const AdminLogin = () => {
                     >
                       Chưa có tài khoản? Nhấn vào đây để đăng ký
                     </Link>
+                    <Link
+                      to={pathDefault.homePage}
+                      className="md:hidden block  hover:underline hover:font-bold  duration-100"
+                    >
+                      Trở về trang chủ
+                    </Link>
                   </div>
                 </form>
+              </div>
+              <div className="absolute lg:top-32 lg:left-1/2 lg:pl-5  top-1/2  left-10  pt-7 hidden  hover:text-green-500 ">
+                <Link
+                  className=" lg:text-4xl  text-3xl"
+                  to={pathDefault.homePage}
+                >
+                  <i class="fa-solid fa-house"></i>
+                </Link>
               </div>
             </div>
           </div>
