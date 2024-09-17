@@ -28,14 +28,14 @@ const nguoiDungSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getValueUserApi.fulfilled, (state, action) => {
-      console.log("Call API thành công");
+      console.log("Call API user thành công");
       state.listUsers = action.payload;
     });
     builder.addCase(getValueUserApi.pending, (state, action) => {
-      console.log("Đang chờ xử lý API");
+      console.log("Đang chờ xử lý API user");
     });
     builder.addCase(getValueUserApi.rejected, (state, action) => {
-      console.log("Call API Bị lỗi");
+      console.log("Call API Bị lỗi user");
     });
 
     // update user

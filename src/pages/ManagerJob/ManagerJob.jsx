@@ -9,42 +9,54 @@ const ManagerJob = () => {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
-    dispatch(getListJobs());
-    dispatch(getAllJobs());
+    const fetchData = async () => {
+      await Promise.all([dispatch(getListJobs()), dispatch(getAllJobs())]);
+    };
+    fetchData();
+  }, [dispatch]);
 
-    const flattenData = () => {
-      const flattenedData = [];
-      listJobs.forEach((loaiCongViec) => {
-        loaiCongViec.dsNhomChiTietLoai.forEach((nhomCongViec) => {
-          nhomCongViec.dsChiTietLoai.forEach((chiTiet) => {
-            flattenedData.push({
-              key: chiTiet.id,
-              tenLoaiCongViec: loaiCongViec.tenLoaiCongViec,
-              tenNhom: nhomCongViec.tenNhom,
-              tenChiTiet: chiTiet.tenChiTiet,
+  // useEffect(() => {
+  //   console.log("listJobs", listJobs);
+  //   console.log("listAllJobs", listAllJobs);
+  // }, [listJobs, listAllJobs]);
+
+  useEffect(() => {
+    if (listJobs.length && listAllJobs.length) {
+      const flattenData = () => {
+        const flattenedData = [];
+        listJobs.forEach((loaiCongViec) => {
+          loaiCongViec.dsNhomChiTietLoai.forEach((nhomCongViec) => {
+            nhomCongViec.dsChiTietLoai.forEach((chiTiet) => {
+              flattenedData.push({
+                key: chiTiet.id,
+                tenLoaiCongViec: loaiCongViec.tenLoaiCongViec,
+                tenNhom: nhomCongViec.tenNhom,
+                tenChiTiet: chiTiet.tenChiTiet,
+              });
             });
           });
         });
-      });
-
-      const mergedData = flattenedData.map((item) => {
-        const matchedJob = listAllJobs.find(
-          (job) => job.maChiTietLoaiCongViec === item.key
-        );
-        if (matchedJob) {
-          return {
-            ...item,
-            tenCongViec: matchedJob.tenCongViec,
-            giaTien: matchedJob.giaTien,
-            hinhAnh: matchedJob.hinhAnh,
-          };
-        }
-        return item;
-      });
-      setDataSource(mergedData);
-    };
-    flattenData();
-  }, []);
+        const mergedData = flattenedData.map((item) => {
+          const matchedJob = listAllJobs.find(
+            (job) => job.maChiTietLoaiCongViec === item.key
+          );
+          if (matchedJob) {
+            return {
+              ...item,
+              tenCongViec: matchedJob.tenCongViec,
+              giaTien: matchedJob.giaTien,
+              hinhAnh: matchedJob.hinhAnh,
+            };
+          }
+          return item;
+        });
+        console.log(mergedData);
+        console.log(flattenedData);
+        setDataSource(mergedData);
+      };
+      flattenData();
+    }
+  }, [listJobs.length, listAllJobs.length]);
 
   const columns = [
     {
