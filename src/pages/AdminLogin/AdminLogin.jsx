@@ -87,8 +87,8 @@ const AdminLogin = () => {
               </div>
               <div className="loginPage_form rounded-md bg-transparent">
                 <form onSubmit={handleSubmit} className="space-y-5   ">
-                  <h1 className="text-3xl font-semibold lg:font-bold lg:text-[#013A12] text-white  lg:text-4xl  text-center">
-                    ĐĂNG NHẬP ADMIN MODE
+                  <h1 className="text-3xl font-semibold lg:font-bold lg:text-[#013A12] text-white lg:text-4xl text-center">
+                    ADMIN LOGIN
                   </h1>
                   <div className="grid grid-cols-10 px-7 lg:px-5 relative w-full">
                     <InputCustom
@@ -96,7 +96,7 @@ const AdminLogin = () => {
                         hasErrorE ? "pb-6" : ""
                       }`}
                       contentLabel="Email"
-                      placeholder="Vui lòng nhập email"
+                      placeholder="Enter your email address"
                       name="email"
                       value={values.email}
                       onChange={handleChange}
@@ -111,7 +111,7 @@ const AdminLogin = () => {
                           : "top-3/4 -translate-y-1/2"
                       }`}
                     >
-                      <i class="fa-solid fa-user"></i>
+                      <i className="fa-solid fa-user"></i>
                     </div>
                   </div>
                   <div className="grid grid-cols-10 px-7 lg:px-5 relative w-full">
@@ -119,8 +119,8 @@ const AdminLogin = () => {
                       classWrapper={`col-span-9 pr-10 ${
                         hasErrorP ? "pb-6" : ""
                       }`}
-                      contentLabel="Mật khẩu"
-                      placeholder="Vui lòng nhập mật khẩu"
+                      contentLabel="Password"
+                      placeholder="Enter your password"
                       name="password"
                       type="password"
                       value={values.password}
@@ -136,7 +136,7 @@ const AdminLogin = () => {
                           : "top-3/4 -translate-y-1/2"
                       }`}
                     >
-                      <i class="fa-solid fa-lock"></i>
+                      <i className="fa-solid fa-lock"></i>
                     </div>
                   </div>
                   <div className="text-center px-7 pt-3  space-y-3 lg:space-y-6 lg:pt-5 lg:px-5">
@@ -144,30 +144,10 @@ const AdminLogin = () => {
                       type="submit"
                       className="inline-block text-2xl lg:text-xl w-full btnDn py-3 px-5  bg-black text-white rounded-md hover:bg-green-500 duration-300"
                     >
-                      Đăng nhập
+                      Login
                     </button>
-                    <Link
-                      to={pathDefault.register}
-                      className="text-blue-600 inline-block mt-5 font-bold lg:font-medium lg:text-xl text-sm hover:underline duration-300"
-                    >
-                      Chưa có tài khoản? Nhấn vào đây để đăng ký
-                    </Link>
-                    <Link
-                      to={pathDefault.homePage}
-                      className="md:hidden block  hover:underline hover:font-bold  duration-100"
-                    >
-                      Trở về trang chủ
-                    </Link>
                   </div>
                 </form>
-              </div>
-              <div className="absolute lg:top-32 lg:left-1/2 lg:pl-5  top-1/2  left-10  pt-7 hidden lg:block  hover:text-green-500 ">
-                <Link
-                  className=" lg:text-4xl  text-3xl"
-                  to={pathDefault.homePage}
-                >
-                  <i class="fa-solid fa-house"></i>
-                </Link>
               </div>
             </div>
           </div>

@@ -16,6 +16,7 @@ const FormSearch = ({ placeholder, classInput, classWrapper, classIcon }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`${pathDefault.listJob}?tenCongViec=${valueSearch}`);
+    setCheckDropdown(false);
     setValueSearch("");
   };
   const handleChange = (e) => {

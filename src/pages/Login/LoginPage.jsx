@@ -85,8 +85,14 @@ const LoginPage = () => {
               </div>
               <div className="loginPage_form rounded-md bg-transparent">
                 <form onSubmit={handleSubmit} className="space-y-5   ">
-                  <h1 className="text-3xl font-semibold lg:font-bold lg:text-[#013A12] text-white  lg:text-5xl  text-center">
-                    ĐĂNG NHẬP
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold lg:font-bold lg:text-[#013A12] text-white text-center">
+                    <Link
+                      className="hover:opacity-70 duration-300"
+                      to={pathDefault.homePage}
+                    >
+                      <i className="fa-solid fa-house"></i>
+                    </Link>{" "}
+                    LOGIN
                   </h1>
                   <div className="grid grid-cols-10 px-7 lg:px-5 relative w-full">
                     <InputCustom
@@ -94,7 +100,7 @@ const LoginPage = () => {
                         hasErrorE ? "pb-6" : ""
                       }`}
                       contentLabel="Email"
-                      placeholder="Vui lòng nhập email"
+                      placeholder="Enter your email address"
                       name="email"
                       value={values.email}
                       onChange={handleChange}
@@ -109,7 +115,7 @@ const LoginPage = () => {
                           : "top-3/4 -translate-y-1/2"
                       }`}
                     >
-                      <i class="fa-solid fa-user"></i>
+                      <i className="fa-solid fa-user"></i>
                     </div>
                   </div>
                   <div className="grid grid-cols-10 px-7 lg:px-5 relative w-full">
@@ -117,8 +123,8 @@ const LoginPage = () => {
                       classWrapper={`col-span-9 pr-10 ${
                         hasErrorP ? "pb-6" : ""
                       }`}
-                      contentLabel="Mật khẩu"
-                      placeholder="Vui lòng nhập mật khẩu"
+                      contentLabel="Password"
+                      placeholder="Enter your password"
                       name="password"
                       type="password"
                       value={values.password}
@@ -134,38 +140,27 @@ const LoginPage = () => {
                           : "top-3/4 -translate-y-1/2"
                       }`}
                     >
-                      <i class="fa-solid fa-lock"></i>
+                      <i className="fa-solid fa-lock"></i>
                     </div>
                   </div>
-                  <div className="text-center px-7 pt-3  space-y-3 lg:space-y-6 lg:pt-5 lg:px-5">
+                  <div className="text-center px-7 pt-3 space-y-3 lg:space-y-6 lg:pt-5 lg:px-5">
                     <button
                       type="submit"
                       className="inline-block text-2xl lg:text-xl w-full btnDn py-3 px-5  bg-black text-white rounded-md hover:bg-green-500 duration-300"
                     >
-                      Đăng nhập
+                      Login
                     </button>
-                    <Link
-                      to={pathDefault.register}
-                      className="text-blue-600 inline-block mt-5 font-bold lg:font-medium lg:text-2xl text-base hover:underline duration-300"
-                    >
-                      Chưa có tài khoản? Nhấn vào đây để đăng ký
-                    </Link>
-                    <Link
-                      to={pathDefault.homePage}
-                      className="md:hidden block  hover:underline hover:font-bold  duration-100"
-                    >
-                      Trở về trang chủ
-                    </Link>
+                    <div className="text-white lg:text-xl mt-5">
+                      No account yet?{" "}
+                      <Link
+                        to={pathDefault.register}
+                        className="text-blue-700 font-bold lg:font-medium hover:underline duration-300"
+                      >
+                        Register
+                      </Link>
+                    </div>
                   </div>
                 </form>
-              </div>
-              <div className="absolute lg:top-40 lg:left-1/2 lg:pl-5  top-1/2  left-10  pt-0 hidden lg:block hover:text-green-500 ">
-                <Link
-                  className=" lg:text-4xl  text-3xl"
-                  to={pathDefault.homePage}
-                >
-                  <i class="fa-solid fa-house"></i>
-                </Link>
               </div>
             </div>
           </div>
