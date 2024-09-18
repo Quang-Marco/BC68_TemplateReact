@@ -13,8 +13,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
   const navigate = useNavigate();
-  const handleBackToLoginLayout = () => {
-    navigate("/admin-login");
+  const handleBackToHomePage = () => {
+    navigate("/");
   };
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -59,6 +59,9 @@ const AdminTemplate = () => {
           style={{
             padding: 0,
             background: colorBgContainer,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
           <Button
@@ -71,7 +74,12 @@ const AdminTemplate = () => {
               height: 64,
             }}
           />
-          <Button onClick={handleBackToLoginLayout}>Login Admin</Button>
+          <Button
+            onClick={handleBackToHomePage}
+            style={{ marginRight: "20px" }}
+          >
+            Back to HomePage
+          </Button>
         </Header>
         <Content
           style={{

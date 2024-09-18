@@ -73,9 +73,9 @@ const FormRegister = () => {
     }),
   });
   return (
-    <div className="flex items-center justify-center flex-col h-full ">
+    <div className="flex items-center justify-center flex-col h-full">
       <div className="container px-2">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center lg:text-[#013A12] text-white">
+        <h1 className="text-3xl sm:text-3xl lg:text-4xl font-bold text-center lg:text-[#013A12] text-white">
           <Link
             className="hover:opacity-70 duration-300"
             to={pathDefault.homePage}
@@ -85,7 +85,7 @@ const FormRegister = () => {
           REGISTER
         </h1>
         <form onSubmit={handleSubmit}>
-          <div className="lg:flex lg:flex-wrap  grid grid-cols-1 space-y-3 lg:space-y-0">
+          <div className="lg:flex lg:flex-wrap grid grid-cols-1 space-y-3 lg:space-y-0">
             <InputCustom
               contentLabel="Full name"
               name="name"
@@ -164,12 +164,15 @@ const FormRegister = () => {
               )}
             </div>
             <div className="w-full m-3 text-center">
-              <button
-                type="submit"
-                className="lg:py-3 lg:px-6 mt-2 lg:mt-0 w-3/4 py-4 px-5 text-2xl lg:text-xl bg-black text-white  lg:w-full duration-300"
-              >
-                Register
-              </button>
+              <div className="my-5 text-2xl">
+                <button
+                  type="submit"
+                  className="lg:py-3 lg:px-6 lg:mt-0 w-3/4 py-4 px-5 bg-black text-white lg:w-full duration-300"
+                  style={{ fontSize: "18px" }}
+                >
+                  Register
+                </button>
+              </div>
               <div className="text-white lg:text-xl mt-5">
                 Have an account?{" "}
                 <Link

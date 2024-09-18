@@ -11,7 +11,7 @@ const RegisterPage = () => {
   const { View } = useLottie(options);
   return (
     <div className="registerContent h-screen">
-      <div className=" lg:grid  lg:grid-cols-2  items-center h-screen">
+      <div className="lg:grid  lg:grid-cols-2  items-center h-screen">
         <div className="w-10/12  pl-20 hidden lg:block">{View}</div>
         <div className="ms:hidden md:hidden px-7 py-5">
           <img
@@ -20,7 +20,7 @@ const RegisterPage = () => {
             alt=""
           />
         </div>
-        <div className="px-2  rounded-lg lg:backdrop-blur-sm  backdrop-blur-lg  bg-green-700/30 py-5">
+        <div className="px-2 rounded-lg lg:backdrop-blur-sm backdrop-blur-lg bg-green-700/30 py-5 mx-10">
           <FormRegister />
         </div>
       </div>

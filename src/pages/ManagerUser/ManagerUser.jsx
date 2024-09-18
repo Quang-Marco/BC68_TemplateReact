@@ -14,7 +14,7 @@ const ManagerUser = () => {
 
   if (!awaitContext) {
     console.error("undefined");
-    return null; // Hoặc hiển thị loading screen
+    return null;
   }
 
   const { handleNotification } = useContext(NotificationContext);
@@ -159,7 +159,7 @@ const ManagerUser = () => {
             }}
             className="bg-red-500 text-white py-2 px-5 rounded-md hover:bg-red-500/80 duration-300"
           >
-            Xóa
+            Delete
           </button>
           <button
             onClick={() => {
@@ -167,10 +167,10 @@ const ManagerUser = () => {
             }}
             className="bg-yellow-500 text-white py-2 px-5 rounded-md hover:bg-yellow-500/80 duration-300"
           >
-            Sửa
+            Edit Info
           </button>
           <Modal
-            title="Thông tin người dùng"
+            title="User Information"
             open={isModalOpen}
             onOk={handleSubmit}
             onCancel={handleCancel}

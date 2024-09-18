@@ -50,8 +50,8 @@ const ManagerJob = () => {
           }
           return item;
         });
-        console.log(mergedData);
-        console.log(flattenedData);
+        // console.log(mergedData);
+        // console.log(flattenedData);
         setDataSource(mergedData);
       };
       flattenData();
@@ -60,23 +60,23 @@ const ManagerJob = () => {
 
   const columns = [
     {
-      title: "Loại công việc",
+      title: "Type",
       dataIndex: "tenLoaiCongViec",
       key: "tenLoaiCongViec",
     },
     {
-      title: "Nhóm Công Việc",
+      title: "Group",
       dataIndex: "tenNhom",
       key: "tenNhom",
     },
 
     {
-      title: "Chi Tiết Công Việc",
+      title: "Branch",
       dataIndex: "tenChiTiet",
       key: "tenChiTiet",
     },
     {
-      title: "Hình ảnh",
+      title: "Image",
       dataIndex: "hinhAnh",
       key: "hinhAnh",
       render: (text) => (
@@ -84,12 +84,12 @@ const ManagerJob = () => {
       ),
     },
     {
-      title: "Tên công việc",
+      title: "Job Name",
       dataIndex: "tenCongViec",
       key: "tenCongViec",
     },
     {
-      title: "Mức lương",
+      title: "Salary",
       dataIndex: "giaTien",
       key: "giaTien",
     },
@@ -99,10 +99,10 @@ const ManagerJob = () => {
       render: (_, record) => (
         <Space size="middle">
           <button className="bg-red-500 text-white py-2 px-5 rounded-md hover:bg-red-500/80 duration-300">
-            Gỡ
+            Remove
           </button>
           <button className="bg-yellow-500 text-white py-2 px-5 rounded-md hover:bg-yellow-500/80 duration-300">
-            Sửa
+            Edit info
           </button>
         </Space>
       ),

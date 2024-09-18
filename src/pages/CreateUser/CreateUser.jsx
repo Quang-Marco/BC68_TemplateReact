@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import InputCustom from "../../components/Input/InputCustom";
 import { Select } from "antd";
 import { skillsService } from "../../services/skills.service";
@@ -29,6 +29,8 @@ const CreateUser = () => {
   const [isActive, setIsActive] = useState(true);
   const [uploadImage, setUploadImage] = useState(null);
   const [errorImage, setErrorImage] = useState("");
+  const inputFileRef = useRef(null);
+  const [errors, setErrors] = useState({});
 
   const handleChangeValue = (e) => {
     const { name, value } = e.target;
@@ -38,20 +40,49 @@ const CreateUser = () => {
     });
   };
 
+  const validateForm = () => {
+    let formErrors = {};
+    if (!userValue.name.trim()) {
+      formErrors.name = "This field cannot be left blank";
+    }
+    if (!userValue.email.trim()) {
+      formErrors.email = "This field cannot be left blank";
+    }
+    if (!userValue.phone.trim()) {
+      formErrors.phone = "This field cannot be left blank";
+    }
+    if (!userValue.password.trim()) {
+      formErrors.password = "This field cannot be left blank";
+    }
+    if (!userValue.birthday.trim()) {
+      formErrors.birthday = "This field cannot be left blank";
+    }
+    if (!userValue.role.trim()) {
+      formErrors.role = "This field cannot be left blank";
+    }
+    return formErrors;
+  };
+
   const handleSubmitFormCreateUser = (e) => {
     e.preventDefault();
-    console.log(userValue);
-    nguoiDungService
-      .postUser(userValue)
-      .then((res) => {
-        console.log(res);
-        handleNotification("Tạo thành công", "success");
-        setIsActive(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        handleNotification(err.message, "error");
-      });
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+    } else {
+      setErrors({});
+      console.log(userValue);
+      nguoiDungService
+        .postUser(userValue)
+        .then((res) => {
+          console.log(res);
+          handleNotification("Add successfully", "success");
+          setIsActive(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          handleNotification(err.message, "error");
+        });
+    }
   };
 
   const handleSubmitAvatar = (e) => {
@@ -63,7 +94,7 @@ const CreateUser = () => {
         .uploadAvatar(user.token, formData)
         .then((res) => {
           console.log(res);
-          handleNotification("Upload avatar thành công", "success");
+          handleNotification("Upload avatar successfully", "success");
         })
         .catch((err) => {
           console.log(err);
@@ -84,23 +115,39 @@ const CreateUser = () => {
               contentLabel="Name"
               name="name"
               onChange={handleChangeValue}
+              value={userValue.name}
             />
+            {errors.name && (
+              <p className="italic text-red-500 text-sm">*{errors.name}</p>
+            )}
             <InputCustom
               contentLabel="Email"
               name="email"
               onChange={handleChangeValue}
+              value={userValue.email}
             />
+            {errors.email && (
+              <p className="italic text-red-500 text-sm">*{errors.email}</p>
+            )}
             <InputCustom
               contentLabel="Phone"
               name="phone"
               onChange={handleChangeValue}
+              value={userValue.phone}
             />
+            {errors.phone && (
+              <p className="italic text-red-500 text-sm">*{errors.phone}</p>
+            )}
             <InputCustom
               contentLabel="Password"
               type="password"
               name="password"
               onChange={handleChangeValue}
+              value={userValue.password}
             />
+            {errors.password && (
+              <p className="italic text-red-500 text-sm">*{errors.password}</p>
+            )}
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
                 Date of birth
@@ -110,7 +157,13 @@ const CreateUser = () => {
                 onChange={(e) => {
                   setUserValue({ ...userValue, birthday: e.target.value });
                 }}
+                value={userValue.birthday}
               />
+              {errors.birthday && (
+                <p className="italic text-red-500 text-sm">
+                  *{errors.birthday}
+                </p>
+              )}
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -133,10 +186,14 @@ const CreateUser = () => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 name="role"
                 onChange={handleChangeValue}
+                value={userValue.role}
               >
                 <option value="ADMIN">ADMIN</option>
                 <option value="USER">USER</option>
               </select>
+              {errors.role && (
+                <p className="italic text-red-500 text-sm">*{errors.role}</p>
+              )}
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -184,14 +241,15 @@ const CreateUser = () => {
         return (
           <div>
             <form onSubmit={handleSubmitAvatar} className="space-y-2">
-              <h2 className="text-2xl">Upload avatar cho người dùng</h2>
+              <h2 className="text-2xl">Upload new avatar</h2>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
-                  Avatar
+                  Choose an image
                 </label>
                 <input
                   accept="image/png, image/jpeg"
                   type="file"
+                  ref={inputFileRef}
                   onChange={(e) => {
                     const img = e.target.files[0];
                     if (img) {
@@ -213,15 +271,17 @@ const CreateUser = () => {
                 type="submit"
                 className="py-2 px-5 bg-green-700 text-white rounded-md hover:bg-green-600 duration-300"
               >
-                Upload hình ảnh
+                Upload
               </button>
               <button
                 onClick={() => {
                   setUploadImage(null);
+                  setErrorImage("");
+                  inputFileRef.current.value = "";
                 }}
                 className="py-2 px-5 ml-5 bg-red-600 text-white rounded-md hover:bg-red-500 duration-300"
               >
-                Xóa ảnh
+                Delete
               </button>
             </form>
           </div>

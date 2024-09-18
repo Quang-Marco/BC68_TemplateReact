@@ -75,8 +75,8 @@ const AdminLogin = () => {
     <>
       <div className="loginPage ">
         <div className="container ">
-          <div className="loginPage_content h-screen  ">
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:mx-32  mx-3 lg:h-full  rounded-lg lg:backdrop-blur-sm  backdrop-blur-lg  bg-green-700/10 relative">
+          <div className="loginPage_content h-screen rounded-lg lg:backdrop-blur-sm  backdrop-blur-lg  bg-green-700/10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:mx-32 mx-3 lg:h-full relative">
               <div className="loginPage_img hidden lg:block">{View}</div>
               <div className=" md:hidden block">
                 <img
@@ -142,7 +142,8 @@ const AdminLogin = () => {
                   <div className="text-center px-7 pt-3  space-y-3 lg:space-y-6 lg:pt-5 lg:px-5">
                     <button
                       type="submit"
-                      className="inline-block text-2xl lg:text-xl w-full btnDn py-3 px-5  bg-black text-white rounded-md hover:bg-green-500 duration-300"
+                      className="inline-block lg:text-xl w-full btnDn py-3 px-5  bg-black text-white rounded-md hover:bg-green-500 duration-300"
+                      style={{ fontSize: "18px" }}
                     >
                       Login
                     </button>
