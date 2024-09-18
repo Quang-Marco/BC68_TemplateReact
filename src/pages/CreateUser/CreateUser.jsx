@@ -160,7 +160,7 @@ const CreateUser = () => {
                 value={userValue.birthday}
               />
               {errors.birthday && (
-                <p className="italic mt-20 text-red-500 text-sm">
+                <p className="italic mt-5 text-red-500 text-sm">
                   *{errors.birthday}
                 </p>
               )}
@@ -192,7 +192,7 @@ const CreateUser = () => {
                 <option value="USER">USER</option>
               </select>
               {errors.role && (
-                <p className="italic mt-20 text-red-500 text-sm">
+                <p className="italic mt-5 text-red-500 text-sm">
                   *{errors.role}
                 </p>
               )}
