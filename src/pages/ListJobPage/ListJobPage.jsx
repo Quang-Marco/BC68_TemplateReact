@@ -185,18 +185,7 @@ const ListJobPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, [tenCongViec, maLoaiCongViec, maChiTietLoai, maCongViec]);
-
-  useEffect(() => {
-    fetchData();
-  }, [listComment]);
-
+  const [offsetBottom, setOffsetBottom] = useState(0);
   const [activeTabKey, setActiveTabKey] = useState("tab1");
   const onTab1Change = (key) => {
     setActiveTabKey(key);
@@ -229,8 +218,8 @@ const ListJobPage = () => {
           </Link>
         </p>
         <p className="text-base my-5">
-          <span className="font-bold">Basic Package</span> 1 Logo concept with
-          unlimited revisions. High resolution JPG and PNG formats
+          <span className="font-bold">Basic Package</span> 2 initial concept for
+          Logo design + unlimited revision + High Res file.
         </p>
         <div className="flex justify-between">
           <p className="mr-4">
@@ -259,8 +248,8 @@ const ListJobPage = () => {
           </Link>
         </p>
         <p className="text-base my-5">
-          <span className="font-bold">Stardard Package</span> 2 unique concepts.
-          Unlimited revisions for the the design you choose and vector files
+          <span className="font-bold">Stardard Package</span> 3 initial concept
+          for logo design + unlimited revision + All Source files
         </p>
         <div className="flex justify-between">
           <p className="mr-4">
@@ -289,8 +278,8 @@ const ListJobPage = () => {
           </Link>
         </p>
         <p className="text-base my-5">
-          <span className="font-bold">Premium Package</span> 4 outstanding Logo
-          concepts, Unlimited revisions, Vector & Source files
+          <span className="font-bold">Premium Package</span> 5 initial concept
+          for logo design + unlimited revision + All Source files + Stationery
         </p>
         <div className="flex justify-between">
           <p className="mr-4">
@@ -353,6 +342,42 @@ const ListJobPage = () => {
       ))}
     </div>
   );
+
+  useEffect(() => {
+    fetchData();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [tenCongViec, maLoaiCongViec, maChiTietLoai, maCongViec]);
+
+  useEffect(() => {
+    fetchData();
+  }, [listComment]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const footer = document.querySelector(".footer");
+      const footerTop = footer.offsetTop;
+      const windowHeight = window.innerHeight;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      // Tính toán vị trí giữa màn hình
+      const componentHeight = 420; // Chiều cao component, tùy chỉnh theo thực tế
+      const componentCenter = scrollTop + windowHeight / 2;
+
+      // Nếu cạnh dưới của component gần chạm tới footer, đẩy nó lên
+      if (componentCenter + componentHeight / 2 >= footerTop) {
+        setOffsetBottom(componentCenter + componentHeight / 2 - footerTop + 20); // Thêm khoảng cách 20px với footer
+      } else {
+        setOffsetBottom(0);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -665,13 +690,7 @@ const ListJobPage = () => {
                               </span>
                             </div>
                           </div>
-                          <p className="">
-                            {/* Unbelievable! I placed my order early this morning
-                            and had my new Logo designed and completed before
-                            noon the same day. What a great experience and great
-                            designs. Thank you {item.tenNguoiTao}. */}
-                            {cmt.noiDung}
-                          </p>
+                          <p className="">{cmt.noiDung}</p>
                           <div className="flex space-x-5 lg:space-x-10">
                             <div>
                               <h5 className="font-semibold">Up to $50</h5>
@@ -697,6 +716,7 @@ const ListJobPage = () => {
                       </div>
                     ))}
 
+                    {/* Form post comment */}
                     <form onSubmit={handleSubmit}>
                       <div className="flex">
                         <img
@@ -722,7 +742,11 @@ const ListJobPage = () => {
                     </form>
                   </div>
 
-                  <div className="lg:fixed lg:right-14 xl:right-28 lg:w-80 xl:w-[450px]">
+                  {/* Card */}
+                  <div
+                    className="lg:fixed lg:right-14 xl:right-28 -translate-y-1/2 lg:w-80 xl:w-[450px]"
+                    style={{ top: `calc(50% - ${offsetBottom}px)` }}
+                  >
                     <Card
                       tabList={tabList}
                       activeTabKey={activeTabKey}

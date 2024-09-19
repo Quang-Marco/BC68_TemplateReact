@@ -121,7 +121,7 @@ const ManagerUser = () => {
       dataIndex: "gender",
       key: "gender",
       render: (text) => (
-        <Tag color={text ? "blue" : "cyan"}>{text ? "Nam" : "Nữ"}</Tag>
+        <Tag color={text ? "blue" : "cyan"}>{text ? "Male" : "Female"}</Tag>
       ),
     },
     {
@@ -225,8 +225,8 @@ const ManagerUser = () => {
                   value={values.gender}
                   onChange={handleChange}
                 >
-                  <option value={true}>Nam</option>
-                  <option value={false}>Nữ</option>
+                  <option value={true}>Male</option>
+                  <option value={false}>Female</option>
                 </select>
                 {errors.gender && touched.gender && (
                   <p className="text-red-500 mt-2">{errors.gender}</p>

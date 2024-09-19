@@ -174,8 +174,8 @@ const CreateUser = () => {
                 name="gender"
                 onChange={handleChangeValue}
               >
-                <option value={true}>Nam</option>
-                <option value={false}>Nữ</option>
+                <option value={true}>Male</option>
+                <option value={false}>Female</option>
               </select>
             </div>
             <div>
