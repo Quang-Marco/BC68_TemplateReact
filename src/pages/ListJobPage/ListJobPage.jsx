@@ -744,7 +744,7 @@ const ListJobPage = () => {
 
                   {/* Card */}
                   <div
-                    className="lg:fixed lg:right-14 xl:right-28 -translate-y-1/2 lg:w-80 xl:w-[450px]"
+                    className="lg:fixed lg:right-14 xl:right-28 lg:-translate-y-1/2 lg:w-80 xl:w-[450px]"
                     style={{ top: `calc(50% - ${offsetBottom}px)` }}
                   >
                     <Card
