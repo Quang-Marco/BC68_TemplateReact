@@ -49,13 +49,13 @@ const ManagerUser = () => {
         .updateUser(values.id, values)
         .then((res) => {
           console.log(res);
-          handleNotification("Update thành công", "success");
+          handleNotification("Updated successfully!", "success");
           dispatch(updateUser());
           dispatch(getValueUserApi());
         })
         .catch((err) => {
           console.log(err);
-          handleNotification("Update thất bại", "error");
+          handleNotification("Update failed!", "error");
         });
     },
     validationSchema: Yup.object({
@@ -171,6 +171,7 @@ const ManagerUser = () => {
           </button>
           <Modal
             title="User Information"
+            centered
             open={isModalOpen}
             onOk={handleSubmit}
             onCancel={handleCancel}

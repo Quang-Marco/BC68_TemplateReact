@@ -1,5 +1,4 @@
 import React from "react";
-import "./footer.scss";
 import { Link } from "react-router-dom";
 import { Collapse } from "antd";
 import { useTranslation } from "react-i18next";

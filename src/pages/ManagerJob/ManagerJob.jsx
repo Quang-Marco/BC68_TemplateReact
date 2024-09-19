@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Space, Table, Tag } from "antd";
+import { Space, Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllJobs, getListJobs } from "../../redux/congViecSlice";
 
@@ -14,11 +14,6 @@ const ManagerJob = () => {
     };
     fetchData();
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   console.log("listJobs", listJobs);
-  //   console.log("listAllJobs", listAllJobs);
-  // }, [listJobs, listAllJobs]);
 
   useEffect(() => {
     if (listJobs.length && listAllJobs.length) {
