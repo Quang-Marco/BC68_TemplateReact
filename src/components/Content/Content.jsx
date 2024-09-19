@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
 import "./content.scss";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Button, Modal } from "antd";
 import { Trans, useTranslation } from "react-i18next";
+import { pathDefault } from "../../common/path";
 
 const Content = () => {
   const { t } = useTranslation();
@@ -722,9 +724,12 @@ const Content = () => {
                 }}
               />
             </h2>
-            <button className="bg-white px-4 py-2 rounded-md font-medium font-semibold hover:opacity-70 duration-300">
+            <Link
+              to={pathDefault.register}
+              className="inline-block bg-white px-4 py-2 rounded-md font-medium font-semibold hover:opacity-70 duration-300"
+            >
               {t("signup")} Fiverr
-            </button>
+            </Link>
           </div>
         </div>
       </section>
