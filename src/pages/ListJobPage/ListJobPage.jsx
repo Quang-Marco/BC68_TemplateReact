@@ -86,6 +86,7 @@ const ListJobPage = () => {
       content: t("listDetailsJobs.aiServices.content"),
     },
   ];
+  const avatar = localStorage.getItem("avatar");
 
   const [valueComment, setValueComment] = useState("");
   const [listJob, setListJob] = useState([]);
@@ -721,7 +722,7 @@ const ListJobPage = () => {
                       <div className="flex">
                         <img
                           className="w-12 h-12 rounded-full mr-2"
-                          src={user?.user.avatar}
+                          src={user?.user.avatar || avatar}
                           alt="avatar"
                         />
                         <textarea
