@@ -13,6 +13,7 @@ import { setLocalStorage } from "../../utils/utils";
 import { useDispatch } from "react-redux";
 import { setValueUser } from "../../redux/authSlice";
 import { pathDefault } from "../../common/path";
+import LoginFacebook from "../../components/LoginFacebook";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -23,52 +24,41 @@ const LoginPage = () => {
     loop: true,
   };
   const { View } = useLottie(options);
-  const {
-    handleBlur,
-    handleChange,
-    handleReset,
-    handleSubmit,
-    values,
-    errors,
-    touched,
-  } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    onSubmit: async (values) => {
-      // console.log(values);
-      try {
-        const result = await authService.signIn(values);
-        console.log(result);
-        setLocalStorage("user", result.data.content);
-        dispatch(setValueUser(result.data.content));
-        handleNotification(
-          "Login successful! Redirecting to homepage",
-          "success"
-        );
-        setTimeout(() => {
+  const { handleBlur, handleChange, handleSubmit, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      onSubmit: async (values) => {
+        // console.log(values);
+        try {
+          const result = await authService.signIn(values);
+          console.log(result);
+          setLocalStorage("user", result.data.content);
+          dispatch(setValueUser(result.data.content));
+          handleNotification("Login successful!", "success");
           navigate(pathDefault.homePage);
-        }, 3000);
-      } catch (err) {
-        console.log(err);
-        handleNotification(err.response.data.content, "error");
-      }
-    },
-    validationSchema: object({
-      email: string()
-        .required(notiValidation.empty)
-        .email(notiValidation.email),
-      password: string()
-        .required(notiValidation.empty)
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-          notiValidation.password
-        ),
-    }),
-  });
+        } catch (err) {
+          console.log(err);
+          handleNotification(err.response.data.content, "error");
+        }
+      },
+      validationSchema: object({
+        email: string()
+          .required(notiValidation.empty)
+          .email(notiValidation.email),
+        password: string()
+          .required(notiValidation.empty)
+          .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            notiValidation.password
+          ),
+      }),
+    });
   const hasErrorE = Boolean(errors.email && touched.email);
   const hasErrorP = Boolean(errors.password && touched.password);
+
   return (
     <>
       <div className="loginPage">
@@ -84,7 +74,7 @@ const LoginPage = () => {
                 />
               </div>
               <div className="loginPage_form rounded-md bg-transparent">
-                <form onSubmit={handleSubmit} className="space-y-5   ">
+                <form onSubmit={handleSubmit} className="space-y-5 mb-5">
                   <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold lg:font-bold lg:text-[#013A12] text-white text-center">
                     <Link
                       className="hover:opacity-70 duration-300"
@@ -151,17 +141,20 @@ const LoginPage = () => {
                     >
                       Login
                     </button>
-                    <div className="text-white lg:text-xl mt-5">
-                      No account yet?{" "}
-                      <Link
-                        to={pathDefault.register}
-                        className="text-blue-700 font-bold lg:font-medium hover:underline duration-300"
-                      >
-                        Register
-                      </Link>
-                    </div>
                   </div>
                 </form>
+                <div className="text-center">
+                  <LoginFacebook />
+                </div>
+                <div className="text-center text-white lg:text-xl mt-5">
+                  No account yet?{" "}
+                  <Link
+                    to={pathDefault.register}
+                    className="text-blue-700 font-bold lg:font-medium hover:underline duration-300"
+                  >
+                    Register
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

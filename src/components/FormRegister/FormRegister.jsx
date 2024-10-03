@@ -31,7 +31,6 @@ const FormRegister = () => {
       gender: "",
     },
     onSubmit: (values) => {
-      console.log(values);
       authService
         .signUp({
           ...values,
